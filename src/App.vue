@@ -1,6 +1,8 @@
 <template>
-  <div id="nav"></div>
-  <router-view />
+  <div>
+    <div id="nav"></div>
+    <router-view />
+  </div>
 </template>
 
 <style lang="scss">
