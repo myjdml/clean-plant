@@ -2,7 +2,7 @@
 <!--eslint-disable no-tabs-->
 <template>
 	<div>
-		<div id="nav">123</div>
+		<div id="nav"></div>
 		<router-view />
 	</div>
 </template>

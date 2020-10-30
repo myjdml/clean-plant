@@ -1,9 +1,7 @@
 <!--eslint-disable no-tabs-->
 <template>
-	<div :class="$store.state.show1 ? 'show default' : 'hidden default'">
-		<div class="popup">
-			<button @click="hidden">X</button>
-		</div>
+	<div :class="$store.state.showInfoPopup ? 'show default' : 'hidden default'">
+		<div class="popup" @click="hidden"></div>
 	</div>
 </template>
 
@@ -24,16 +22,16 @@ export default {
 	},
 	methods: {
 		hidden () {
-			this.$store.commit('show', false)
+			this.$store.commit('showInfoPopup', false)
 		}
 	}
 }
 </script>
 <style lang='scss' scoped>
 .popup {
-	width: 500px;
-	height: 700px;
-	background-color: burlywood;
+	width: 100vw;
+	height: 100vh;
+	background-color: rgb(0, 0, 0, 0.45);
 }
 .default {
 	position: absolute !important;
@@ -52,11 +50,12 @@ export default {
 .hidden {
 	opacity: 0;
 	animation: hidden 0.3s linear;
+	visibility: hidden;
 }
 @keyframes show {
 	0% {
 		opacity: 0;
-		transform: translateY(-60%) translateX(-50%) scale(0.99);
+		transform: translateY(-50%) translateX(-50%) scale(1);
 	}
 	100% {
 		opacity: 1;
@@ -71,6 +70,7 @@ export default {
 	100% {
 		opacity: 0;
 		transform: translateY(-60%) translateX(-50%) scale(0.99);
+		overflow: hidden;
 	}
 }
 </style>
