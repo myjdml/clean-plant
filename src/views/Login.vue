@@ -39,11 +39,6 @@ export default {
 
 </script>
 <style lang='scss' scoped>
-@font-face {
-	font-family: 'clear';
-	src: url('../assets/font/庞门正道标题体2.0增强版.TTF');
-}
-
 .join {
 	font-family: 'clear';
 	font-size: 90px;

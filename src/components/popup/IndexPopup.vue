@@ -2,7 +2,7 @@
 <template>
 	<div :class="$store.state.showIndexPopup ? 'show default' : 'hidden default'">
 		<div class="popup">
-			<button @click="hidden">X</button>
+			<div class="title"></div>
 		</div>
 	</div>
 </template>
