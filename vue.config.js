@@ -8,21 +8,7 @@ module.exports = {
   outputDir: 'build',
   publicPath:
     process.env.NODE_ENV === 'production' ? '/game/clean-plant/' : './',
-  chainWebpack: config => {
-    config.resolve.alias
-      .set('@', resolve('src'))
-      .set('@assets', resolve('src/assets'))
-      .set('@components', resolve('src/components'))
-      .set('@views', resolve('src/views'));
-  },
-  css: {
-    sourceMap: true,
-    loaderOptions: {
-      scss: {
-        prependData: `@import "~@/assets/style/variables.scss";`,
-      },
-    },
-  },
+
   // devServer: {
   //   port: 8088,
   //   proxy: {
