@@ -1,7 +1,9 @@
 <!--eslint-disable no-tabs-->
 <template>
 	<div :class="$store.state.showInfoPopup ? 'show default' : 'hidden default'">
-		<div class="popup" @click="hidden"></div>
+		<div class="popup" @click="hidden">
+			<div class="info">{{ info }}</div>
+		</div>
 	</div>
 </template>
 
@@ -16,6 +18,9 @@
  */
 
 export default {
+	props: {
+		info: String
+	},
 	data () {
 		return {
 		}
@@ -32,6 +37,20 @@ export default {
 	width: 100vw;
 	height: 100vh;
 	background-color: rgb(0, 0, 0, 0.45);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	.info {
+		font-family: 'clear';
+		width: 427px;
+		height: 194px;
+		background-color: #ffffff;
+		color: #2768f8;
+		border-radius: 20px;
+		padding: 20px;
+		font-size: 50px;
+		text-align: left;
+	}
 }
 .default {
 	position: absolute !important;

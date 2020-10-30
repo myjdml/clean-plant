@@ -7,7 +7,7 @@
 		<button @click="smallPop" class="join">小弹窗</button>
 		<div class="join">打卡成功!</div>
 		<popup></popup>
-		<infopopup></infopopup>
+		<infopopup info="打卡成功"> </infopopup>
 	</div>
 </template>
 
