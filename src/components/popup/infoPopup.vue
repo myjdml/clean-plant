@@ -2,7 +2,7 @@
 <template>
 	<div :class="$store.state.showInfoPopup ? 'show default' : 'hidden default'">
 		<div class="popup" @click="hidden">
-			<div class="info">{{ info }}</div>
+			<div :class="type == `succesd` ? `info` : `warm`">{{ info }}</div>
 		</div>
 	</div>
 </template>
@@ -19,7 +19,8 @@
 
 export default {
 	props: {
-		info: String
+		info: String,
+		type: String
 	},
 	data () {
 		return {
@@ -40,7 +41,7 @@ export default {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	.info {
+	.warm {
 		font-family: 'clear';
 		width: 427px;
 		height: 194px;
@@ -50,6 +51,18 @@ export default {
 		padding: 20px;
 		font-size: 50px;
 		text-align: left;
+	}
+	.info {
+		font-family: 'clear';
+		width: 427px;
+		height: 194px;
+		background-color: #ffffff;
+		border-radius: 20px;
+		padding: 20px;
+		font-size: 50px;
+		line-height: 194px;
+		text-align: center;
+		color: #ff5d31;
 	}
 }
 .default {

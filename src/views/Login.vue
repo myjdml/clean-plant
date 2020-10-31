@@ -7,7 +7,7 @@
 		<button @click="smallPop" class="join">小弹窗</button>
 		<div class="join">打卡成功!</div>
 		<popup></popup>
-		<infopopup info="打卡成功"> </infopopup>
+		<infopopup info="打卡成功" type="succesd"> </infopopup>
 	</div>
 </template>
 
@@ -34,6 +34,11 @@ export default {
 		smallPop () {
 			this.$store.commit('showInfoPopup', true)
 		}
+	},
+	created () {
+		setTimeout(() => {
+			this.login()
+		}, 1000)
 	}
 }
 
