@@ -3,21 +3,21 @@
 	<div :class="$store.state.showIndexPopup ? 'show default' : 'hidden default'">
 		<div class="popup">
 			<div class="title">
-				<p>勤俭节约7天拍照打卡活动</p>
+				<p>勤俭节约21天拍照打卡活动</p>
 				<div class="line"></div>
 			</div>
 			<div class="main">
 				<div class="index">
 					<div class="inner">
-						<p>打卡目标</p>
+						<p class="indexpop-p">打卡目标</p>
 						<li>
-							希望同学们可以通过7天的打卡活动，养成珍惜粮食，吃穿节俭的好习惯，更加理解勤俭节约的重要性。
+							希望同学们可以通过21天的打卡活动，养成珍惜粮食，吃穿节俭的好习惯，更加理解勤俭节约的重要性。
 						</li>
 					</div>
 				</div>
 				<div class="index">
 					<div class="inner">
-						<p>打卡奖励</p>
+						<p class="indexpop-p">打卡奖励</p>
 						<li><a>(1)</a> 连续打卡满7天的同学可以获得xx</li>
 						<li>
 							<a>(2)</a>
@@ -27,7 +27,7 @@
 				</div>
 				<div class="index">
 					<div class="inner">
-						<p>打卡规则</p>
+						<p class="indexpop-p">打卡规则</p>
 						<li>
 							<a>(1)</a>
 							同学们需要每天将饭后空碗筷的照片进行上传，仅可饭后立刻拍照，不可从图库中选择。
@@ -79,6 +79,9 @@ export default {
 	background-image: url('../../assets/image/home/background.png');
 	background-size: cover;
 	font-family: 'clear';
+	.indexpop-p {
+		color: #ff6c00;
+	}
 	.title {
 		width: 90vw;
 		height: 150px;

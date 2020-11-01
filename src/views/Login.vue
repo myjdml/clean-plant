@@ -14,7 +14,7 @@
 <script>
 /* eslint-disable no-tabs */
 /* eslint-disable indent */
-import popup from '../components/popup/IndexPopup'
+import popup from '../components/popup/indexPopup'
 import infopopup from '../components/popup/infoPopup'
 export default {
 	components: {
