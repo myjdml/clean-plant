@@ -32,7 +32,12 @@
 		</div>
 		<!-- 打卡日历 -->
 		<div class="clockin-calendar">
-			<p>已打卡</p>
+			<div class="clockin-title">
+				<p>
+					已打卡 <a>{{ num }}/7</a> 天
+				</p>
+			</div>
+			<div class="calendarlist"></div>
 		</div>
 	</div>
 	<indexPopup></indexPopup>
@@ -44,6 +49,7 @@
 import indexPopup from '../components/popup/indexPopup'
 // import calendar from '../components/calendar/calendar'
 // import { useRouter } from 'vue-router'
+import * as dayjs from 'dayjs'
 export default {
 	components: {
 		indexPopup
@@ -51,13 +57,25 @@ export default {
 	},
 	data () {
 		return {
-
+			num: 1,
+			daylist: [
+				{ num: 19, state: '', week: '周一' },
+				{ num: 19, state: '', week: '周二' },
+				{ num: 19, state: '', week: '周三' },
+				{ num: 19, state: '', week: '周四' },
+				{ num: 19, state: '', week: '周五' },
+				{ num: 19, state: '', week: '周六' },
+				{ num: 19, state: '', week: '周日' }
+			]
 		}
 	},
 	methods: {
 		checkAll () {
 			this.$store.commit('showIndexPopup', true)
 		}
+	},
+	created () {
+		console.log(dayjs.unix(1318781876))
 	}
 }
 </script>
@@ -71,6 +89,7 @@ export default {
 	flex-direction: column;
 	align-items: center;
 	font-family: 'clear';
+	letter-spacing: 2px;
 	p {
 		margin: 0;
 	}
@@ -88,13 +107,13 @@ export default {
 		p {
 			position: relative;
 			transform: translateX(46px);
-			font-size: 53px;
+			font-size: 46px;
 			line-height: 50px;
 			margin: 0;
 		}
 		.ware {
 			position: relative;
-			transform: translateX(46px);
+			transform: translateX(46px) translateY(10px);
 			width: 620px;
 			height: 17px;
 			background-image: url('../assets/image/index/ware.png');
@@ -180,6 +199,28 @@ export default {
 		}
 	}
 	.clockin-calendar {
+		margin-top: 50px;
+		display: flex;
+		flex-direction: column;
+		.clockin-title {
+			width: 660px;
+			text-align: left;
+			p,
+			a {
+				font-size: 28px;
+			}
+			p {
+				margin-left: 40px;
+				color: #ff940b;
+			}
+			a {
+				color: #3272fe;
+			}
+		}
+		.calendarlist {
+			display: flex;
+			flex-direction: row;
+		}
 	}
 }
 </style>
