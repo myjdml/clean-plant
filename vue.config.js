@@ -1,7 +1,7 @@
 module.exports = {
     publicPath:
         process.env.NODE_ENV === "production"
-            ? "/game/Resource_Station_Register/"
+            ? "/game/clean-plant/"
             : "/",
     outputDir: "build",
     devServer: {
