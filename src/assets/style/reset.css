@@ -1,0 +1,14 @@
+button {
+    outline: none;
+    border: none;
+    background-color: rgba(0, 0, 0, 0);
+}
+p {
+    line-height: 1;
+    margin-block: 0;
+}
+textarea {
+    outline: none;
+    resize:none;
+    border: black solid 1px;
+}

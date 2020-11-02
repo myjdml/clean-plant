@@ -12,6 +12,9 @@ import router from './router'
 import store from './store'
 // import ApiService from './service/api'
 import 'normalize.css'
-import './style/global.scss'
-// ApiService.init()
+import './assets/style/reset.css'
+import './assets/style/font.css'
+// import VConsole from 'vconsole'
+/* eslint-disable no-unused-vars */
 createApp(App).use(store).use(router).mount('#app')
+// const vConsole = new VConsole() // 初始化

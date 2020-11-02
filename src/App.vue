@@ -9,8 +9,8 @@
 /* eslint-disable no-tabs */
 /* eslint-disable indent */
 export default {
-	methods: {
-	}
+  methods: {
+  }
 }
 </script>
 <style lang="scss">
