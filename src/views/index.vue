@@ -124,9 +124,9 @@ export default {
 		praise (index) {
 			this.clockinList[index].ispraise = !this.clockinList[index].ispraise
 			if (this.clockinList[index].ispraise) {
-				this.clockinList[index].praiseNum += 1;
+				this.clockinList[index].praiseNum += 1
 			} else {
-				this.clockinList[index].praiseNum -= 1;
+				this.clockinList[index].praiseNum -= 1
 			}
 		}
 	},

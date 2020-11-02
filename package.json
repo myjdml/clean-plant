@@ -17,6 +17,7 @@
     "commitizen": "^4.2.2",
     "core-js": "^3.6.5",
     "cz-conventional-changelog": "^3.3.0",
+    "dayjs": "^1.9.4",
     "normalize.css": "^8.0.1",
     "postcss-px-to-viewport": "^1.1.1",
     "v-calendar": "^2.0.1",
