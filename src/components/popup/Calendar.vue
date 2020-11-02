@@ -195,6 +195,7 @@ export default {
         display: flex;
         justify-content: space-between;
         align-items: center;
+        margin-bottom: 20px;
         p {
           color: #FF6000;
           &::before {
