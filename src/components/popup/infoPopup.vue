@@ -76,6 +76,7 @@ export default {
   position: absolute;
 }
 .show {
+  touch-action: none;
   opacity: 1;
   animation: show 0.5s ease-in-out;
 }
