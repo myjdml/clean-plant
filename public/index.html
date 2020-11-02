@@ -1,17 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <title><%= htmlWebpackPlugin.options.title %></title>
-  </head>
-  <body>
-    <noscript>
-      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
-    </noscript>
-    <div id="app"></div>
-    <!-- built files will be auto injected -->
-  </body>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0, user-scalable=0;">
+  <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+  <title><%= htmlWebpackPlugin.options.title %></title>
+</head>
+
+<body>
+  <noscript>
+    <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled.
+      Please enable it to continue.</strong>
+  </noscript>
+  <div id="app"></div>
+  <!-- built files will be auto injected -->
+  <script>
+    const token = document.location.href.split('token=')[1];
+    console.log(token);
+    if (token && token.length) {
+      document.location.hash = '#/';
+      localStorage.setItem('id_token', token);
+      const { exp, stuNum, role } = JSON.parse(atob(token.split('.')[1]));
+      localStorage.setItem('exp', exp);
+      localStorage.setItem('stuNum', stuNum);
+      localStorage.setItem('role', role);
+    }
+    if (
+      (!localStorage.getItem('id_token') ||
+        parseInt(localStorage.getItem('exp')) <
+        Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 2) &&
+      !token
+    ) {
+      window.location.href =
+        'https://wx.redrock.team/magicloop/rushb?b=' +
+        encodeURI('https://cyxbsmobile.redrock.team/wxapi/clean-plant-server/enter') +
+        '&scope=student';
+    }
+  </script>
+</body>
+
 </html>
