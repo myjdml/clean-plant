@@ -24,11 +24,6 @@ const routes = [
     path: '/push-card',
     name: 'PushCard',
     component: () => import('../views/PushCard')
-  },
-  {
-    path: '/text',
-    name: 'Text',
-    component: () => import('../components/Text')
   }
 ]
 

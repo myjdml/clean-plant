@@ -25,7 +25,7 @@
       <div class="index-record-title">
         <p>打卡记录</p>
         <div class="index-today-block">
-          <div class="today-clockin"></div>
+          <div class="today-clockin" @click="gotoPushCard"></div>
           <div class="today-detail"></div>
         </div>
       </div>
@@ -83,12 +83,15 @@
     </div>
   </div>
   <indexPopup></indexPopup>
+  <!-- <calendar></calendar> -->
 </template>
 
 <script>
 /* eslint-disable no-tabs */
 /* eslint-disable indent */
+// import Calendar from '../components/calendar/'
 import indexPopup from '../components/popup/IndexPopup'
+import { useRouter } from 'vue-router'
 // import calendar from '../components/calendar/calendar'
 // import { useRouter } from 'vue-router'
 import * as dayjs from 'dayjs'
@@ -96,6 +99,17 @@ export default {
   components: {
     indexPopup
     // calendar
+  },
+  setup () {
+    const router = useRouter()
+
+    function gotoPushCard () {
+      console.log(1)
+      router.push('/push-card')
+    }
+    return {
+      gotoPushCard
+    }
   },
   data () {
     return {
@@ -135,10 +149,11 @@ export default {
   * @author: 林其星
   */
   created () {
+    // let mouth = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
     const today = dayjs.unix(dayjs().unix()).$D
     const week = dayjs.unix(dayjs().unix()).$W
     this.daylist.forEach((e, index) => {
-      this.daylist[index].num = today - (week - index)
+      this.daylist[index].num = (today - (week - index) + 1)
     })
   }
 }
@@ -152,13 +167,13 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-family: 'clear';
+  font-family: 'coder';
   letter-spacing: 2px;
   p {
     margin: 0;
   }
   .index-title {
-    font-family: 'clear';
+    font-family: 'coder';
     font-weight: 400;
     color: #ec4800;
     line-height: 28px;
@@ -207,7 +222,7 @@ export default {
       justify-content: space-between;
       margin-top: 20px;
       p {
-        font-family: 'clear';
+        font-family: 'coder';
       }
       .task {
         color: #ff6c00;
