@@ -26,10 +26,11 @@
         <p>打卡记录</p>
         <div class="index-today-block">
           <div class="today-clockin"></div>
-          <div class="today-detail"></div>
+          <div class="today-detail" @click="this.calendar.state = true"></div>
         </div>
       </div>
     </div>
+    <calendar v-if="calendar.state" @change-calendar-state="changeCalendarState"></calendar>
     <!-- 打卡日历 -->
     <div class="clockin-calendar">
       <div class="clockin-title">
@@ -38,13 +39,13 @@
         </p>
       </div>
       <div class="calendarlist">
-        <div v-for="day in daylist" :key="day.id" class="calender-time">
-          <div class="calender-week">{{ day.week }}</div>
+        <div v-for="day in daylist" :key="day.id" class="calendar-time">
+          <div class="calendar-week">{{ day.week }}</div>
           <div
             :class="
               day.state == 'N'
-                ? `calender-day calender-day-opacity`
-                : `calender-day`
+                ? `calendar-day calendar-day-opacity`
+                : `calendar-day`
             "
           >
             {{ day.num }}
@@ -57,24 +58,24 @@
       <div class="myrecord-title">我的记录 打卡展示</div>
       <div class="myrecord-list">
         <div
-          v-for="(itme, index) in clockinList"
-          :key="itme.id"
-          class="list-itme"
+          v-for="(item, index) in clockinList"
+          :key="item.id"
+          class="list-item"
         >
-          <div class="list-itme-inner">
-            <div class="list-itme-title">{{ itme.tip }}</div>
+          <div class="list-item-inner">
+            <div class="list-item-title">{{ item.tip }}</div>
             <img
-              class="list-itme-img"
+              class="list-item-img"
               :src="require('../assets/image/mock/mock1.png')"
             />
-            <div class="list-itme-ctx">
-              <div class="time">{{ itme.time }}</div>
+            <div class="list-item-ctx">
+              <div class="time">{{ item.time }}</div>
               <div class="praise">
                 <div
                   @click="praise(index)"
-                  :class="itme.ispraise ? `not-praise-icon` : `praise-icon`"
+                  :class="item.ispraise ? `not-praise-icon` : `praise-icon`"
                 ></div>
-                <div class="praise-num">{{ itme.praiseNum }}</div>
+                <div class="praise-num">{{ item.praiseNum }}</div>
               </div>
             </div>
           </div>
@@ -92,8 +93,10 @@ import indexPopup from '../components/popup/IndexPopup'
 // import calendar from '../components/calendar/calendar'
 // import { useRouter } from 'vue-router'
 import * as dayjs from 'dayjs'
+import Calendar from '../components/popup/Calendar'
 export default {
   components: {
+    Calendar,
     indexPopup
     // calendar
   },
@@ -114,7 +117,10 @@ export default {
         { tip: '可莉是最棒的!', img: '../assets/image/mock/mock1.png', time: '10月24日', praiseNum: 111, ispraise: false },
         { tip: '可莉是最棒的!', img: '../assets/image/mock/mock1.png', time: '10月24日', praiseNum: 111, ispraise: false },
         { tip: '可莉是最棒的!', img: '../assets/image/mock/mock1.png', time: '10月24日', praiseNum: 111, ispraise: false }
-      ]
+      ],
+      calendar: {
+        state: false
+      }
     }
   },
   methods: {
@@ -128,6 +134,10 @@ export default {
       } else {
         this.clockinList[index].praiseNum -= 1
       }
+    },
+    changeCalendarState () {
+      this.calendar.state = false
+      // console.log(11)
     }
   },
   /**
@@ -292,7 +302,7 @@ export default {
       justify-content: space-around;
       $span: 8;
       $ballsize: 50;
-      .calender-time {
+      .calendar-time {
         width: 70px;
         height: 120px;
         // margin-right: #{$span}px;
@@ -300,11 +310,11 @@ export default {
         display: flex;
         flex-direction: column;
         align-items: center;
-        .calender-week {
+        .calendar-week {
           color: #ff940b;
           font-size: 24px;
         }
-        .calender-day {
+        .calendar-day {
           width: #{$ballsize}px;
           height: #{$ballsize}px;
           margin-top: 5px;
@@ -315,7 +325,7 @@ export default {
           background-color: #ff7800;
           font-size: 19.22px;
         }
-        .calender-day-opacity {
+        .calendar-day-opacity {
           opacity: 0.2;
         }
       }
@@ -336,12 +346,12 @@ export default {
     .myrecord-list {
       display: flex;
       flex-direction: column;
-      .list-itme {
+      .list-item {
         width: 657px;
         height: 299px;
         border-radius: 10px;
         margin-bottom: 30px;
-        .list-itme-inner {
+        .list-item-inner {
           width: 657px;
           height: 299px;
           background-color: #ffffff;
@@ -350,21 +360,21 @@ export default {
           flex-direction: column;
           align-items: flex-start;
         }
-        .list-itme-title {
+        .list-item-title {
           text-align: left;
           margin-left: 34px;
           color: #ff8f00;
           font-size: 23px;
           margin-top: 20px;
         }
-        .list-itme-img {
+        .list-item-img {
           width: 283px;
           height: 160px;
           margin-top: 20px;
           margin-left: 34px;
           background-size: cover;
         }
-        .list-itme-ctx {
+        .list-item-ctx {
           width: 657px;
           display: flex;
           flex-direction: row;

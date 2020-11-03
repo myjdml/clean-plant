@@ -1,7 +1,7 @@
 <template>
-  <div id="calender">
+  <div id="calendar">
     <div class="main">
-      <p class="phrase">万事开头难，我们一起养成节约粮食好习惯，起步一定要加油鸭！</p>
+      <p class="phrase">{{titleIdom[0]}}</p>
 
       <div class="form">
         <div class="form__item">
@@ -10,24 +10,24 @@
         </div>
 
         <div class="form__item">
-          <span class="form__item__top">3/7天</span>
+          <span class="form__item__top">{{userData.card_count}}/7天</span>
           <span class="form__item__bottom">已打卡</span>
         </div>
 
         <div class="form__item">
-          <span class="form__item__top">2天</span>
+          <span class="form__item__top">{{userData.card_count}}天</span>
           <span class="form__item__bottom">最高连续打卡</span>
         </div>
       </div>
 
-      <div class="calender">
+      <div class="calendar">
         <header>
-          <button></button>
+          <div class="arrow-before" @click="toPev"></div>
           <p>2020年11月</p>
-          <button></button>
+          <div class="arrow-after" @click="toNext"></div>
         </header>
 
-        <div class="calender-main" ref="calenderMain">
+        <div class="calendar-main" ref="calendarMain">
           <p>周日</p>
           <p>周一</p>
           <p>周二</p>
@@ -35,24 +35,70 @@
           <p>周四</p>
           <p>周五</p>
           <p>周六</p>
-<!--          <div class="calender-main__item">-->
+<!--          <div class="calendar-main__item">-->
 <!--            <div></div>-->
 <!--          </div>-->
         </div>
       </div>
 
-      <button class="confirm" @click="confirmInfo"></button>
+      <button class="confirm" @click="changeCalendarState" ></button>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Calendar',
+  name: 'calendar',
   data () {
-    // calender.state里面存放的二维数组里存放里日期的状态，颜色由浅到深分别为0，1，2
+    // calendar.state里面存放的二维数组里存放里日期的状态，颜色由浅到深分别为0，1，2
     return {
-      calender: {
+      titleIdom: [
+        '万事开头难，养成粮食习惯，起步一定要加油鸭！',
+        '已经坚持一半了，继续加油~',
+        '加油！，终点就在眼前。',
+        '恭喜你以完成目标，你离大奖越来越近啦！'
+      ],
+      calendar: {
+        info: {
+          state: [
+            [
+              [2, 2, 1, 1, 2, 2, 2],
+              [2, 2, 2, 2, 2, 2, 2],
+              [2, 1, 2, 2, 2, 2, 2],
+              [2, 2, 2, 2, 2, 2, 2],
+              [2, 2, 0, 0, 0, 0, 0]
+            ],
+            [
+              [0, 0, 1, 1, 2, 2, 2],
+              [2, 2, 2, 2, 2, 2, 2],
+              [2, 1, 2, 2, 2, 2, 2],
+              [2, 2, 2, 2, 2, 2, 2],
+              [2, 2, 1, 1, 0, 0, 0]
+            ]
+          ],
+          data: [
+            [
+              1, 2, 3, 4, 5, 6, 7,
+              8, 9, 10, 11, 12, 13, 14,
+              15, 16, 17, 18, 19, 20, 21,
+              22, 23, 24, 25, 26, 27, 28,
+              29, 30, 1, 2, 3, 4, 5
+            ],
+            [
+              29, 30, 1, 2, 3, 4, 5,
+              1, 2, 3, 4, 5, 6, 7,
+              8, 9, 10, 11, 12, 13, 14,
+              15, 16, 17, 18, 19, 20, 21,
+              22, 23, 24, 25, 26, 27, 28
+            ]
+          ],
+          calendarHeaderImg: {
+            pevNo: null,
+            pevYes: null,
+            nextNo: null,
+            nextYes: null
+          }
+        },
         state: [
           [2, 2, 1, 1, 2, 2, 2],
           [2, 2, 2, 2, 2, 2, 2],
@@ -67,24 +113,49 @@ export default {
           22, 23, 24, 25, 26, 27, 28,
           29, 30, 1, 2, 3, 4, 5
         ]
+      },
+      calendarControl: {
+        left: 0,
+        right: 1
+      },
+      userData: {
+        card_count: 2,
+        cards: [
+          {
+            created_at: 1601971450,
+            id: 1,
+            content: 'asdas',
+            photo_url: 'www.baidu.com',
+            status: 'waiting'
+          },
+          {
+            created_at: 1601971450,
+            id: 2,
+            content: 'hsadhaksdhk',
+            photo_url: 'www,abidu.com',
+            status: 'passed'
+          }
+        ],
+        message: ''
       }
     }
   },
   methods: {
-    confirmInfo () {
-    }
-  },
-  mounted () {
-    /* eslint-disable quotes */
-    // 初始化日历样式
-    // console.log(this.$refs.calenderMain.appendChild())
-    this.calender.state.forEach(item => {
-      item.forEach(item => {
-        const div = document.createElement('div')
-        div.className = 'calender-main__item'
-        div.style = `width: 12vw;height: 9vw;display: flex;justify-content: center;align-items: center;`
-        if (item === 0) {
-          div.innerHTML = `<div
+    changeCalendarState () {
+      // console.log('chufa')
+      this.$emit('change-calendar-state')
+    },
+    renderCalendar () {
+      /* eslint-disable quotes */
+      // 初始化日历样式
+      // console.log(this.$refs.calendarmain.appendchild())
+      this.calendar.state.forEach(item => {
+        item.forEach(item => {
+          const div = document.createElement('div')
+          div.className = 'calendar-main__item'
+          div.style = `width: 12vw;height: 9vw;display: flex;justify-content: center;align-items: center;`
+          if (item === 0) {
+            div.innerHTML = `<div
             style="
             width: 6.8vw;
             height: 6.8vw;
@@ -93,9 +164,9 @@ export default {
             color: white;
             font-size: 3.2vw;
             line-height: 6.8vw;"></div>`
-          console.log(div)
-        } else if (item === 1) {
-          div.innerHTML = `<div
+            // console.log(div)
+          } else if (item === 1) {
+            div.innerHTML = `<div
             style="
             width: 6.8vw;
             height: 6.8vw;
@@ -104,8 +175,8 @@ export default {
             color: white;
             font-size: 3.2vw;
             line-height: 6.8vw;"></div>`
-        } else if (item === 2) {
-          div.innerHTML = `<div
+          } else if (item === 2) {
+            div.innerHTML = `<div
             style="
             width: 6.8vw;
             height: 6.8vw;
@@ -114,14 +185,64 @@ export default {
             color: white;
             font-size: 3.2vw;
             line-height: 6.8vw;"></div>`
-        }
-        this.$refs.calenderMain.appendChild(div)
+          }
+          this.$refs.calendarMain.appendChild(div)
+        })
       })
-    })
+    },
+    toPev () {
+      if (this.calendarControl.left === 1) {
+        this.calendar.state = this.calendar.info.state[0]
+        this.calendarControl.left = 0
+        this.calendarControl.right = 1
+        this.$refs.calendarMain.innerHTML = `<p style="width: 12vw;height: 5.3vw;">周日</p>
+          <p style="width: 12vw;height: 5.3vw;">周一</p>
+          <p style="width: 12vw;height: 5.3vw;">周二</p>
+          <p style="width: 12vw;height: 5.3vw;">周三</p>
+          <p style="width: 12vw;height: 5.3vw;">周四</p>
+          <p style="width: 12vw;height: 5.3vw;">周五</p>
+          <p style="width: 12vw;height: 5.3vw;">周六</p>`
+        this.renderCalendar()
+        // 加载日期
+        this.calendar.data = this.calendar.info.data[0]
+        const dailyList = document.querySelectorAll('.calendar-main__item')
+        this.calendar.data.forEach((item, index) => {
+          // console.log(dailyList)
+          dailyList[index].querySelector('div').innerText = item
+        })
+      }
+      console.log(22)
+    },
+    toNext () {
+      if (this.calendarControl.right === 1) {
+        this.calendar.state = this.calendar.info.state[1]
+        this.calendarControl.left = 1
+        this.calendarControl.right = 0
+        this.$refs.calendarMain.innerHTML = `<p style="width: 12vw;height: 5.3vw;">周日</p>
+          <p style="width: 12vw;height: 5.3vw;">周一</p>
+          <p style="width: 12vw;height: 5.3vw;">周二</p>
+          <p style="width: 12vw;height: 5.3vw;">周三</p>
+          <p style="width: 12vw;height: 5.3vw;">周四</p>
+          <p style="width: 12vw;height: 5.3vw;">周五</p>
+          <p style="width: 12vw;height: 5.3vw;">周六</p>`
+        this.renderCalendar()
+        // 加载日期
+        this.calendar.data = this.calendar.info.data[1]
+        const dailyList = document.querySelectorAll('.calendar-main__item')
+        this.calendar.data.forEach((item, index) => {
+          // console.log(dailyList)
+          dailyList[index].querySelector('div').innerText = item
+        })
+      }
+    }
+  },
+  mounted () {
+    // 引入图片
+    this.renderCalendar()
     // 加载日期
-    const dailyList = document.querySelectorAll('.calender-main__item')
-    this.calender.data.forEach((item, index) => {
-      console.log(dailyList)
+    const dailyList = document.querySelectorAll('.calendar-main__item')
+    this.calendar.data.forEach((item, index) => {
+      // console.log(dailyList)
       dailyList[index].querySelector('div').innerText = item
     })
   }
@@ -129,10 +250,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  #calender {
+  #calendar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
     width: 100vw;
     height: 100vh;
     background-color: rgba(0, 0, 0, .34);
+    touch-action: none;
+    z-index: 5;
   }
   .main {
     position: absolute;
@@ -159,7 +285,7 @@ export default {
       height: 150px;
       position: absolute;
       left: 59px;
-      top: 180px;
+      top: 150px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -184,45 +310,37 @@ export default {
         }
       }
     }
-    .calender {
+    .calendar {
       width: 640px;
       position: absolute;
       left: 20px;
-      top: 357px;
+      top: 307px;
       letter-spacing: 2px;
       header {
         position: relative;
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
         align-items: center;
-        margin-bottom: 20px;
+        margin-bottom: 10px;
+        .arrow-before {
+          width: 23px;
+          height: 34px;
+          margin-right: 40px;
+          background-image: url("../../assets/image/calendar/arrow-pev.png");
+          background-size: 100%;
+        }
+        .arrow-after {
+          width: 23px;
+          height: 34px;
+          margin-left: 40px;
+          background-image: url("../../assets/image/calendar/arrow-next.png");
+          background-size: 100%;
+        }
         p {
           color: #FF6000;
-          &::before {
-            display: inline-block;
-            content: '';
-            position: relative;
-            left: -40px;
-            top: 5px;
-            width: 23px;
-            height: 34px;
-            background-image: url("../../assets/image/calender/arrow-pev.png");
-            background-size: 100%;
-          }
-          &::after {
-            display: inline-block;
-            content: '';
-            position: relative;
-            left: 40px;
-            top: 5px;
-            width: 23px;
-            height: 34px;
-            background-image: url("../../assets/image/calender/arrow-next.png");
-            background-size: 100%;
-          }
         }
       }
-      .calender-main {
+      .calendar-main {
         width: 630px;
         margin-left: 50%;
         transform: translate(-315px, 30px);
@@ -235,7 +353,7 @@ export default {
           width: 90px;
           height: 40px;
         };
-        .calender-main__item {
+        .calendar-main__item {
           width: 90px;
           height: 90px;
           display: flex;
@@ -253,7 +371,7 @@ export default {
     .confirm {
       width: 259px;
       height: 88px;
-      background-image: url("../../assets/image/calender/confirm.png");
+      background-image: url("../../assets/image/calendar/confirm.png");
       background-size: 100%;
       position: absolute;
       bottom: 100px;

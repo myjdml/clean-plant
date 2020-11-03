@@ -1,6 +1,6 @@
 <template>
   <div id="push-card" class="flex-col">
-    <button class="back"></button>
+    <div class="back"></div>
 
     <header class="header">
       <div class="title">
