@@ -411,6 +411,7 @@ export default {
               background-size: cover;
             }
             .praise-num {
+              width: 60px;
               color: #f4c2c2;
               font-size: 19.89px;
               margin-right: 40px;
