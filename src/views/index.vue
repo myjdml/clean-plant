@@ -159,7 +159,7 @@ export default {
     getPushCard().then((e) => {
       console.log(e)
       console.log(e.data.data.cards)
-      e.data.cards.forEach((e) => {
+      e.data.data.cards.forEach((e) => {
         this.clockinList.tip = e.content
         this.clockinList.img = e.photo_url
         this.clockinList.time = `${dayjs.unix(e.created_at).$M + 1}月${dayjs.unix(e.created_at).$D}日`
