@@ -150,6 +150,12 @@ export default {
   * @author: 林其星
   */
   created () {
+    /**
+     * @description: 请求打卡数据
+     * @param {*}
+     * @return {*}
+     * @author: 林其星
+     */
     getPushCard().then((e) => {
       console.log(e)
     })
