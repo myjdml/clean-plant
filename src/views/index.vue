@@ -1,7 +1,7 @@
 <!--eslint-disable no-tabs-->
 <!--eslint-disable spaced-comment-->
 <template>
-  <div class="index">
+  <div class="index" :style="`height:${index_height}`">
     <!-- 打卡任务 -->
     <div class="index-title">
       <p>勤俭节约21天拍照打卡活动</p>
@@ -121,7 +121,13 @@ export default {
         { num: 0, state: 'Y', week: '周六' },
         { num: 0, state: 'Y', week: '周日' }
       ],
-      clockinList: []
+      clockinList: [
+        // { tip: '可莉是最棒的!', img: '../assets/image/mock/mock1.png', time: '10月24日', praiseNum: 100, ispraise: false },
+        // { tip: '可莉是最棒的!', img: '../assets/image/mock/mock1.png', time: '10月24日', praiseNum: 111, ispraise: false },
+        // { tip: '可莉是最棒的!', img: '../assets/image/mock/mock1.png', time: '10月24日', praiseNum: 111, ispraise: false },
+        // { tip: '可莉是最棒的!', img: '../assets/image/mock/mock1.png', time: '10月24日', praiseNum: 111, ispraise: false }
+      ],
+      index_height: '100%'
     }
   },
   methods: {
@@ -151,6 +157,9 @@ export default {
     getPushCard().then((e) => {
       console.log(e)
       console.log(e.data.data.cards)
+      if (e.data.data.card_count > 1) {
+        this.index_height = ''
+      }
       e.data.data.cards.forEach((e, index) => {
         const clockin = {
           tip: e.content,
@@ -176,7 +185,6 @@ export default {
 <style lang='scss' scoped>
 .index {
   width: 100vw;
-  height: 100%;
   background-image: url('../assets/image/home/background.png');
   background-size: cover;
   display: flex;
