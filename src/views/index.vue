@@ -25,8 +25,8 @@
       <div class="index-record-title">
         <p>打卡记录</p>
         <div class="index-today-block">
-          <div class="today-clockin"></div>
-          <div class="today-detail" @click="this.calendar.state = true"></div>
+          <div class="today-clockin" @click="gotoPushCard"></div>
+          <div class="today-detail"></div>
         </div>
       </div>
     </div>
@@ -84,12 +84,16 @@
     </div>
   </div>
   <indexPopup></indexPopup>
+  <!-- <calendar></calendar> -->
 </template>
 
 <script>
 /* eslint-disable no-tabs */
 /* eslint-disable indent */
+// import Calendar from '../components/calendar/'
 import indexPopup from '../components/popup/IndexPopup'
+import { useRouter } from 'vue-router'
+import { getPushCard } from '../server/index'
 // import calendar from '../components/calendar/calendar'
 // import { useRouter } from 'vue-router'
 import * as dayjs from 'dayjs'
@@ -99,6 +103,17 @@ export default {
     Calendar,
     indexPopup
     // calendar
+  },
+  setup () {
+    const router = useRouter()
+
+    function gotoPushCard () {
+      console.log(1)
+      router.push('/push-card')
+    }
+    return {
+      gotoPushCard
+    }
   },
   data () {
     return {
@@ -145,10 +160,29 @@ export default {
   * @author: 林其星
   */
   created () {
+    /**
+     * @description: 请求打卡数据
+     * @param {*}
+     * @return {*}
+     * @author: 林其星
+     */
+    getPushCard().then((e) => {
+      console.log(e)
+      console.log(e.data.data.cards)
+      e.data.data.cards.forEach((e, index) => {
+        this.clockinList[index].tip = e.content
+        this.clockinList[index].img = e.photo_url
+        this.clockinList[index].time = `${dayjs.unix(e.created_at).$M + 1}月${dayjs.unix(e.created_at).$D}日`
+        this.clockinList[index].state = e.status
+        this.clockinList[index].praiseNum = e.is_like
+        this.clockinList[index].ispraise = Boolean(e.is_like)
+      })
+    })
+    // let mouth = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
     const today = dayjs.unix(dayjs().unix()).$D
     const week = dayjs.unix(dayjs().unix()).$W
     this.daylist.forEach((e, index) => {
-      this.daylist[index].num = today - (week - index)
+      this.daylist[index].num = (today - (week - index) + 1)
     })
   }
 }
@@ -162,13 +196,13 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-family: 'clear';
+  font-family: 'coder';
   letter-spacing: 2px;
   p {
     margin: 0;
   }
   .index-title {
-    font-family: 'clear';
+    font-family: 'coder';
     font-weight: 400;
     color: #ec4800;
     line-height: 28px;
@@ -217,7 +251,7 @@ export default {
       justify-content: space-between;
       margin-top: 20px;
       p {
-        font-family: 'clear';
+        font-family: 'coder';
       }
       .task {
         color: #ff6c00;
@@ -406,6 +440,7 @@ export default {
               background-size: cover;
             }
             .praise-num {
+              width: 60px;
               color: #f4c2c2;
               font-size: 19.89px;
               margin-right: 40px;

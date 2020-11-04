@@ -79,7 +79,7 @@ export default {
   }
   .text {
     position: relative;
-    font-family: 'clear';
+    font-family: 'coder';
     font-weight: 400;
     color: #ff9000;
     line-height: 28px;
