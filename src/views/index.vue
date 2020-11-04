@@ -157,7 +157,7 @@ export default {
      * @author: 林其星
      */
     getPushCard().then((e) => {
-      e.data.forEach((e) => {
+      e.data.cards.forEach((e) => {
         this.clockinList.tip = e.content
         this.clockinList.img = e.photo_url
         this.clockinList.time = `${dayjs.unix(e.created_at).$M + 1}月${dayjs.unix(e.created_at).$D}日`
