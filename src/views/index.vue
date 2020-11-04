@@ -63,10 +63,7 @@
         >
           <div class="list-itme-inner">
             <div class="list-itme-title">{{ itme.tip }}</div>
-            <img
-              class="list-itme-img"
-              :src="require('../assets/image/mock/mock1.png')"
-            />
+            <img class="list-itme-img" :src="itme.img" />
             <div class="list-itme-ctx">
               <div class="time">{{ itme.time }}</div>
               <div class="praise">
