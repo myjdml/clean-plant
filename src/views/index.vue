@@ -157,6 +157,7 @@ export default {
      * @author: 林其星
      */
     getPushCard().then((e) => {
+      console.log(e)
       console.log(e.data.cards)
       e.data.cards.forEach((e) => {
         this.clockinList.tip = e.content
