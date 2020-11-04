@@ -89,7 +89,7 @@
 // import Calendar from '../components/calendar/'
 import indexPopup from '../components/popup/IndexPopup'
 import { useRouter } from 'vue-router'
-import { getPushCard } from '../server/index'
+import { getPushCard, addCard } from '../server/index'
 // import calendar from '../components/calendar/calendar'
 // import { useRouter } from 'vue-router'
 import * as dayjs from 'dayjs'
@@ -134,7 +134,8 @@ export default {
     checkAll () {
       this.$store.commit('showIndexPopup', true)
     },
-    praise (index) {
+    praise (index, id) {
+      addCard(id)
       this.clockinList[index].ispraise = !this.clockinList[index].ispraise
       if (this.clockinList[index].ispraise) {
         this.clockinList[index].praiseNum += 1

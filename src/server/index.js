@@ -27,3 +27,13 @@ export async function postPushCard (url, params) {
 export function getPushCard () {
   return instance.get('plant/getUserCardsInfo')
 }
+/**
+ * @description: 点赞
+ * @param {*} id
+ * @return {*}
+ * @author: 林其星
+ */
+export function addCard (id) {
+  const record = { record_id: id }
+  return instance.post('plant/like', record)
+}
