@@ -16,7 +16,7 @@ export const instance = axios.create({
   baseURL: BACEURL,
   timeout: 50000,
   headers: {
-    'Content-Type': 'multipart/form-data'
+    'Content-Type': 'multipart/form-data; boundary=<calculated when request is sent>'
   }
 })
 
@@ -34,6 +34,7 @@ export function getPushCard () {
  * @author: 林其星
  */
 export function addCard (id) {
-  const record = { record_id: id }
-  return instance.post('plant/like', record)
+  let data = new FormData();
+  data.append('record_id', id)
+  return instance.post('plant/like', data)
 }
