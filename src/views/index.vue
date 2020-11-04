@@ -167,7 +167,7 @@ export default {
           img: e.photo_url,
           time: `${dayjs.unix(e.created_at).$M + 1}月${dayjs.unix(e.created_at).$D}日`,
           state: e.status,
-          praiseNum: e.is_like,
+          praiseNum: e.like_count,
           ispraise: Boolean(e.is_like),
           id: e.id
         }
