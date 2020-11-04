@@ -125,10 +125,10 @@ export default {
         { num: 0, state: 'Y', week: '周日' }
       ],
       clockinList: [
-        { tip: '可莉是最棒的!', img: '../assets/image/mock/mock1.png', time: '10月24日', praiseNum: 100, ispraise: false },
-        { tip: '可莉是最棒的!', img: '../assets/image/mock/mock1.png', time: '10月24日', praiseNum: 111, ispraise: false },
-        { tip: '可莉是最棒的!', img: '../assets/image/mock/mock1.png', time: '10月24日', praiseNum: 111, ispraise: false },
-        { tip: '可莉是最棒的!', img: '../assets/image/mock/mock1.png', time: '10月24日', praiseNum: 111, ispraise: false }
+        { tip: '', img: '', time: '', praiseNum: 0, ispraise: false, state: '' },
+        { tip: '', img: '', time: '', praiseNum: 0, ispraise: false, state: '' },
+        { tip: '', img: '', time: '', praiseNum: 0, ispraise: false, state: '' },
+        { tip: '', img: '', time: '', praiseNum: 0, ispraise: false, state: '' }
       ]
     }
   },
@@ -151,7 +151,14 @@ export default {
   */
   created () {
     getPushCard().then((e) => {
-      console.log(e)
+      e.data.forEach((e) => {
+        this.clockinList.tip = e.content
+        this.clockinList.img = e.photo_url
+        this.clockinList.time = `${dayjs.unix(e.created_at).$M + 1}月${dayjs.unix(e.created_at).$D}日`
+        this.clockinList.state = e.status
+        this.clockinList.praiseNum = e.is_like
+        this.clockinList.ispraise = Boolean(e.is_like)
+      })
     })
     // let mouth = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
     const today = dayjs.unix(dayjs().unix()).$D
