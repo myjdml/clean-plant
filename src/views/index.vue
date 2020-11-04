@@ -160,7 +160,7 @@ export default {
       console.log(e)
       console.log(e.data.data.cards)
       e.data.data.cards.forEach((e, index) => {
-        this.clockinList[index].tip = '可莉天下第一'
+        this.clockinList[index].tip = e.content
         this.clockinList[index].img = e.photo_url
         this.clockinList[index].time = `${dayjs.unix(e.created_at).$M + 1}月${dayjs.unix(e.created_at).$D}日`
         this.clockinList[index].state = e.status
