@@ -124,12 +124,7 @@ export default {
         { num: 0, state: 'Y', week: '周六' },
         { num: 0, state: 'Y', week: '周日' }
       ],
-      clockinList: [
-        { tip: '可莉是最棒的!', img: '../assets/image/mock/mock1.png', time: '10月24日', praiseNum: 100, ispraise: false },
-        { tip: '可莉是最棒的!', img: '../assets/image/mock/mock1.png', time: '10月24日', praiseNum: 111, ispraise: false },
-        { tip: '可莉是最棒的!', img: '../assets/image/mock/mock1.png', time: '10月24日', praiseNum: 111, ispraise: false },
-        { tip: '可莉是最棒的!', img: '../assets/image/mock/mock1.png', time: '10月24日', praiseNum: 111, ispraise: false }
-      ]
+      clockinList: []
     }
   },
   methods: {
@@ -160,12 +155,16 @@ export default {
       console.log(e)
       console.log(e.data.data.cards)
       e.data.data.cards.forEach((e, index) => {
-        this.clockinList[index].tip = e.content
-        this.clockinList[index].img = e.photo_url
-        this.clockinList[index].time = `${dayjs.unix(e.created_at).$M + 1}月${dayjs.unix(e.created_at).$D}日`
-        this.clockinList[index].state = e.status
-        this.clockinList[index].praiseNum = e.is_like
-        this.clockinList[index].ispraise = Boolean(e.is_like)
+        const clockin = {
+          tip: e.content,
+          img: e.photo_url,
+          time: `${dayjs.unix(e.created_at).$M + 1}月${dayjs.unix(e.created_at).$D}日`,
+          state: e.status,
+          praiseNum: e.is_like,
+          ispraise: Boolean(e.is_like),
+          id: e.id
+        }
+        this.clockinList.push(clockin)
       })
     })
     // let mouth = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
