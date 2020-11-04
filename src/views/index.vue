@@ -159,14 +159,13 @@ export default {
     getPushCard().then((e) => {
       console.log(e)
       console.log(e.data.data.cards)
-      e.data.data.cards.forEach((e) => {
-        console.log(e)
-        this.clockinList.tip = '可莉天下第一'
-        this.clockinList.img = e.photo_url
-        this.clockinList.time = `${dayjs.unix(e.created_at).$M + 1}月${dayjs.unix(e.created_at).$D}日`
-        this.clockinList.state = e.status
-        this.clockinList.praiseNum = e.is_like
-        this.clockinList.ispraise = Boolean(e.is_like)
+      e.data.data.cards.forEach((e, index) => {
+        this.clockinList[index].tip = '可莉天下第一'
+        this.clockinList[index].img = e.photo_url
+        this.clockinList[index].time = `${dayjs.unix(e.created_at).$M + 1}月${dayjs.unix(e.created_at).$D}日`
+        this.clockinList[index].state = e.status
+        this.clockinList[index].praiseNum = e.is_like
+        this.clockinList[index].ispraise = Boolean(e.is_like)
       })
     })
     // let mouth = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
