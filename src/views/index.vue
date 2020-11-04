@@ -92,6 +92,7 @@
 // import Calendar from '../components/calendar/'
 import indexPopup from '../components/popup/IndexPopup'
 import { useRouter } from 'vue-router'
+import { getPushCard } from '../server/index'
 // import calendar from '../components/calendar/calendar'
 // import { useRouter } from 'vue-router'
 import * as dayjs from 'dayjs'
@@ -149,6 +150,9 @@ export default {
   * @author: 林其星
   */
   created () {
+    getPushCard().then((e) => {
+      console.log(e)
+    })
     // let mouth = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
     const today = dayjs.unix(dayjs().unix()).$D
     const week = dayjs.unix(dayjs().unix()).$W
