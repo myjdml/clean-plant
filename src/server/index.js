@@ -34,7 +34,7 @@ export function getPushCard () {
  * @author: 林其星
  */
 export function addCard (id) {
-  let data = new FormData();
+  const data = new FormData()
   data.append('record_id', id)
   return instance.post('plant/like', data)
 }
