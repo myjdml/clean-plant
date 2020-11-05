@@ -78,7 +78,7 @@
               <div class="time">{{ item.time }}</div>
               <div class="praise">
                 <div
-                  @click="praise(index)"
+                  @click="praise(index, item.id)"
                   :class="item.ispraise ? `not-praise-icon` : `praise-icon`"
                 ></div>
                 <div class="praise-num">{{ item.praiseNum }}</div>
