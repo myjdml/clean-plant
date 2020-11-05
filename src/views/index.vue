@@ -54,7 +54,10 @@
     </div>
     <!-- 我的记录 -->
     <div class="my-record">
-      <div class="myrecord-title">我的记录 打卡展示</div>
+      <div class="myrecord-title">
+        <p @click="myrecard">我的记录</p>
+        <p @click="othercard">打卡展示</p>
+      </div>
       <div class="myrecord-list">
         <div
           v-for="(itme, index) in clockinList"
@@ -89,7 +92,7 @@
 // import Calendar from '../components/calendar/'
 import indexPopup from '../components/popup/IndexPopup'
 import { useRouter } from 'vue-router'
-import { getPushCard, addCard } from '../server/index'
+import { getPushCard, addCard, getOtherPushCard } from '../server/index'
 // import calendar from '../components/calendar/calendar'
 // import { useRouter } from 'vue-router'
 import * as dayjs from 'dayjs'
@@ -127,6 +130,8 @@ export default {
         // { tip: '可莉是最棒的!', img: '../assets/image/mock/mock1.png', time: '10月24日', praiseNum: 111, ispraise: false },
         // { tip: '可莉是最棒的!', img: '../assets/image/mock/mock1.png', time: '10月24日', praiseNum: 111, ispraise: false }
       ],
+      myList: [],
+      otherList: [],
       index_height: '100%'
     }
   },
@@ -142,6 +147,12 @@ export default {
       } else {
         this.clockinList[index].praiseNum -= 1
       }
+    },
+    myrecard () {
+      this.clockinList = this.myList
+    },
+    othercard () {
+      this.clockinList = this.otherList
     }
   },
   /**
@@ -171,7 +182,31 @@ export default {
           ispraise: Boolean(e.is_like),
           id: e.id
         }
-        this.clockinList.push(clockin)
+        this.myList.push(clockin)
+        this.clockinList = this.myList
+      })
+    })
+    /**
+     * @description: 渲染他人打卡数据
+     * @author: 林其星
+     */
+    getOtherPushCard().then((e) => {
+      console.log(e)
+      console.log(e.data.data.cards)
+      if (e.data.data.card_count > 1) {
+        this.index_height = ''
+      }
+      e.data.data.cards.forEach((e, index) => {
+        const clockin = {
+          tip: e.content,
+          img: e.photo_url,
+          time: `${dayjs.unix(e.created_at).$M + 1}月${dayjs.unix(e.created_at).$D}日`,
+          state: e.status,
+          praiseNum: e.like_count,
+          ispraise: Boolean(e.is_like),
+          id: e.id
+        }
+        this.otherList.push(clockin)
       })
     })
     // let mouth = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]

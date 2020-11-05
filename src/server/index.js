@@ -23,9 +23,19 @@ export const instance = axios.create({
 export async function postPushCard (url, params) {
   return await instanceImg.post(url, params)
 }
-
+/**
+ * @description: 获取个人打卡数据
+ * @author: 林其星
+ */
 export function getPushCard () {
   return instance.get('plant/getUserCardsInfo')
+}
+/**
+ * @description: 获取他人打卡数据
+ * @author: 林其星
+ */
+export function getOtherPushCard () {
+  return instance.get('plant/cardsPresent')
 }
 /**
  * @description: 点赞
