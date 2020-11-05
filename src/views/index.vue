@@ -191,11 +191,11 @@ export default {
      * @author: 林其星
      */
     getOtherPushCard().then((e) => {
-      console.log(e)
-      if (e.lenght > 1) {
+      console.log(e.data)
+      if (e.data.lenght > 1) {
         this.index_height = ''
       }
-      e.forEach((e, index) => {
+      e.data.forEach((e, index) => {
         const clockin = {
           tip: e.content,
           img: e.photo_url,
