@@ -46,7 +46,7 @@
           <div class="calendar-week">{{ day.week }}</div>
           <div
             :class="
-              day.state == 'N'
+              day.state == 'faild'
                 ? `calendar-day calendar-day-opacity`
                 : `calendar-day`
             "
@@ -125,13 +125,13 @@ export default {
     return {
       num: 1,
       daylist: [
-        { num: 0, state: 'Y', week: '周一' },
-        { num: 0, state: 'N', week: '周二' },
-        { num: 0, state: 'N', week: '周三' },
-        { num: 0, state: 'N', week: '周四' },
-        { num: 0, state: 'Y', week: '周五' },
-        { num: 0, state: 'Y', week: '周六' },
-        { num: 0, state: 'Y', week: '周日' }
+        { num: 0, state: 'faild', week: '周一' },
+        { num: 0, state: 'faild', week: '周二' },
+        { num: 0, state: 'faild', week: '周三' },
+        { num: 0, state: 'faild', week: '周四' },
+        { num: 0, state: 'faild', week: '周五' },
+        { num: 0, state: 'faild', week: '周六' },
+        { num: 0, state: 'faild', week: '周日' }
       ],
       clockinList: [
         // { tip: '可莉是最棒的!', img: '../assets/image/mock/mock1.png', time: '10月24日', praiseNum: 100, ispraise: false },
@@ -176,6 +176,12 @@ export default {
   * @author: 林其星
   */
   created () {
+    // let mouth = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+    const today = dayjs.unix(dayjs().unix()).$D
+    const week = dayjs.unix(dayjs().unix()).$W
+    this.daylist.forEach((e, index) => {
+      this.daylist[index].num = (today - (week - index) + 1)
+    })
     /**
      * @description: 请求打卡数据
      * @param {*}
@@ -188,6 +194,7 @@ export default {
       if (e.data.data.card_count > 1) {
         this.index_height = ''
       }
+      this.num = e.data.data.continue_days
       e.data.data.cards.forEach((e, index) => {
         const clockin = {
           tip: e.content,
@@ -198,6 +205,11 @@ export default {
           ispraise: Boolean(e.is_like),
           id: e.id
         }
+        this.daylist.forEach((day, index) => {
+          if (dayjs.unix(e.created_at).$D == day.num) {
+            this.daylist[index].state = 'pass'
+          }
+        })
         this.myList.push(clockin)
         this.clockinList = this.myList
       })
@@ -223,12 +235,6 @@ export default {
         }
         this.otherList.push(clockin)
       })
-    })
-    // let mouth = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
-    const today = dayjs.unix(dayjs().unix()).$D
-    const week = dayjs.unix(dayjs().unix()).$W
-    this.daylist.forEach((e, index) => {
-      this.daylist[index].num = (today - (week - index) + 1)
     })
   }
 }
