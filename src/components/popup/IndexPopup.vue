@@ -89,17 +89,20 @@ export default {
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
-
+    position: relative;
+    transform: translateY(-5px);
     p {
-      font-size: 45px;
+      font-size: 46px;
       margin: 0;
       color: #ec4800;
     }
   }
   .line {
-    height: 31px;
-    width: 582px;
-    background-image: url('../../assets/image/components/popups/wline.png');
+    position: relative;
+    width: 620px;
+    height: 17px;
+    transform: translateY(10px);
+    background-image: url('../../assets/image/index/ware.png');
     background-size: cover;
   }
   $img-width: 680, 680, 680;
