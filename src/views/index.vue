@@ -114,7 +114,6 @@ export default {
     const router = useRouter()
 
     function gotoPushCard () {
-      console.log(1)
       router.push('/push-card')
     }
     return {
@@ -206,7 +205,7 @@ export default {
           id: e.id
         }
         this.daylist.forEach((day, index) => {
-          if (dayjs.unix(e.created_at).$D == day.num) {
+          if (dayjs.unix(e.created_at).$D === day.num) {
             this.daylist[index].state = 'pass'
           }
         })
