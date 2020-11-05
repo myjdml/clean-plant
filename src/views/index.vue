@@ -192,11 +192,10 @@ export default {
      */
     getOtherPushCard().then((e) => {
       console.log(e)
-      console.log(e.data.data.cards)
       if (e.data.data.card_count > 1) {
         this.index_height = ''
       }
-      e.data.data.forEach((e, index) => {
+      e.data.forEach((e, index) => {
         const clockin = {
           tip: e.content,
           img: e.photo_url,
