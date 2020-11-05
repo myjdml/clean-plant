@@ -132,7 +132,7 @@ export default {
       ],
       myList: [],
       otherList: [],
-      index_height: '100%'
+      index_height: '100vh'
     }
   },
   methods: {
