@@ -55,8 +55,8 @@
     <!-- 我的记录 -->
     <div class="my-record">
       <div class="myrecord-title">
-        <p @click="myrecard">我的记录</p>
-        <p @click="othercard">打卡展示</p>
+        <a @click="myrecard">我的记录</a>
+        <a @click="othercard">打卡展示</a>
       </div>
       <div class="myrecord-list">
         <div
@@ -196,7 +196,7 @@ export default {
       if (e.data.data.card_count > 1) {
         this.index_height = ''
       }
-      e.data.data.cards.forEach((e, index) => {
+      e.data.data.forEach((e, index) => {
         const clockin = {
           tip: e.content,
           img: e.photo_url,
@@ -222,7 +222,7 @@ export default {
 .index {
   width: 100vw;
   background-image: url('../assets/image/home/background.png');
-  background-size: cover;
+  background-size: contain;
   display: flex;
   flex-direction: column;
   align-items: center;
