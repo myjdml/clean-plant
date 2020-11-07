@@ -108,7 +108,6 @@ export default {
   components: {
     Calendar,
     indexPopup
-    // calendar
   },
   setup () {
     const router = useRouter()
