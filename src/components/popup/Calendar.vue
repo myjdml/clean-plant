@@ -15,16 +15,16 @@
         </div>
 
         <div class="form__item">
-          <span class="form__item__top">{{userData.card_count}}天</span>
+          <span class="form__item__top">{{userData.continue_days}}天</span>
           <span class="form__item__bottom">最高连续打卡</span>
         </div>
       </div>
 
       <div class="calendar">
         <header>
-          <div class="arrow-before" @click="toPev"></div>
+          <div class="arrow-before-no" ref="arrowPev" @click="toPev"></div>
           <p>2020年11月</p>
-          <div class="arrow-after" @click="toNext"></div>
+          <div class="arrow-after-yes" ref="arrowNext" @click="toNext"></div>
         </header>
 
         <div class="calendar-main" ref="calendarMain">
@@ -47,6 +47,9 @@
 </template>
 
 <script>
+// import { getPushCard } from '../../server'
+import * as dayjs from 'dayjs'
+
 export default {
   name: 'calendar',
   data () {
@@ -122,21 +125,30 @@ export default {
         card_count: 2,
         cards: [
           {
-            created_at: 1601971450,
-            id: 1,
-            content: 'asdas',
-            photo_url: 'www.baidu.com',
-            status: 'waiting'
+            created_at: 1604494525,
+            id: 11,
+            content: '111',
+            photo_url: 'http://cdn.redrock.team/clean-plant-sever_8BIabKERsUhPNmMmdf2eSJyYtqwcFiUI.LzXv2fcNIrWO7sToFgoilA0U1WxNeW1g',
+            status: 'waiting',
+            is_like: 1,
+            like_count: 1
           },
           {
-            created_at: 1601971450,
-            id: 2,
-            content: 'hsadhaksdhk',
-            photo_url: 'www,abidu.com',
-            status: 'passed'
+            created_at: 1604502383,
+            id: 12,
+            content: '啦啦啦啦啦啦',
+            photo_url: 'http://cdn.redrock.team/clean-plant-sever_zjhD0tXRTmkYKQoN91FmWnQSK2wRC5UH.K2KqAtxjP2ZmD1jtt3zgr5MeUjoAjcO9',
+            status: 'waiting',
+            is_like: 1,
+            like_count: 1
           }
         ],
+        continue_days: 1,
         message: ''
+      },
+      today: {
+        month: null,
+        day: null
       }
     }
   },
@@ -192,6 +204,10 @@ export default {
     },
     toPev () {
       if (this.calendarControl.left === 1) {
+        // 改变箭头的样式
+        this.$refs.arrowPev.className = 'arrow-before-no'
+        this.$refs.arrowNext.className = 'arrow-after-yes'
+
         this.calendar.state = this.calendar.info.state[0]
         this.calendarControl.left = 0
         this.calendarControl.right = 1
@@ -214,6 +230,10 @@ export default {
       console.log(22)
     },
     toNext () {
+      // 改变箭头的样式
+      this.$refs.arrowPev.className = 'arrow-before-yes'
+      this.$refs.arrowNext.className = 'arrow-after-no'
+
       if (this.calendarControl.right === 1) {
         this.calendar.state = this.calendar.info.state[1]
         this.calendarControl.left = 1
@@ -237,6 +257,7 @@ export default {
     }
   },
   mounted () {
+    // this.userData = getPushCard()
     // 引入图片
     this.renderCalendar()
     // 加载日期
@@ -245,6 +266,9 @@ export default {
       // console.log(dailyList)
       dailyList[index].querySelector('div').innerText = item
     })
+    console.log(dayjs.unix(dayjs().unix()))
+    this.today.month = dayjs.unix(dayjs().unix()).$M
+    this.today.day = dayjs.unix(dayjs().unix()).$D
   }
 }
 </script>
@@ -322,18 +346,32 @@ export default {
         justify-content: center;
         align-items: center;
         margin-bottom: 10px;
-        .arrow-before {
+        .arrow-before-no {
           width: 23px;
           height: 34px;
           margin-right: 40px;
-          background-image: url("../../assets/image/calendar/arrow-pev.png");
+          background-image: url("../../assets/image/calendar/arrow-pev-no.png");
           background-size: 100%;
         }
-        .arrow-after {
+        .arrow-before-yes {
+          width: 23px;
+          height: 34px;
+          margin-right: 40px;
+          background-image: url("../../assets/image/calendar/arrow-pev-yes.png");
+          background-size: 100%;
+        }
+        .arrow-after-no {
           width: 23px;
           height: 34px;
           margin-left: 40px;
-          background-image: url("../../assets/image/calendar/arrow-next.png");
+          background-image: url("../../assets/image/calendar/arrow-next-no.png");
+          background-size: 100%;
+        }
+        .arrow-after-yes {
+          width: 23px;
+          height: 34px;
+          margin-left: 40px;
+          background-image: url("../../assets/image/calendar/arrow-next-yes.png");
           background-size: 100%;
         }
         p {

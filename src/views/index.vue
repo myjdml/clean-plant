@@ -26,7 +26,7 @@
         <p>打卡记录</p>
         <div class="index-today-block">
           <div class="today-clockin" @click="gotoPushCard"></div>
-          <div class="today-detail"></div>
+          <div class="today-detail" @click="calendar.state = true"></div>
         </div>
       </div>
     </div>
