@@ -1,7 +1,7 @@
 <!--eslint-disable no-tabs-->
 <!--eslint-disable spaced-comment-->
 <template>
-  <div class="index">
+  <div class="index" :style="`height:${index_height}`">
     <!-- 打卡任务 -->
     <div class="index-title">
       <p>勤俭节约21天拍照打卡活动</p>
@@ -30,7 +30,10 @@
         </div>
       </div>
     </div>
-    <calendar v-if="calendar.state" @change-calendar-state="changeCalendarState"></calendar>
+    <calendar
+      v-if="calendar.state"
+      @change-calendar-state="changeCalendarState"
+    ></calendar>
     <!-- 打卡日历 -->
     <div class="clockin-calendar">
       <div class="clockin-title">
@@ -43,7 +46,7 @@
           <div class="calendar-week">{{ day.week }}</div>
           <div
             :class="
-              day.state == 'N'
+              day.state == 'faild'
                 ? `calendar-day calendar-day-opacity`
                 : `calendar-day`
             "
@@ -55,7 +58,10 @@
     </div>
     <!-- 我的记录 -->
     <div class="my-record">
-      <div class="myrecord-title">我的记录 打卡展示</div>
+      <div class="myrecord-title">
+        <a @click="myrecard">我的记录</a>
+        <a @click="othercard" class="myrecord-title-other">打卡展示</a>
+      </div>
       <div class="myrecord-list">
         <div
           v-for="(item, index) in clockinList"
@@ -72,7 +78,7 @@
               <div class="time">{{ item.time }}</div>
               <div class="praise">
                 <div
-                  @click="praise(index)"
+                  @click="praise(index, item.id)"
                   :class="item.ispraise ? `not-praise-icon` : `praise-icon`"
                 ></div>
                 <div class="praise-num">{{ item.praiseNum }}</div>
@@ -93,7 +99,7 @@
 // import Calendar from '../components/calendar/'
 import indexPopup from '../components/popup/IndexPopup'
 import { useRouter } from 'vue-router'
-import { getPushCard } from '../server/index'
+import { getPushCard, addCard, getOtherPushCard } from '../server/index'
 // import calendar from '../components/calendar/calendar'
 // import { useRouter } from 'vue-router'
 import * as dayjs from 'dayjs'
@@ -102,13 +108,11 @@ export default {
   components: {
     Calendar,
     indexPopup
-    // calendar
   },
   setup () {
     const router = useRouter()
 
     function gotoPushCard () {
-      console.log(1)
       router.push('/push-card')
     }
     return {
@@ -119,20 +123,23 @@ export default {
     return {
       num: 1,
       daylist: [
-        { num: 0, state: 'Y', week: '周一' },
-        { num: 0, state: 'N', week: '周二' },
-        { num: 0, state: 'N', week: '周三' },
-        { num: 0, state: 'N', week: '周四' },
-        { num: 0, state: 'Y', week: '周五' },
-        { num: 0, state: 'Y', week: '周六' },
-        { num: 0, state: 'Y', week: '周日' }
+        { num: 0, state: 'faild', week: '周一' },
+        { num: 0, state: 'faild', week: '周二' },
+        { num: 0, state: 'faild', week: '周三' },
+        { num: 0, state: 'faild', week: '周四' },
+        { num: 0, state: 'faild', week: '周五' },
+        { num: 0, state: 'faild', week: '周六' },
+        { num: 0, state: 'faild', week: '周日' }
       ],
       clockinList: [
-        { tip: '可莉是最棒的!', img: '../assets/image/mock/mock1.png', time: '10月24日', praiseNum: 100, ispraise: false },
-        { tip: '可莉是最棒的!', img: '../assets/image/mock/mock1.png', time: '10月24日', praiseNum: 111, ispraise: false },
-        { tip: '可莉是最棒的!', img: '../assets/image/mock/mock1.png', time: '10月24日', praiseNum: 111, ispraise: false },
-        { tip: '可莉是最棒的!', img: '../assets/image/mock/mock1.png', time: '10月24日', praiseNum: 111, ispraise: false }
+        // { tip: '可莉是最棒的!', img: '../assets/image/mock/mock1.png', time: '10月24日', praiseNum: 100, ispraise: false },
+        // { tip: '可莉是最棒的!', img: '../assets/image/mock/mock1.png', time: '10月24日', praiseNum: 111, ispraise: false },
+        // { tip: '可莉是最棒的!', img: '../assets/image/mock/mock1.png', time: '10月24日', praiseNum: 111, ispraise: false },
+        // { tip: '可莉是最棒的!', img: '../assets/image/mock/mock1.png', time: '10月24日', praiseNum: 111, ispraise: false }
       ],
+      myList: [],
+      otherList: [],
+      index_height: '100vh',
       calendar: {
         state: false
       }
@@ -142,13 +149,20 @@ export default {
     checkAll () {
       this.$store.commit('showIndexPopup', true)
     },
-    praise (index) {
+    praise (index, id) {
+      addCard(id)
       this.clockinList[index].ispraise = !this.clockinList[index].ispraise
       if (this.clockinList[index].ispraise) {
         this.clockinList[index].praiseNum += 1
       } else {
         this.clockinList[index].praiseNum -= 1
       }
+    },
+    myrecard () {
+      this.clockinList = this.myList
+    },
+    othercard () {
+      this.clockinList = this.otherList
     },
     changeCalendarState () {
       this.calendar.state = false
@@ -160,6 +174,12 @@ export default {
   * @author: 林其星
   */
   created () {
+    // let mouth = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+    const today = dayjs.unix(dayjs().unix()).$D
+    const week = dayjs.unix(dayjs().unix()).$W
+    this.daylist.forEach((e, index) => {
+      this.daylist[index].num = (today - (week - index) + 1)
+    })
     /**
      * @description: 请求打卡数据
      * @param {*}
@@ -169,20 +189,50 @@ export default {
     getPushCard().then((e) => {
       console.log(e)
       console.log(e.data.data.cards)
+      if (e.data.data.card_count > 1) {
+        this.index_height = ''
+      }
+      this.num = e.data.data.continue_days
       e.data.data.cards.forEach((e, index) => {
-        this.clockinList[index].tip = e.content
-        this.clockinList[index].img = e.photo_url
-        this.clockinList[index].time = `${dayjs.unix(e.created_at).$M + 1}月${dayjs.unix(e.created_at).$D}日`
-        this.clockinList[index].state = e.status
-        this.clockinList[index].praiseNum = e.is_like
-        this.clockinList[index].ispraise = Boolean(e.is_like)
+        const clockin = {
+          tip: e.content,
+          img: e.photo_url,
+          time: `${dayjs.unix(e.created_at).$M + 1}月${dayjs.unix(e.created_at).$D}日`,
+          state: e.status,
+          praiseNum: e.like_count,
+          ispraise: Boolean(e.is_like),
+          id: e.id
+        }
+        this.daylist.forEach((day, index) => {
+          if (dayjs.unix(e.created_at).$D === day.num) {
+            this.daylist[index].state = 'pass'
+          }
+        })
+        this.myList.push(clockin)
+        this.clockinList = this.myList
       })
     })
-    // let mouth = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
-    const today = dayjs.unix(dayjs().unix()).$D
-    const week = dayjs.unix(dayjs().unix()).$W
-    this.daylist.forEach((e, index) => {
-      this.daylist[index].num = (today - (week - index) + 1)
+    /**
+     * @description: 渲染他人打卡数据
+     * @author: 林其星
+     */
+    getOtherPushCard().then((e) => {
+      console.log(e.data)
+      if (e.data.data.lenght > 1) {
+        this.index_height = ''
+      }
+      e.data.data.forEach((e, index) => {
+        const clockin = {
+          tip: e.content,
+          img: e.photo_url,
+          time: `${dayjs.unix(e.created_at).$M + 1}月${dayjs.unix(e.created_at).$D}日`,
+          state: e.status,
+          praiseNum: e.like_count,
+          ispraise: Boolean(e.is_like),
+          id: e.id
+        }
+        this.otherList.push(clockin)
+      })
     })
   }
 }
@@ -190,9 +240,8 @@ export default {
 <style lang='scss' scoped>
 .index {
   width: 100vw;
-  height: 100%;
   background-image: url('../assets/image/home/background.png');
-  background-size: cover;
+  background-size: contain;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -376,6 +425,9 @@ export default {
       color: #ff5a00;
       font-size: 40px;
       margin-bottom: 20px;
+      .myrecord-title-other {
+        margin-left: 20px;
+      }
     }
     .myrecord-list {
       display: flex;
