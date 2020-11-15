@@ -4,7 +4,7 @@
   <div class="index" :style="`height:${index_height}`">
     <!-- 打卡任务 -->
     <div class="index-title">
-      <p>勤俭节约21天拍照打卡活动</p>
+      <p>勤俭节约,光盘ing</p>
       <div class="ware"></div>
     </div>
     <div class="index-block">
