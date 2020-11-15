@@ -10,7 +10,7 @@
         </div>
 
         <div class="form__item">
-          <span class="form__item__top">{{userData.card_count}}/7天</span>
+          <span class="form__item__top">{{userData.card_count}}/14天</span>
           <span class="form__item__bottom">已打卡</span>
         </div>
 
@@ -23,7 +23,7 @@
       <div class="calendar">
         <header>
           <div class="arrow-before-no" ref="arrowPev" @click="toPev"></div>
-          <p>2020年11月</p>
+          <p>2020年{{today.flag}}月</p>
           <div class="arrow-after-yes" ref="arrowNext" @click="toNext"></div>
         </header>
 
@@ -65,17 +65,24 @@ export default {
         info: {
           state: [
             [
-              [2, 2, 1, 1, 2, 2, 2],
-              [2, 2, 2, 2, 2, 2, 2],
-              [2, 1, 2, 2, 2, 2, 2],
-              [2, 2, 2, 2, 2, 2, 2],
-              [2, 2, 0, 0, 0, 0, 0]
+              [1, 1, 1, 1, 2, 1, 1],
+              [1, 1, 1, 1, 1, 1, 1],
+              [1, 1, 1, 1, 1, 2, 1],
+              [1, 1, 1, 1, 1, 1, 1],
+              [1, 1, 0, 0, 0, 0, 0]
             ],
             [
               [0, 0, 1, 1, 2, 2, 2],
               [2, 2, 2, 2, 2, 2, 2],
               [2, 1, 2, 2, 2, 2, 2],
               [2, 2, 2, 2, 2, 2, 2],
+              [2, 2, 1, 1, 0, 0, 0]
+            ],
+            [
+              [0, 0, 0, 0, 1, 1, 1],
+              [1, 1, 1, 1, 1, 2, 1],
+              [2, 1, 2, 1, 2, 1, 2],
+              [2, 2, 1, 2, 1, 2, 1],
               [2, 2, 1, 1, 0, 0, 0]
             ]
           ],
@@ -93,6 +100,13 @@ export default {
               8, 9, 10, 11, 12, 13, 14,
               15, 16, 17, 18, 19, 20, 21,
               22, 23, 24, 25, 26, 27, 28
+            ],
+            [
+              26, 27, 28, 29, 30, 1, 2,
+              3, 4, 5, 1, 2, 3, 4,
+              5, 6, 7, 8, 9, 10, 11,
+              12, 13, 14, 15, 16, 17, 18,
+              19, 20, 21, 22, 23, 24, 25
             ]
           ],
           calendarHeaderImg: {
@@ -109,6 +123,7 @@ export default {
           [2, 2, 2, 2, 2, 2, 2],
           [2, 2, 0, 0, 0, 0, 0]
         ],
+        stateFlag: [1, 3, 6],
         data: [
           1, 2, 3, 4, 5, 6, 7,
           8, 9, 10, 11, 12, 13, 14,
@@ -148,7 +163,8 @@ export default {
       },
       today: {
         month: null,
-        day: null
+        day: null,
+        flag: 11
       }
     }
   },
@@ -202,15 +218,47 @@ export default {
         })
       })
     },
+    // 初始化日期状态
+    renderDataState () {
+      console.log('日期标靶', this.calendar.stateFlag)
+      console.log(this.userData.cards)
+      this.userData.cards.forEach(item => {
+        console.log(item.created_at)
+        console.log(dayjs.unix(item.created_at).$M)
+        console.log(dayjs.unix(item.created_at).$D)
+      })
+    },
+    dateAdd (data) {
+      if (data === 12) {
+        return 1
+      } else {
+        return ++data
+      }
+    },
+    dateLess (data) {
+      if (data === 1) {
+        return 12
+      } else {
+        return --data
+      }
+    },
     toPev () {
       if (this.calendarControl.left === 1) {
         // 改变箭头的样式
-        this.$refs.arrowPev.className = 'arrow-before-no'
         this.$refs.arrowNext.className = 'arrow-after-yes'
-
-        this.calendar.state = this.calendar.info.state[0]
-        this.calendarControl.left = 0
-        this.calendarControl.right = 1
+        if (this.today.flag === 1) {
+          this.calendar.state = this.calendar.info.state[1]
+        } else if (this.today.flag === 12) {
+          this.calendar.state = this.calendar.info.state[0]
+        }
+        // this.calendar.state = this.calendar.info.state[0]
+        if (this.today.flag === 12) {
+          // 改变箭头的样式
+          this.$refs.arrowNext.className = 'arrow-after-yes'
+          this.$refs.arrowPev.className = 'arrow-before-no'
+          this.calendarControl.left = 0
+          this.calendarControl.right = 1
+        }
         this.$refs.calendarMain.innerHTML = `<p style="width: 12vw;height: 5.3vw;">周日</p>
           <p style="width: 12vw;height: 5.3vw;">周一</p>
           <p style="width: 12vw;height: 5.3vw;">周二</p>
@@ -220,24 +268,38 @@ export default {
           <p style="width: 12vw;height: 5.3vw;">周六</p>`
         this.renderCalendar()
         // 加载日期
-        this.calendar.data = this.calendar.info.data[0]
+        if (this.today.flag === 1) {
+          this.calendar.data = this.calendar.info.data[1]
+        } else if (this.today.flag === 12) {
+          this.calendar.data = this.calendar.info.data[0]
+        }
         const dailyList = document.querySelectorAll('.calendar-main__item')
         this.calendar.data.forEach((item, index) => {
           // console.log(dailyList)
           dailyList[index].querySelector('div').innerText = item
         })
+        // 改变标题月份
+        this.today.flag = this.dateLess(this.today.flag)
       }
       console.log(22)
     },
     toNext () {
       // 改变箭头的样式
       this.$refs.arrowPev.className = 'arrow-before-yes'
-      this.$refs.arrowNext.className = 'arrow-after-no'
-
       if (this.calendarControl.right === 1) {
-        this.calendar.state = this.calendar.info.state[1]
-        this.calendarControl.left = 1
-        this.calendarControl.right = 0
+        if (this.today.flag === 11) {
+          this.calendar.state = this.calendar.info.state[1]
+        } else if (this.today.flag === 12) {
+          this.calendar.state = this.calendar.info.state[2]
+        }
+        // this.calendar.state = this.calendar.info.state[1]
+        if (this.today.flag === 12) {
+          // 改变箭头的样式
+          this.$refs.arrowPev.className = 'arrow-before-yes'
+          this.$refs.arrowNext.className = 'arrow-after-no'
+          this.calendarControl.left = 1
+          this.calendarControl.right = 0
+        }
         this.$refs.calendarMain.innerHTML = `<p style="width: 12vw;height: 5.3vw;">周日</p>
           <p style="width: 12vw;height: 5.3vw;">周一</p>
           <p style="width: 12vw;height: 5.3vw;">周二</p>
@@ -247,17 +309,27 @@ export default {
           <p style="width: 12vw;height: 5.3vw;">周六</p>`
         this.renderCalendar()
         // 加载日期
-        this.calendar.data = this.calendar.info.data[1]
+        if (this.today.flag === 11) {
+          this.calendar.data = this.calendar.info.data[1]
+        } else if (this.today.flag === 12) {
+          this.calendar.data = this.calendar.info.data[2]
+        }
         const dailyList = document.querySelectorAll('.calendar-main__item')
         this.calendar.data.forEach((item, index) => {
           // console.log(dailyList)
           dailyList[index].querySelector('div').innerText = item
         })
+        // 改变标题月份
+        this.today.flag = this.dateAdd(this.today.flag)
       }
     }
   },
   mounted () {
+    // 刚刚进入组件时同步样式
+    this.calendar.state = this.calendar.info.state[0]
     // this.userData = getPushCard()
+    // 加载状态,通过后端接口返回的数据，更新日历的背景颜色
+    this.renderDataState()
     // 引入图片
     this.renderCalendar()
     // 加载日期
@@ -318,7 +390,7 @@ export default {
         flex-flow: column;
         justify-content: center;
         align-items: center;
-        width: 120px;
+        width: 140px;
         .form__item__top {
           font-size: 35px;
           font-weight: 400;
