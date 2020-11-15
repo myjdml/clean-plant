@@ -65,25 +65,25 @@ export default {
         info: {
           state: [
             [
-              [1, 1, 1, 1, 2, 1, 1],
               [1, 1, 1, 1, 1, 1, 1],
-              [1, 1, 1, 1, 1, 2, 1],
+              [1, 1, 1, 1, 1, 1, 1],
+              [1, 1, 1, 1, 1, 1, 1],
               [1, 1, 1, 1, 1, 1, 1],
               [1, 1, 0, 0, 0, 0, 0]
             ],
             [
-              [0, 0, 1, 1, 2, 2, 2],
-              [2, 2, 2, 2, 2, 2, 2],
-              [2, 1, 2, 2, 2, 2, 2],
-              [2, 2, 2, 2, 2, 2, 2],
-              [2, 2, 1, 1, 0, 0, 0]
+              [0, 0, 1, 1, 1, 1, 1],
+              [1, 1, 1, 1, 1, 1, 1],
+              [1, 1, 1, 1, 1, 1, 1],
+              [1, 1, 1, 1, 1, 1, 1],
+              [1, 1, 1, 1, 0, 0, 0]
             ],
             [
               [0, 0, 0, 0, 1, 1, 1],
-              [1, 1, 1, 1, 1, 2, 1],
-              [2, 1, 2, 1, 2, 1, 2],
-              [2, 2, 1, 2, 1, 2, 1],
-              [2, 2, 1, 1, 0, 0, 0]
+              [1, 1, 1, 1, 1, 1, 1],
+              [1, 1, 1, 1, 1, 1, 1],
+              [1, 1, 1, 1, 1, 1, 1],
+              [1, 1, 1, 1, 0, 0, 0]
             ]
           ],
           data: [
@@ -140,7 +140,7 @@ export default {
         card_count: 2,
         cards: [
           {
-            created_at: 1604494525,
+            created_at: 1607097600,
             id: 11,
             content: '111',
             photo_url: 'http://cdn.redrock.team/clean-plant-sever_8BIabKERsUhPNmMmdf2eSJyYtqwcFiUI.LzXv2fcNIrWO7sToFgoilA0U1WxNeW1g',
@@ -149,7 +149,7 @@ export default {
             like_count: 1
           },
           {
-            created_at: 1604502383,
+            created_at: 1612576000,
             id: 12,
             content: '啦啦啦啦啦啦',
             photo_url: 'http://cdn.redrock.team/clean-plant-sever_zjhD0tXRTmkYKQoN91FmWnQSK2wRC5UH.K2KqAtxjP2ZmD1jtt3zgr5MeUjoAjcO9',
@@ -220,12 +220,27 @@ export default {
     },
     // 初始化日期状态
     renderDataState () {
-      console.log('日期标靶', this.calendar.stateFlag)
-      console.log(this.userData.cards)
+      const dateHandel = (e, day, index) => {
+        console.log(e, day)
+        day = day - 1 + e
+        const int = Math.floor(day / 7)
+        const float = day % 7
+        this.calendar.info.state[index][int][float] = 2
+      }
+      // console.log('日期标靶', this.calendar.stateFlag)
+      // console.log(this.userData.cards)
       this.userData.cards.forEach(item => {
-        console.log(item.created_at)
-        console.log(dayjs.unix(item.created_at).$M)
-        console.log(dayjs.unix(item.created_at).$D)
+        // console.log(item.created_at)
+        const day = dayjs.unix(item.created_at).$D
+        const month = dayjs.unix(item.created_at).$M
+        console.log(`${month}月${day}日`)
+        if (month === 11) {
+          dateHandel(this.calendar.stateFlag[0], day, 0)
+        } else if (month === 12) {
+          dateHandel(this.calendar.stateFlag[1], day, 1)
+        } else if (month === 1) {
+          dateHandel(this.calendar.stateFlag[2], day, 2)
+        }
       })
     },
     dateAdd (data) {
@@ -338,7 +353,7 @@ export default {
       // console.log(dailyList)
       dailyList[index].querySelector('div').innerText = item
     })
-    console.log(dayjs.unix(dayjs().unix()))
+    console.log(dayjs('2021-01-5').unix())
     this.today.month = dayjs.unix(dayjs().unix()).$M
     this.today.day = dayjs.unix(dayjs().unix()).$D
   }
