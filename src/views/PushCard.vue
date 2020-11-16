@@ -61,6 +61,9 @@ export default {
       console.log(this.formData)
       // 提交ajax
       postPushCard('plant/addCard', this.formData)
+      this.router.push({
+        path: '/index'
+      })
     },
     handelImg (Img) {
       const formData = new FormData()
