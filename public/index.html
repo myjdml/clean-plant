@@ -18,7 +18,7 @@
   <!-- built files will be auto injected -->
   <script>
     const token = document.location.href.split('token=')[1];
-    console.log(token);
+    //console.log(token);
     if (token && token.length) {
       document.location.hash = '#/';
       localStorage.setItem('id_token', token);
