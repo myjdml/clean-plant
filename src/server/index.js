@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const TOKEN =`bearer ${document.location.href.split('token=')[1].replace(/%20/g, '+')}` 
+const TOKEN = `bearer ${document.location.href.split('token=')[1].replace(/%20/g, '+')}`
 console.log(TOKEN)
 const BACEURL = process.env.NODE_ENV === 'production' ? 'https://cyxbsmobile.redrock.team/wxapi/clean-plant-server' : '/api'
 axios.defaults.headers.common.Authorization = TOKEN
