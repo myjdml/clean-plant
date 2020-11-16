@@ -72,7 +72,7 @@
             <div class="list-item-title">{{ item.tip }}</div>
             <img
               class="list-item-img"
-              :src="require('../assets/image/mock/mock1.png')"
+              :src="item.img"
             />
             <div class="list-item-ctx">
               <div class="time">{{ item.time }}</div>
