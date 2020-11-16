@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const TOKEN = () => window.location.hash
+const TOKEN = document.location.href.split('token=')[1]
 const BACEURL = process.env.NODE_ENV === 'production' ? 'https://cyxbsmobile.redrock.team/wxapi/clean-plant-server' : '/api'
 axios.defaults.headers.common.Authorization = TOKEN
 
