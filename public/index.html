@@ -21,7 +21,7 @@
     //console.log(token);
     if (token && token.length) {
       document.location.hash = '#/';
-      localStorage.setItem('id_token', token);
+      localStorage.setItem('id_token', token.replace(/%20/g, '+').replace(/#[\w/]*/g, ''));
       const { exp, stuNum, role } = JSON.parse(atob(token.split('.')[1]));
       localStorage.setItem('exp', exp);
       localStorage.setItem('stuNum', stuNum);
