@@ -61,7 +61,7 @@ export default {
       console.log(this.formData)
       // 提交ajax
       postPushCard('plant/addCard', this.formData)
-      this.router.push({
+      this.$router.push({
         path: '/index'
       })
     },
