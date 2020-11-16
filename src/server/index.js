@@ -3,7 +3,6 @@ import axios from 'axios'
 
 const TOKEN = 'Bearer ' +
   `${localStorage.getItem('id_token')}`
-console.log(document.location.href.split('token=')[1].replace(/%20/g, '+'))
 const BACEURL = process.env.NODE_ENV === 'production' ? 'https://cyxbsmobile.redrock.team/wxapi/clean-plant-server' : '/api'
 axios.defaults.headers.common.Authorization = TOKEN
 
