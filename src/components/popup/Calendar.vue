@@ -1,7 +1,7 @@
 <template>
   <div id="calendar">
     <div class="main">
-      <p class="phrase">{{titleIdom[0]}}</p>
+      <p class="phrase">{{titleInfo}}</p>
 
       <div class="form">
         <div class="form__item">
@@ -55,6 +55,7 @@ export default {
   data () {
     // calendar.state里面存放的二维数组里存放里日期的状态，颜色由浅到深分别为0，1，2
     return {
+      titleInfo: '万事开头难，养成粮食习惯，起步一定要加油鸭！',
       titleIdom: [
         '万事开头难，养成粮食习惯，起步一定要加油鸭！',
         '已经坚持一半了，继续加油~',
@@ -96,17 +97,17 @@ export default {
             ],
             [
               29, 30, 1, 2, 3, 4, 5,
-              1, 2, 3, 4, 5, 6, 7,
-              8, 9, 10, 11, 12, 13, 14,
-              15, 16, 17, 18, 19, 20, 21,
-              22, 23, 24, 25, 26, 27, 28
+              6, 7, 8, 9, 10, 11, 12,
+              13, 14, 15, 16, 17, 18, 19,
+              20, 21, 22, 23, 24, 25, 26,
+              27, 28, 29, 30, 31, 1, 2
             ],
             [
-              26, 27, 28, 29, 30, 1, 2,
-              3, 4, 5, 1, 2, 3, 4,
-              5, 6, 7, 8, 9, 10, 11,
-              12, 13, 14, 15, 16, 17, 18,
-              19, 20, 21, 22, 23, 24, 25
+              27, 28, 29, 30, 31, 1, 2,
+              3, 4, 5, 6, 7, 8, 9,
+              10, 11, 12, 13, 14, 15, 16,
+              17, 18, 19, 20, 21, 22, 23,
+              24, 25, 26, 27, 28, 29, 30
             ]
           ],
           calendarHeaderImg: {
@@ -137,6 +138,7 @@ export default {
         right: 1
       },
       userData: {
+        begin_at: 1606143845,
         card_count: 2,
         cards: [
           {
@@ -172,6 +174,18 @@ export default {
     changeCalendarState () {
       // console.log('chufa')
       this.$emit('change-calendar-state')
+    },
+    renderTitle () {
+      // 初始化鼓励名言
+      if (this.userData.continue_days <= 3) {
+        this.titleInfo = this.titleIdom[0]
+      } else if (this.userData.continue_days >= 4 && this.userData.continue_days <= 5) {
+        this.titleInfo = this.titleIdom[1]
+      } else if (this.userData.continue_days >= 6) {
+        this.titleInfo = this.titleIdom[2]
+      }
+
+      // 初始化打卡开始日期
     },
     renderCalendar () {
       /* eslint-disable quotes */
@@ -222,7 +236,7 @@ export default {
     renderDataState () {
       const dateHandel = (e, day, index) => {
         console.log(e, day)
-        day = day - 1 + e
+        day = day - 2 + e
         const int = Math.floor(day / 7)
         const float = day % 7
         this.calendar.info.state[index][int][float] = 2
@@ -340,11 +354,13 @@ export default {
     }
   },
   mounted () {
+    // this.userData = getPushCard()
     // 刚刚进入组件时同步样式
     this.calendar.state = this.calendar.info.state[0]
-    // this.userData = getPushCard()
     // 加载状态,通过后端接口返回的数据，更新日历的背景颜色
     this.renderDataState()
+    // 刷新头部文字
+    this.renderTitle()
     // 引入图片
     this.renderCalendar()
     // 加载日期
