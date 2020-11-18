@@ -5,7 +5,7 @@
 
       <div class="form">
         <div class="form__item">
-          <span class="form__item__top">4天</span>
+          <span class="form__item__top">{{begin_time}}天</span>
           <span class="form__item__bottom">已经开始</span>
         </div>
 
@@ -47,8 +47,9 @@
 </template>
 
 <script>
-// import { getPushCard } from '../../server'
+import { getPushCard } from '../../server'
 import * as dayjs from 'dayjs'
+import { timeDifference, timer } from '../../utils/day'
 
 export default {
   name: 'calendar',
@@ -62,6 +63,7 @@ export default {
         '加油！，终点就在眼前。',
         '恭喜你以完成目标，你离大奖越来越近啦！'
       ],
+      begin_time: 0,
       calendar: {
         info: {
           state: [
@@ -77,14 +79,14 @@ export default {
               [1, 1, 1, 1, 1, 1, 1],
               [1, 1, 1, 1, 1, 1, 1],
               [1, 1, 1, 1, 1, 1, 1],
-              [1, 1, 1, 1, 0, 0, 0]
+              [1, 1, 1, 1, 1, 0, 0]
             ],
             [
               [0, 0, 0, 0, 1, 1, 1],
               [1, 1, 1, 1, 1, 1, 1],
               [1, 1, 1, 1, 1, 1, 1],
               [1, 1, 1, 1, 1, 1, 1],
-              [1, 1, 1, 1, 0, 0, 0]
+              [1, 1, 1, 1, 1, 1, 1]
             ]
           ],
           data: [
@@ -124,7 +126,7 @@ export default {
           [2, 2, 2, 2, 2, 2, 2],
           [2, 2, 0, 0, 0, 0, 0]
         ],
-        stateFlag: [1, 3, 6],
+        stateFlag: [1, 3, 5],
         data: [
           1, 2, 3, 4, 5, 6, 7,
           8, 9, 10, 11, 12, 13, 14,
@@ -184,8 +186,8 @@ export default {
       } else if (this.userData.continue_days >= 6) {
         this.titleInfo = this.titleIdom[2]
       }
-
       // 初始化打卡开始日期
+      this.begin_time = timeDifference(this.userData.begin_at, dayjs().unix()).day
     },
     renderCalendar () {
       /* eslint-disable quotes */
@@ -235,7 +237,7 @@ export default {
     // 初始化日期状态
     renderDataState () {
       const dateHandel = (e, day, index) => {
-        console.log(e, day)
+        // console.log(e, day)
         day = day - 2 + e
         const int = Math.floor(day / 7)
         const float = day % 7
@@ -245,9 +247,8 @@ export default {
       // console.log(this.userData.cards)
       this.userData.cards.forEach(item => {
         // console.log(item.created_at)
-        const day = dayjs.unix(item.created_at).$D
-        const month = dayjs.unix(item.created_at).$M
-        console.log(`${month}月${day}日`)
+        const day = timer(item.created_at).date
+        const month = timer(item.created_at).month
         if (month === 11) {
           dateHandel(this.calendar.stateFlag[0], day, 0)
         } else if (month === 12) {
@@ -310,7 +311,6 @@ export default {
         // 改变标题月份
         this.today.flag = this.dateLess(this.today.flag)
       }
-      console.log(22)
     },
     toNext () {
       // 改变箭头的样式
@@ -354,7 +354,7 @@ export default {
     }
   },
   mounted () {
-    // this.userData = getPushCard()
+    this.userData = getPushCard()
     // 刚刚进入组件时同步样式
     this.calendar.state = this.calendar.info.state[0]
     // 加载状态,通过后端接口返回的数据，更新日历的背景颜色
@@ -369,9 +369,9 @@ export default {
       // console.log(dailyList)
       dailyList[index].querySelector('div').innerText = item
     })
-    console.log(dayjs('2021-01-5').unix())
-    this.today.month = dayjs.unix(dayjs().unix()).$M
-    this.today.day = dayjs.unix(dayjs().unix()).$D
+    // console.log(dayjs('2021-01-5').unix())
+    this.today.month = timer(dayjs().unix()).month
+    this.today.day = timer(dayjs().unix()).date
   }
 }
 </script>
