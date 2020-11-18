@@ -15,7 +15,7 @@
         </div>
         <div class="index-info">
           <p>
-            希望同学们可以通过7天的打卡活动，养成珍惜粮食，勤俭节约的好习惯。
+            希望同学们可以通过14天的打卡活动，养成珍惜粮食，勤俭节约的好习惯。
           </p>
         </div>
       </div>
@@ -90,6 +90,7 @@
     </div>
   </div>
   <indexPopup></indexPopup>
+  <info info="今日打卡成功" type="succesd"></info>
   <!-- <calendar></calendar> -->
 </template>
 
@@ -98,6 +99,7 @@
 /* eslint-disable indent */
 // import Calendar from '../components/calendar/'
 import indexPopup from '../components/popup/IndexPopup'
+import info from '../components/popup/infoPopup'
 import { useRouter } from 'vue-router'
 import { getPushCard, addCard, getOtherPushCard } from '../server/index'
 // import calendar from '../components/calendar/calendar'
@@ -107,7 +109,8 @@ import Calendar from '../components/popup/Calendar'
 export default {
   components: {
     Calendar,
-    indexPopup
+    indexPopup,
+    info
   },
   setup () {
     const router = useRouter()
@@ -174,11 +177,13 @@ export default {
   * @author: 林其星
   */
   created () {
-    // let mouth = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
-    const today = dayjs.unix(dayjs().unix()).$D
+    if (this.$route.query.state) {
+      console.log(this.$route.query.state)
+      this.$store.commit('showInfoPopup', true)
+    }
     const week = dayjs.unix(dayjs().unix()).$W
     this.daylist.forEach((e, index) => {
-      this.daylist[index].num = (today - (week - index) + 1)
+      this.daylist[index].num = dayjs().add(index - week, 'day').$D + 1
     })
     /**
      * @description: 请求打卡数据

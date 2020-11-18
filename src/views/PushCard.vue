@@ -62,7 +62,10 @@ export default {
       // 提交ajax
       postPushCard('plant/addCard', this.formData)
       this.$router.push({
-        path: '/index'
+        path: '/index',
+        query: {
+          state: 'pass'
+        }
       })
     },
     handelImg (Img) {
