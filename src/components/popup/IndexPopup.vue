@@ -3,7 +3,7 @@
   <div :class="$store.state.showIndexPopup ? 'show default' : 'hidden default'">
     <div class="popup">
       <div class="title">
-        <p>勤俭节约21天拍照打卡活动</p>
+        <p>勤俭节约,光盘ing</p>
         <div class="line"></div>
       </div>
       <div class="main">
@@ -18,7 +18,9 @@
         <div class="index">
           <div class="inner">
             <p class="indexpop-p">打卡奖励</p>
-            <li>每期将从打卡天数最多的同学中随机抽取10人获得价值百元的食堂大礼包</li>
+            <li>
+              每期将从打卡天数最多的同学中随机抽取10人获得价值百元的食堂大礼包
+            </li>
           </div>
         </div>
         <div class="index">
@@ -29,8 +31,14 @@
               同学们需要每天将饭后空碗筷拍照上传，仅可饭后立刻拍照，不可从图库中选择照片。
             </li>
             <li><a>(2)</a>同学一日仅需上传一次照片，每次需上传一张照片。</li>
-            <li><a>(3)</a> 活动每一期为14天，每期活跃用户与中奖信息在“打卡展示”中展示</li>
-            <li><a>(4)</a> 照片和文案会进行审核，不合格会在打卡记录中给与通知与说明，审核做最晚三天内将告知，首次不符合不影响奖励。</li>
+            <li>
+              <a>(3)</a>
+              活动每一期为14天，每期活跃用户与中奖信息在“打卡展示”中展示
+            </li>
+            <li>
+              <a>(4)</a>
+              照片和文案会进行审核，不合格会在打卡记录中给与通知与说明，审核做最晚三天内将告知，首次不符合不影响奖励。
+            </li>
             <div class="buttonHidden" @click="hidden"></div>
           </div>
         </div>
