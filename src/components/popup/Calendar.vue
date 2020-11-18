@@ -355,6 +355,9 @@ export default {
   },
   mounted () {
     this.userData = getPushCard()
+      .then(response => {
+        console.log(response)
+      })
     // 刚刚进入组件时同步样式
     this.calendar.state = this.calendar.info.state[0]
     // 加载状态,通过后端接口返回的数据，更新日历的背景颜色
