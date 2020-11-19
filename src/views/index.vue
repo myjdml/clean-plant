@@ -38,7 +38,7 @@
     <div class="clockin-calendar">
       <div class="clockin-title">
         <p>
-          已打卡 <a>{{ num }}/7</a> 天
+          已打卡 <a>{{ num }}/14</a> 天
         </p>
       </div>
       <div class="calendarlist">
@@ -61,6 +61,10 @@
       <div class="myrecord-title">
         <a @click="myrecard">我的记录</a>
         <a @click="othercard" class="myrecord-title-other">打卡展示</a>
+        <div class="medals-list">
+          <div class="activity-list"></div>
+          <div class="medals"></div>
+        </div>
       </div>
       <div class="myrecord-list">
         <div
@@ -91,9 +95,7 @@
   </div>
   <indexPopup></indexPopup>
   <info info="今日打卡成功" type="succesd"></info>
-  <!-- <calendar></calendar> -->
 </template>
-
 <script>
 /* eslint-disable no-tabs */
 /* eslint-disable indent */
@@ -430,6 +432,8 @@ export default {
       color: #ff5a00;
       font-size: 40px;
       margin-bottom: 20px;
+      display: flex;
+      flex-direction: row;
       .myrecord-title-other {
         margin-left: 20px;
       }
