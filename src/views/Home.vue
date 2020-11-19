@@ -8,7 +8,7 @@
     </div>
     <div class="home-title"></div>
     <div class="text">
-      <p>21天拍照打卡活动</p>
+      <p></p>
       <div class="ware"></div>
     </div>
     <div class="xiangji">
