@@ -27,20 +27,10 @@
 <script>
 import QuestionEditPhoto from '../components/EditImage'
 import { postPushCard } from '../server'
-import { useRouter } from 'vue-router'
+// import { useRouter } from 'vue-router'
 // import { watch } from 'vue'
 export default {
   name: 'PushCard',
-  setup () {
-    const router = useRouter()
-
-    function gotohome () {
-      router.push('/index')
-    }
-    return {
-      gotohome
-    }
-  },
   components: {
     QuestionEditPhoto
   },
@@ -80,6 +70,14 @@ export default {
         )
       })
       return formData
+    },
+    gotohome () {
+      this.$router.push('/index')
+      // 删除VueX中存储的图片信息
+      setTimeout(() => {
+        this.$store.state.image = []
+        this.$store.state.imageId = []
+      }, 500)
     }
   },
   mounted () {
