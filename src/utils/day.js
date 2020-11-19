@@ -1,7 +1,7 @@
 /*
  * @Author: Code_Master
  * @Date: 2020-11-17 19:47:25
- * @LastEditTime: 2020-11-18 19:34:48
+ * @LastEditTime: 2020-11-19 21:40:38
  * @LastEditors: Code_Master
  * @FilePath: /clean-plant/src/utils/day.js
  * @Description: The first 90% of the code accounts for the first 90% of the development time. The remaining 10% of the code accounts for the other 90% of the development time.
@@ -26,8 +26,8 @@ function timeUnix () {
 function timer (date) {
   const time = new Date(date * 1000)
   const Y = time.getFullYear()
-  var M = (time.getMonth() + 1 < 10 ? '0' + (time.getMonth() + 1) : time.getMonth() + 1)
-  var D = (time.getDate() < 10 ? '0' + (time.getDate()) : time.getDate())
+  var M = (time.getMonth() + 1 < 10 ? '0' + (time.getMonth() + 1) : (time.getMonth() + 1).toString())
+  var D = (time.getDate() < 10 ? '0' + (time.getDate()) : time.getDate().toString())
   var h = (time.getHours() < 10 ? '0' + time.getHours() : time.getHours())
   var m = (time.getMinutes() < 10 ? '0' + time.getMinutes() : time.getMinutes())
   var s = (time.getSeconds() < 10 ? '0' + time.getSeconds() : time.getSeconds())

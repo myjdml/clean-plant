@@ -10,7 +10,7 @@
         </div>
 
         <div class="form__item">
-          <span class="form__item__top">{{userData.card_count}}/14天</span>
+          <span class="form__item__top">{{card_day}}/14天</span>
           <span class="form__item__bottom">已打卡</span>
         </div>
 
@@ -139,6 +139,7 @@ export default {
         left: 0,
         right: 1
       },
+      card_day: 0,
       userData: {
         begin_at: 1606143845,
         card_count: 2,
@@ -360,6 +361,7 @@ export default {
         if (response.data.status === 10000) {
           // 把请求到的数据赋值给本地的data
           this.userData = response.data.data
+          // 计算打卡天数
           // 刚刚进入组件时同步样式
           this.calendar.state = this.calendar.info.state[0]
           // 加载状态,通过后端接口返回的数据，更新日历的背景颜色
@@ -379,6 +381,11 @@ export default {
           this.today.day = timer(dayjs().unix()).date
         }
       })
+    const pushDay = new Set()
+    this.userData.cards.forEach(item => {
+      pushDay.add(timer(item.created_at).date)
+    })
+    this.card_day = pushDay.size
   }
 }
 </script>
