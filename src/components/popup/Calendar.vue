@@ -354,7 +354,7 @@ export default {
     }
   },
   mounted () {
-    getPushCard()
+    this.userData = getPushCard()
       .then(response => {
         console.log(response)
         if (response.data.status === 10000) {
