@@ -150,6 +150,7 @@ export default {
   height: 70vh;
   background-color: white;
   border-radius: 30px;
+  z-index: 4;
   textarea {
     width: 90%;
     height: 300px;

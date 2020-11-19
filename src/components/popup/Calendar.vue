@@ -525,11 +525,11 @@ export default {
     }
     .confirm {
       width: 259px;
-      height: 88px;
+      height: 85px;
       background-image: url("../../assets/image/calendar/confirm.png");
       background-size: 100%;
       position: absolute;
-      bottom: 100px;
+      bottom: 30px;
       left: 50%;
       transform: translateX(-129.5px);
     }
