@@ -244,7 +244,7 @@ export default {
         this.calendar.info.state[index][int][float] = 2
       }
       // console.log('日期标靶', this.calendar.stateFlag)
-      // console.log(this.userData.cards)
+      console.log(this.userData.cards)
       this.userData.cards.forEach(item => {
         // console.log(item.created_at)
         const day = timer(item.created_at).date
