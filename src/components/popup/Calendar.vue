@@ -354,27 +354,29 @@ export default {
     }
   },
   mounted () {
-    this.userData = getPushCard()
+    getPushCard()
       .then(response => {
         console.log(response)
+        if (response.data.status === 10000) {
+          // 刚刚进入组件时同步样式
+          this.calendar.state = this.calendar.info.state[0]
+          // 加载状态,通过后端接口返回的数据，更新日历的背景颜色
+          this.renderDataState()
+          // 刷新头部文字
+          this.renderTitle()
+          // 引入图片
+          this.renderCalendar()
+          // 加载日期
+          const dailyList = document.querySelectorAll('.calendar-main__item')
+          this.calendar.data.forEach((item, index) => {
+            // console.log(dailyList)
+            dailyList[index].querySelector('div').innerText = item
+          })
+          // console.log(dayjs('2021-01-5').unix())
+          this.today.month = timer(dayjs().unix()).month
+          this.today.day = timer(dayjs().unix()).date
+        }
       })
-    // 刚刚进入组件时同步样式
-    this.calendar.state = this.calendar.info.state[0]
-    // 加载状态,通过后端接口返回的数据，更新日历的背景颜色
-    this.renderDataState()
-    // 刷新头部文字
-    this.renderTitle()
-    // 引入图片
-    this.renderCalendar()
-    // 加载日期
-    const dailyList = document.querySelectorAll('.calendar-main__item')
-    this.calendar.data.forEach((item, index) => {
-      // console.log(dailyList)
-      dailyList[index].querySelector('div').innerText = item
-    })
-    // console.log(dayjs('2021-01-5').unix())
-    this.today.month = timer(dayjs().unix()).month
-    this.today.day = timer(dayjs().unix()).date
   }
 }
 </script>
