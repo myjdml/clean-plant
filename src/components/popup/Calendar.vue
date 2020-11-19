@@ -354,10 +354,12 @@ export default {
     }
   },
   mounted () {
-    this.userData = getPushCard()
+    getPushCard()
       .then(response => {
         console.log(response)
         if (response.data.status === 10000) {
+          // 把请求到的数据赋值给本地的data
+          this.userData = response.data.data
           // 刚刚进入组件时同步样式
           this.calendar.state = this.calendar.info.state[0]
           // 加载状态,通过后端接口返回的数据，更新日历的背景颜色
