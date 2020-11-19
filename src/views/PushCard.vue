@@ -1,6 +1,6 @@
 <template>
   <div id="push-card" class="flex-col">
-    <button class="back" @click="gotohome"></button>
+    <div class="back" @click="gotohome"></div>
 
     <header class="header">
       <div class="title">

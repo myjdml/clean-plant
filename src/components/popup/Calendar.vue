@@ -428,7 +428,7 @@ export default {
         flex-flow: column;
         justify-content: center;
         align-items: center;
-        width: 140px;
+        width: 150px;
         .form__item__top {
           font-size: 35px;
           font-weight: 400;
