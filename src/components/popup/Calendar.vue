@@ -47,7 +47,7 @@
 </template>
 
 <script>
-import { getPushCard } from '../../server'
+// import { getPushCard } from '../../server'
 import * as dayjs from 'dayjs'
 import { timeDifference, timer } from '../../utils/day'
 
@@ -250,11 +250,12 @@ export default {
         // console.log(item.created_at)
         const day = timer(item.created_at).date
         const month = timer(item.created_at).month
-        if (month === 11) {
+        // console.log(day, month)
+        if (month === '11') {
           dateHandel(this.calendar.stateFlag[0], day, 0)
-        } else if (month === 12) {
+        } else if (month === '12') {
           dateHandel(this.calendar.stateFlag[1], day, 1)
-        } else if (month === 1) {
+        } else if (month === '01') {
           dateHandel(this.calendar.stateFlag[2], day, 2)
         }
       })
@@ -355,32 +356,52 @@ export default {
     }
   },
   mounted () {
-    getPushCard()
-      .then(response => {
-        console.log(response)
-        if (response.data.status === 10000) {
-          // 把请求到的数据赋值给本地的data
-          this.userData = response.data.data
-          // 计算打卡天数
-          // 刚刚进入组件时同步样式
-          this.calendar.state = this.calendar.info.state[0]
-          // 加载状态,通过后端接口返回的数据，更新日历的背景颜色
-          this.renderDataState()
-          // 刷新头部文字
-          this.renderTitle()
-          // 引入图片
-          this.renderCalendar()
-          // 加载日期
-          const dailyList = document.querySelectorAll('.calendar-main__item')
-          this.calendar.data.forEach((item, index) => {
-            // console.log(dailyList)
-            dailyList[index].querySelector('div').innerText = item
-          })
-          // console.log(dayjs('2021-01-5').unix())
-          this.today.month = timer(dayjs().unix()).month
-          this.today.day = timer(dayjs().unix()).date
-        }
-      })
+    // getPushCard()
+    //   .then(response => {
+    //     console.log(response)
+    //     if (response.data.status === 10000) {
+    //       // 把请求到的数据赋值给本地的data
+    //       this.userData = response.data.data
+    //       // 计算打卡天数
+    //       // 刚刚进入组件时同步样式
+    //       this.calendar.state = this.calendar.info.state[0]
+    //       // 加载状态,通过后端接口返回的数据，更新日历的背景颜色
+    //       this.renderDataState()
+    //       // 刷新头部文字
+    //       this.renderTitle()
+    //       // 引入图片
+    //       this.renderCalendar()
+    //       // 加载日期
+    //       const dailyList = document.querySelectorAll('.calendar-main__item')
+    //       this.calendar.data.forEach((item, index) => {
+    //         // console.log(dailyList)
+    //         dailyList[index].querySelector('div').innerText = item
+    //       })
+    //       // console.log(dayjs('2021-01-5').unix())
+    //       this.today.month = timer(dayjs().unix()).month
+    //       this.today.day = timer(dayjs().unix()).date
+    //     }
+    //   })
+
+    // 计算打卡天数
+    // 刚刚进入组件时同步样式
+    this.calendar.state = this.calendar.info.state[0]
+    // 加载状态,通过后端接口返回的数据，更新日历的背景颜色
+    this.renderDataState()
+    // 刷新头部文字
+    this.renderTitle()
+    // 引入图片
+    this.renderCalendar()
+    // 加载日期
+    const dailyList = document.querySelectorAll('.calendar-main__item')
+    this.calendar.data.forEach((item, index) => {
+      // console.log(dailyList)
+      dailyList[index].querySelector('div').innerText = item
+    })
+    // console.log(dayjs('2021-01-5').unix())
+    this.today.month = timer(dayjs().unix()).month
+    this.today.day = timer(dayjs().unix()).date
+
     const pushDay = new Set()
     this.userData.cards.forEach(item => {
       pushDay.add(timer(item.created_at).date)
