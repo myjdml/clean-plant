@@ -74,10 +74,7 @@
         >
           <div class="list-item-inner">
             <div class="list-item-title">{{ item.tip }}</div>
-            <img
-              class="list-item-img"
-              :src="item.img"
-            />
+            <img class="list-item-img" :src="item.img" />
             <div class="list-item-ctx">
               <div class="time">{{ item.time }}</div>
               <div class="praise">
@@ -172,6 +169,56 @@ export default {
     changeCalendarState () {
       this.calendar.state = false
       // console.log(11)
+    },
+    update () {
+      getPushCard().then((e) => {
+        console.log(e)
+        console.log(e.data.data.cards)
+        if (e.data.data.card_count > 1) {
+          this.index_height = ''
+        }
+        this.num = e.data.data.continue_days
+        e.data.data.cards.forEach((e, index) => {
+          const clockin = {
+            tip: e.content,
+            img: e.photo_url,
+            time: `${dayjs.unix(e.created_at).$M + 1}月${dayjs.unix(e.created_at).$D}日`,
+            state: e.status,
+            praiseNum: e.like_count,
+            ispraise: Boolean(e.is_like),
+            id: e.id
+          }
+          this.daylist.forEach((day, index) => {
+            if (dayjs.unix(e.created_at).$D === day.num) {
+              this.daylist[index].state = 'pass'
+            }
+          })
+          this.myList.push(clockin)
+          this.clockinList = this.myList
+        })
+      })
+      /**
+       * @description: 渲染他人打卡数据
+       * @author: 林其星
+       */
+      getOtherPushCard().then((e) => {
+        console.log(e.data)
+        if (e.data.data.lenght > 1) {
+          this.index_height = ''
+        }
+        e.data.data.forEach((e, index) => {
+          const clockin = {
+            tip: e.content,
+            img: e.photo_url,
+            time: `${dayjs.unix(e.created_at).$M + 1}月${dayjs.unix(e.created_at).$D}日`,
+            state: e.status,
+            praiseNum: e.like_count,
+            ispraise: Boolean(e.is_like),
+            id: e.id
+          }
+          this.otherList.push(clockin)
+        })
+      })
     }
   },
   /**
@@ -182,6 +229,7 @@ export default {
     if (this.$route.query.state) {
       console.log(this.$route.query.state)
       this.$store.commit('showInfoPopup', true)
+      this.update()
     }
     const week = dayjs.unix(dayjs().unix()).$W
     this.daylist.forEach((e, index) => {
@@ -193,54 +241,7 @@ export default {
      * @return {*}
      * @author: 林其星
      */
-    getPushCard().then((e) => {
-      console.log(e)
-      console.log(e.data.data.cards)
-      if (e.data.data.card_count > 1) {
-        this.index_height = ''
-      }
-      this.num = e.data.data.continue_days
-      e.data.data.cards.forEach((e, index) => {
-        const clockin = {
-          tip: e.content,
-          img: e.photo_url,
-          time: `${dayjs.unix(e.created_at).$M + 1}月${dayjs.unix(e.created_at).$D}日`,
-          state: e.status,
-          praiseNum: e.like_count,
-          ispraise: Boolean(e.is_like),
-          id: e.id
-        }
-        this.daylist.forEach((day, index) => {
-          if (dayjs.unix(e.created_at).$D === day.num) {
-            this.daylist[index].state = 'pass'
-          }
-        })
-        this.myList.push(clockin)
-        this.clockinList = this.myList
-      })
-    })
-    /**
-     * @description: 渲染他人打卡数据
-     * @author: 林其星
-     */
-    getOtherPushCard().then((e) => {
-      console.log(e.data)
-      if (e.data.data.lenght > 1) {
-        this.index_height = ''
-      }
-      e.data.data.forEach((e, index) => {
-        const clockin = {
-          tip: e.content,
-          img: e.photo_url,
-          time: `${dayjs.unix(e.created_at).$M + 1}月${dayjs.unix(e.created_at).$D}日`,
-          state: e.status,
-          praiseNum: e.like_count,
-          ispraise: Boolean(e.is_like),
-          id: e.id
-        }
-        this.otherList.push(clockin)
-      })
-    })
+    this.update()
   }
 }
 </script>
