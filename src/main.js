@@ -15,7 +15,6 @@ import 'normalize.css'
 import './assets/style/reset.css'
 import './assets/style/font.css'
 import VConsole from 'vconsole'
-import { List } from 'vant'
 /* eslint-disable no-unused-vars */
-createApp(App).use(store).use(router).use(List).mount('#app')
+createApp(App).use(store).use(router).mount('#app')
 const vConsole = new VConsole() // 初始化

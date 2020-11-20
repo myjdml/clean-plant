@@ -1,9 +1,14 @@
 <!--eslint-disable no-tabs-->
 <template>
   <div :class="$store.state.showActivityPopup ? 'show default' : 'hidden default'">
-    <div class="popup">
-        积极榜单
-        <button @click="hidden">退出</button>
+    <div class="popup" @click="hidden">
+        <!-- 积极榜单
+        <button >退出</button> -->
+    </div>
+    <div class="mask" @click="hidden">
+       <div class="info">
+         <p>还没有人打卡哦</p>
+       </div>
     </div>
   </div>
 </template>
@@ -32,6 +37,32 @@ export default {
 }
 </script>
 <style lang='scss' scoped>
+.mask{
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99;
+  background-color: rgb(0, 0, 0, 0.45);
+  transform: translateY(-100vh);
+  .info{
+    position: relative;
+    font-family: 'coder';
+    width: 427px;
+    height: 194px;
+    background-color: #ffffff;
+    border-radius: 20px;
+    padding: 20px;
+    p{
+      font-size: 50px;
+    line-height: 194px;
+    text-align: center;
+    color: #ff5d31;
+    }
+  }
+}
 .popup {
   width: 100vw;
   height: 100vh;
