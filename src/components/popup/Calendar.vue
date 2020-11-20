@@ -290,6 +290,11 @@ export default {
           this.$refs.arrowPev.className = 'arrow-before-no'
           this.calendarControl.left = 0
           this.calendarControl.right = 1
+        } if (this.today.flag === 1) {
+          this.$refs.arrowNext.className = 'arrow-after-yes'
+          this.$refs.arrowPev.className = 'arrow-before-yes'
+          this.calendarControl.left = 1
+          this.calendarControl.right = 1
         }
         this.$refs.calendarMain.innerHTML = `<p style="width: 12vw;height: 5.3vw;">周日</p>
           <p style="width: 12vw;height: 5.3vw;">周一</p>
@@ -330,6 +335,11 @@ export default {
           this.$refs.arrowNext.className = 'arrow-after-no'
           this.calendarControl.left = 1
           this.calendarControl.right = 0
+        } else if (this.today.flag === 11) {
+          this.$refs.arrowPev.className = 'arrow-before-yes'
+          this.$refs.arrowNext.className = 'arrow-after-yes'
+          this.calendarControl.left = 1
+          this.calendarControl.right = 1
         }
         this.$refs.calendarMain.innerHTML = `<p style="width: 12vw;height: 5.3vw;">周日</p>
           <p style="width: 12vw;height: 5.3vw;">周一</p>
