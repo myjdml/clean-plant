@@ -1,8 +1,8 @@
 /*
  * @Author: 毛神 yyds
  * @Date: 2020-10-26 09:39:44
- * @LastEditTime: 2020-11-20 17:26:23
- * @LastEditors: kyingstar
+ * @LastEditTime: 2020-11-20 20:58:03
+ * @LastEditors: Code_Master
  * @FilePath: /clean-plant/src/main.js
  * @Description: The first 90% of the code accounts for the first 90% of the development time. The remaining 10% of the code accounts for the other 90% of the development time.
  */

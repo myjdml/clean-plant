@@ -167,7 +167,7 @@ export default {
     background-image: url('../assets/image/push-card/confirm.png');
     background-size: 100%;
     position: absolute;
-    bottom: 100px;
+    bottom: 30px;
     left: 50%;
     transform: translateX(-129.5px);
   }

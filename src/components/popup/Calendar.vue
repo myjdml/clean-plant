@@ -250,11 +250,12 @@ export default {
         // console.log(item.created_at)
         const day = timer(item.created_at).date
         const month = timer(item.created_at).month
-        if (month === 11) {
+        // console.log(day, month)
+        if (month === '11') {
           dateHandel(this.calendar.stateFlag[0], day, 0)
-        } else if (month === 12) {
+        } else if (month === '12') {
           dateHandel(this.calendar.stateFlag[1], day, 1)
-        } else if (month === 1) {
+        } else if (month === '01') {
           dateHandel(this.calendar.stateFlag[2], day, 2)
         }
       })
@@ -380,12 +381,15 @@ export default {
           this.today.month = timer(dayjs().unix()).month
           this.today.day = timer(dayjs().unix()).date
         }
+
+        // 计算已打卡天数
+        const pushDay = new Set()
+        this.userData.cards.forEach(item => {
+          pushDay.add(timer(item.created_at).date)
+        })
+        this.card_day = pushDay.size
+        console.log(pushDay)
       })
-    const pushDay = new Set()
-    this.userData.cards.forEach(item => {
-      pushDay.add(timer(item.created_at).date)
-    })
-    this.card_day = pushDay.size
   }
 }
 </script>
