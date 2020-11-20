@@ -180,7 +180,6 @@ export default {
       this.calendar.state = false
       // console.log(11)
     },
-<<<<<<< HEAD
     showRollPopup () {
       console.log(1)
       this.$store.commit('showRollPopup', true)
@@ -188,7 +187,7 @@ export default {
     showActivityPopup () {
       console.log(1)
       this.$store.commit('showActivityPopup', true)
-=======
+    },
     update () {
       getPushCard().then((e) => {
         console.log(e)
@@ -238,7 +237,6 @@ export default {
           this.otherList.push(clockin)
         })
       })
->>>>>>> d5639cf0a591d4ad692f5beff2742fabc4dc79bb
     }
   },
   /**
