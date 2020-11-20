@@ -1,12 +1,18 @@
 <!--eslint-disable no-tabs-->
 <template>
   <div :class="$store.state.showRollPopup ? 'show default' : 'hidden default'">
-    <div class="popup">
+    <div class="popup" >
       <div class="awards">
-        <div class="medals"></div>
+        <div class="medals" ></div>
         <p>第一期获奖名单</p>
       </div>
-      <button @click="hidden">退出</button>
+      <div class="awards-list">
+      </div>
+    </div>
+    <div class="mask" @click="hidden">
+       <div class="info">
+         <p>还没有开奖哦!</p>
+       </div>
     </div>
   </div>
 </template>
@@ -24,9 +30,6 @@
 export default {
   data () {
     return {
-      list: [],
-      loading: false,
-      finished: false
     }
   },
   methods: {
@@ -38,6 +41,32 @@ export default {
 }
 </script>
 <style lang='scss' scoped>
+.mask{
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99;
+  background-color: rgb(0, 0, 0, 0.45);
+  transform: translateY(-100vh);
+  .info{
+    position: relative;
+    font-family: 'coder';
+    width: 427px;
+    height: 194px;
+    background-color: #ffffff;
+    border-radius: 20px;
+    padding: 20px;
+    p{
+      font-size: 50px;
+    line-height: 194px;
+    text-align: center;
+    color: #ff5d31;
+    }
+  }
+}
 .popup {
   width: 100vw;
   height: 100vh;
@@ -69,6 +98,12 @@ export default {
       color: #ff5a00;
       line-height: 40px;
     }
+  }
+  .awards-list{
+    width: 650px;
+    height: 85vh;
+    border-radius: 20px;
+    background-color: white;
   }
 }
 .default {

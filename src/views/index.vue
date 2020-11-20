@@ -197,7 +197,7 @@ export default {
           this.index_height = ''
         }
         this.num = e.data.data.continue_days
-        console.log('这波列表长度为' + e.data.data.cards.lenght)
+        console.log('这波列表长度为' + e.data.data.cards.length)
         e.data.data.cards.forEach((e, index) => {
           const clockin = {
             tip: e.content,
@@ -246,6 +246,10 @@ export default {
   * @author: 林其星
   */
   created () {
+    if (!localStorage.getItem('firstLogin')) {
+      localStorage.setItem('firstLogin', 1)
+      this.checkAll()
+    }
     if (this.$route.query.state) {
       console.log(this.$route.query.state)
       this.$store.commit('showInfoPopup', true)
