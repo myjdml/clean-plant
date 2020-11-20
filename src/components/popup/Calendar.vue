@@ -381,13 +381,15 @@ export default {
           this.today.month = timer(dayjs().unix()).month
           this.today.day = timer(dayjs().unix()).date
         }
-      })
 
-    const pushDay = new Set()
-    this.userData.cards.forEach(item => {
-      pushDay.add(timer(item.created_at).date)
-    })
-    this.card_day = pushDay.size
+        // 计算已打卡天数
+        const pushDay = new Set()
+        this.userData.cards.forEach(item => {
+          pushDay.add(timer(item.created_at).date)
+        })
+        this.card_day = pushDay.size
+        console.log(pushDay)
+      })
   }
 }
 </script>
