@@ -1,8 +1,8 @@
 /*
  * @Author: Code_Master
  * @Date: 2020-11-18 21:01:12
- * @LastEditTime: 2020-11-19 20:32:39
- * @LastEditors: Code_Master
+ * @LastEditTime: 2020-11-20 17:45:33
+ * @LastEditors: kyingstar
  * @FilePath: /clean-plant/src/server/index.js
  * @Description: The first 90% of the code accounts for the first 90% of the development time. The remaining 10% of the code accounts for the other 90% of the development time.
  */
@@ -57,4 +57,14 @@ export function addCard (id) {
   const data = new FormData()
   data.append('record_id', id)
   return instance.post('plant/like', data)
+}
+
+/**
+ * @description: 获取获奖名单
+ * @param {*}
+ * @return {*}
+ * @author: 林其星
+ */
+
+export function getRollList () {
 }

@@ -2,11 +2,11 @@
 <template>
   <div :class="$store.state.showRollPopup ? 'show default' : 'hidden default'">
     <div class="popup">
-        <div class="awards">
-            <div class="medals"></div>
-            <p>第一期获奖名单</p>
-        </div>
-        <button @click="hidden">退出</button>
+      <div class="awards">
+        <div class="medals"></div>
+        <p>第一期获奖名单</p>
+      </div>
+      <button @click="hidden">退出</button>
     </div>
   </div>
 </template>
@@ -24,6 +24,9 @@
 export default {
   data () {
     return {
+      list: [],
+      loading: false,
+      finished: false
     }
   },
   methods: {
@@ -44,28 +47,28 @@ export default {
   background-image: url('../../assets/image/home/background.png');
   background-size: cover;
   font-family: 'Coder';
-  .awards{
-      width: 750px;
-      height: 100px;
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-        .medals{
-          width: 43px;
-          height: 46px;
-          margin-left: 50px;
-          margin-right: 10px;
-          background-image: url('../../assets/image/index/parise.png');
-          background-size: cover;
-        }
-        p{
-            width: 296px;
-            height: 38px;
-            font-size: 39px;
-            font-weight: 400;
-            color: #FF5A00;
-            line-height: 40px;
-        }
+  .awards {
+    width: 750px;
+    height: 100px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    .medals {
+      width: 43px;
+      height: 46px;
+      margin-left: 50px;
+      margin-right: 10px;
+      background-image: url('../../assets/image/index/parise.png');
+      background-size: cover;
+    }
+    p {
+      width: 296px;
+      height: 38px;
+      font-size: 39px;
+      font-weight: 400;
+      color: #ff5a00;
+      line-height: 40px;
+    }
   }
 }
 .default {

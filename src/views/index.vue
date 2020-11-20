@@ -189,6 +189,7 @@ export default {
       this.$store.commit('showActivityPopup', true)
     },
     update () {
+      console.log('看我刷新了')
       getPushCard().then((e) => {
         console.log(e)
         console.log(e.data.data.cards)
@@ -196,6 +197,7 @@ export default {
           this.index_height = ''
         }
         this.num = e.data.data.continue_days
+        console.log('这波列表长度为' + e.data.data.cards.lenght)
         e.data.data.cards.forEach((e, index) => {
           const clockin = {
             tip: e.content,
@@ -457,16 +459,16 @@ export default {
       .myrecord-title-other {
         margin-left: 20px;
       }
-      .medals-list{
+      .medals-list {
         display: flex;
         flex-direction: row;
-        .activity-list{
+        .activity-list {
           width: 141px;
           height: 47px;
           background-image: url('../assets/image/index/button.png');
           background-size: cover;
         }
-        .medals{
+        .medals {
           width: 43px;
           height: 46px;
           margin-left: 32px;
