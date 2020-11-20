@@ -6,6 +6,8 @@ export default createStore({
   state: {
     showInfoPopup: false,
     showIndexPopup: false,
+    showRollPopup: false,
+    showActivityPopup: false,
     num: 0,
     image: [],
     imageId: []
@@ -19,6 +21,12 @@ export default createStore({
     },
     showInfoPopup (state, flag) {
       state.showInfoPopup = flag
+    },
+    showRollPopup (state, flag) {
+      state.showRollPopup = flag
+    },
+    showActivityPopup (state, flag) {
+      state.showActivityPopup = flag
     },
     [SET_IMAGE_UPLOADING] (state) {
       state.isUploading = true

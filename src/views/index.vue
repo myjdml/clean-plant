@@ -59,11 +59,15 @@
     <!-- 我的记录 -->
     <div class="my-record">
       <div class="myrecord-title">
-        <a @click="myrecard">我的记录</a>
-        <a @click="othercard" class="myrecord-title-other">打卡展示</a>
+        <div>
+          <a @click="myrecard">我的记录</a>
+          <a @click="othercard" class="myrecord-title-other">打卡展示</a>
+        </div>
         <div class="medals-list">
-          <div class="activity-list"></div>
-          <div class="medals"></div>
+          <!-- 积极榜单 -->
+          <div class="activity-list" @click="showActivityPopup"></div>
+          <!-- 获奖名单 -->
+          <div class="medals" @click="showRollPopup"></div>
         </div>
       </div>
       <div class="myrecord-list">
@@ -94,13 +98,17 @@
     </div>
   </div>
   <indexPopup></indexPopup>
+  <rollPopup></rollPopup>
+  <activityPopup></activityPopup>
   <info info="今日打卡成功" type="succesd"></info>
 </template>
 <script>
 /* eslint-disable no-tabs */
 /* eslint-disable indent */
 // import Calendar from '../components/calendar/'
+import activityPopup from '../components/popup/activityPopup'
 import indexPopup from '../components/popup/IndexPopup'
+import rollPopup from '../components/popup/rollPopup'
 import info from '../components/popup/infoPopup'
 import { useRouter } from 'vue-router'
 import { getPushCard, addCard, getOtherPushCard } from '../server/index'
@@ -112,7 +120,9 @@ export default {
   components: {
     Calendar,
     indexPopup,
-    info
+    info,
+    rollPopup,
+    activityPopup
   },
   setup () {
     const router = useRouter()
@@ -172,6 +182,14 @@ export default {
     changeCalendarState () {
       this.calendar.state = false
       // console.log(11)
+    },
+    showRollPopup () {
+      console.log(1)
+      this.$store.commit('showRollPopup', true)
+    },
+    showActivityPopup () {
+      console.log(1)
+      this.$store.commit('showActivityPopup', true)
     }
   },
   /**
@@ -434,8 +452,26 @@ export default {
       margin-bottom: 20px;
       display: flex;
       flex-direction: row;
+      justify-content: space-between;
       .myrecord-title-other {
         margin-left: 20px;
+      }
+      .medals-list{
+        display: flex;
+        flex-direction: row;
+        .activity-list{
+          width: 141px;
+          height: 47px;
+          background-image: url('../assets/image/index/button.png');
+          background-size: cover;
+        }
+        .medals{
+          width: 43px;
+          height: 46px;
+          margin-left: 32px;
+          background-image: url('../assets/image/index/parise.png');
+          background-size: cover;
+        }
       }
     }
     .myrecord-list {
