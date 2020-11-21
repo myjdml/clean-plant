@@ -59,11 +59,13 @@ export default {
     background-color: #ffffff;
     border-radius: 20px;
     padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     p{
       font-size: 50px;
-    line-height: 194px;
-    text-align: center;
-    color: #ff5d31;
+      text-align: center;
+      color: #ff5d31;
     }
   }
 }
