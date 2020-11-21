@@ -129,21 +129,21 @@ export default {
 @keyframes show {
   0% {
     opacity: 0;
-    transform: translateY(-50%) translateX(-50%) scale(1);
+    transform: scale(1);
   }
   100% {
     opacity: 1;
-    transform: translateY(-50%) translateX(-50%) scale(1);
+    transform: scale(1);
   }
 }
 @keyframes hidden {
   0% {
     opacity: 1;
-    transform: translateY(-50%) translateX(-50%) scale(1);
+    transform: scale(1);
   }
   100% {
     opacity: 0;
-    transform: translateY(-60%) translateX(-50%) scale(0.99);
+    transform: scale(0.99);
     overflow: hidden;
   }
 }
