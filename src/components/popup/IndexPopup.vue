@@ -73,6 +73,7 @@ export default {
 .popup {
   width: 100vw;
   height: 100vh;
+  position: fixed;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -165,14 +166,13 @@ export default {
   }
 }
 .default {
-  position: absolute !important;
-  top: 50%;
-  left: 50%;
+  top: 0%;
+  left: 0%;
   transform: translateY(-50%) translateX(-50%);
 }
 .show,
 .hidden {
-  position: absolute;
+  position: fixed;
 }
 .show {
   touch-action: none;

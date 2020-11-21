@@ -38,7 +38,7 @@ export default {
 </script>
 <style lang='scss' scoped>
 .mask{
-  position: absolute;
+  position: fixed;
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -158,14 +158,14 @@ export default {
   }
 }
 .default {
-  position: absolute !important;
+  position: fixed !important;
   top: 50%;
   left: 50%;
   transform: translateY(-50%) translateX(-50%);
 }
 .show,
 .hidden {
-  position: absolute;
+  position: fixed;
 }
 .show {
   touch-action: none;
