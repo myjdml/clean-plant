@@ -21,6 +21,9 @@
             <li>
               每期将从打卡天数最多的同学中随机抽取10人获得价值百元的食堂大礼包
             </li>
+            <li>
+              若“打卡次数”完全相同，则在次数相同的同学中进抽奖
+            </li>
           </div>
         </div>
         <div class="index">
@@ -28,9 +31,9 @@
             <p class="indexpop-p">打卡规则</p>
             <li>
               <a>(1)</a>
-              同学们需要每天将饭后空碗筷拍照上传，仅可饭后立刻拍照，不可从图库中选择照片。
+                同学们需要每天将饭后空碗筷拍照上传，仅可饭后立刻拍照，不可从图库中选择照片。
             </li>
-            <li><a>(2)</a>同学一日仅需上传一次照片，每次需上传一张照片。</li>
+            <li><a>(2)</a>同学一日仅需上传一次照片</li>
             <li>
               <a>(3)</a>
               活动每一期为14天，每期活跃用户与中奖信息在“打卡展示”中展示
@@ -38,6 +41,18 @@
             <li>
               <a>(4)</a>
               照片和文案会进行审核，不合格会在打卡记录中给与通知与说明，审核做最晚三天内将告知，首次不符合不影响奖励。
+            </li>
+            <li>
+              <a>(5)</a>
+              获奖信息将用弹窗通知并在“获奖名单”中确认
+            </li>
+            <li>
+              <a>(6)</a>
+             每期获奖名单将在每期结束后的下周三公布
+            </li>
+            <li>
+              <a>(7)</a>
+              获奖同学请在弹窗中的指定时间到红岩网校工作站b区领取奖品
             </li>
             <div class="buttonHidden" @click="hidden"></div>
           </div>
@@ -107,7 +122,7 @@ export default {
     background-size: cover;
   }
   $img-width: 680, 680, 680;
-  $img-height: 220, 242, 549;
+  $img-height: 200, 242, 550;
   .main {
     width: 90vw;
     height: 1206px;
@@ -125,7 +140,7 @@ export default {
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      margin-bottom: 20px;
+      margin-bottom: 10px;
       transform: translateX(-20px);
       p {
         font-size: 35px;
@@ -141,12 +156,18 @@ export default {
         color: #ff940b;
         font-size: 22px;
         margin-left: 30px;
-        line-height: 38px;
+        line-height: 34px;
         letter-spacing: 2px;
         margin-bottom: 5px;
+        display: flex;
       }
       a {
+        margin-right: 10px;
         color: #3d78fa;
+      }
+     i{
+        height: 1px;
+        width: 6px;
       }
       .inner {
         height: #{nth($img-height, $i)-20}px;
