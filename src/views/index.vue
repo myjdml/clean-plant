@@ -83,7 +83,7 @@
                 {{ item.nickname }}<span>{{item.time}}</span>已打卡<span>{{item.countDay}}</span>天
               </div>
               <div class="todayTip">
-                今日文字: {{item.tip}}今天的文字今天的文字今天的文字今天的文字今天的文字今天的文字今天的文字今天的文字今天的文字
+                今日文字: {{item.tip}}
               </div>
             </div>
             <div class="list-item-ctx">
