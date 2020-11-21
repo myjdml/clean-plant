@@ -240,6 +240,7 @@ export default {
           list.push(clockin)
         })
         this.myList = list
+        this.clockinList = this.myList
       })
       /**
        * @description: 渲染他人打卡数据
@@ -299,7 +300,6 @@ export default {
      * @author: 林其星
      */
      this.update()
-     this.clockinList = this.myList
   }
 }
 </script>
