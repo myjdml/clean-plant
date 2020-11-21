@@ -76,7 +76,29 @@
           :key="item.id"
           class="list-item"
         >
-          <div class="list-item-inner">
+          <!-- 他人打卡 -->
+          <div v-if="item.type == 'other'" class="list-item-inner">
+            <div class="list-item-topic">
+              <div class="list-item-title">
+                {{ item.nickname }}<span>{{item.time}}</span>已打卡<span>{{item.countDay}}</span>天
+              </div>
+              <div class="todayTip">
+                今日文字: {{item.tip}}今天的文字今天的文字今天的文字今天的文字今天的文字今天的文字今天的文字今天的文字今天的文字
+              </div>
+            </div>
+            <div class="list-item-ctx">
+              <img class="list-item-img-other" :src="item.img" />
+              <div class="praise">
+                <div
+                  @click="praise(index, item.id)"
+                  :class="item.ispraise ? `not-praise-icon` : `praise-icon`"
+                ></div>
+                <div class="praise-num">{{ item.praiseNum }}</div>
+              </div>
+            </div>
+          </div>
+          <!-- 自我打卡 -->
+          <div v-if="item.type == 'self'" class="list-item-inner">
             <div class="list-item-title">{{ item.tip }}</div>
             <img class="list-item-img" :src="item.img" />
             <div class="list-item-ctx">
@@ -144,10 +166,10 @@ export default {
         { num: 0, state: 'faild', week: '周日' }
       ],
       clockinList: [
-        // { tip: '可莉是最棒的!', img: '../assets/image/mock/mock1.png', time: '10月24日', praiseNum: 100, ispraise: false },
-        // { tip: '可莉是最棒的!', img: '../assets/image/mock/mock1.png', time: '10月24日', praiseNum: 111, ispraise: false },
-        // { tip: '可莉是最棒的!', img: '../assets/image/mock/mock1.png', time: '10月24日', praiseNum: 111, ispraise: false },
-        // { tip: '可莉是最棒的!', img: '../assets/image/mock/mock1.png', time: '10月24日', praiseNum: 111, ispraise: false }
+        // { tip: '可莉是最棒的!', img: '../assets/image/mock/mock1.png', time: '10月24日', praiseNum: 100, ispraise: false, id: 'kying-star', type: 'other', countDay: 3 },
+        // { tip: '可莉是最棒的!', img: '../assets/image/mock/mock1.png', time: '10月24日', praiseNum: 100, ispraise: false, id: 'kying-star', type: 'self', countDay: 3 },
+        // { tip: '可莉是最棒的!', img: '../assets/image/mock/mock1.png', time: '10月24日', praiseNum: 100, ispraise: false, id: 'kying-star', type: 'other', countDay: 3 },
+        // { tip: '可莉是最棒的!', img: '../assets/image/mock/mock1.png', time: '10月24日', praiseNum: 100, ispraise: false, id: 'kying-star', type: 'other', countDay: 3 }
       ],
       myList: [],
       otherList: [],
@@ -206,7 +228,8 @@ export default {
             state: e.status,
             praiseNum: e.like_count,
             ispraise: Boolean(e.is_like),
-            id: e.id
+            id: e.id,
+            type: 'self'
           }
           this.daylist.forEach((day, index) => {
             if (dayjs.unix(e.created_at).$D === day.num) {
@@ -234,7 +257,10 @@ export default {
             state: e.status,
             praiseNum: e.like_count,
             ispraise: Boolean(e.is_like),
-            id: e.id
+            id: e.id,
+            type: 'other',
+            countDay: e.continuous_day,
+            name: e.nickname
           }
           this.otherList.push(clockin)
         })
@@ -265,7 +291,7 @@ export default {
      * @return {*}
      * @author: 林其星
      */
-    this.update()
+     this.update()
   }
 }
 </script>
@@ -489,6 +515,24 @@ export default {
         height: 299px;
         border-radius: 10px;
         margin-bottom: 30px;
+        .list-item-topic{
+          display: flex;
+          align-items: center;
+          flex-direction: column;
+          align-items: flex-start;
+          .todayTip{
+            margin-left: 30px;
+            margin-top: 20px;
+            text-align: left;
+            width: 600px;
+            height: 40px;
+            font-size: 18px;
+            font-family: MF LingHei (Noncommercial);
+            font-weight: 600;
+            color: #437EFF;
+            opacity: 0.9;
+          }
+        }
         .list-item-inner {
           width: 657px;
           height: 299px;
@@ -497,6 +541,7 @@ export default {
           display: flex;
           flex-direction: column;
           align-items: flex-start;
+          justify-content: space-between;
         }
         .list-item-title {
           text-align: left;
@@ -504,6 +549,9 @@ export default {
           color: #ff8f00;
           font-size: 23px;
           margin-top: 20px;
+          span{
+            color: #1D64FF;
+          }
         }
         .list-item-img {
           width: 283px;
@@ -512,11 +560,19 @@ export default {
           margin-left: 34px;
           background-size: cover;
         }
+        .list-item-img-other {
+          width: 283px;
+          height: 160px;
+          margin-left: 34px;
+          background-size: cover;
+        }
         .list-item-ctx {
           width: 657px;
+          margin-bottom: 20px;
           display: flex;
           flex-direction: row;
           justify-content: space-between;
+          align-items: flex-end;
           .time {
             color: #ffb659;
             font-size: 18px;
