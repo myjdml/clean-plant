@@ -260,7 +260,7 @@ export default {
             id: e.id,
             type: 'other',
             countDay: e.continuous_day,
-            name: e.nickname
+            nickname: e.nickname
           }
           this.otherList.push(clockin)
         })
