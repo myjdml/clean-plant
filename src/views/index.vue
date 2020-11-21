@@ -281,7 +281,9 @@ export default {
     if (this.$route.query.state) {
       console.log(this.$route.query.state)
       this.$store.commit('showInfoPopup', true)
-      setInterval(() => {
+      setTimeout(() => {
+       this.myList = []
+       this.otherList = []
        this.update()
       }, 1000)
     }
