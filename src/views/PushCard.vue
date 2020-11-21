@@ -22,8 +22,10 @@
       <button class="confirm" @click="postInfo"></button>
     </div>
   </div>
+  <div v-if="show" class="mask">
+    <div class="wait">上传中</div>
+  </div>
 </template>
-
 <script>
 import QuestionEditPhoto from '../components/EditImage'
 import { postPushCard } from '../server'
@@ -39,7 +41,8 @@ export default {
       formValue: {
         content: null
       },
-      formData: null
+      formData: null,
+      show: false
     }
   },
   methods: {
@@ -50,6 +53,7 @@ export default {
       this.formData.append('content', this.formValue.content)
       console.log(this.formData)
       // 提交ajax
+      this.show = true
       postPushCard('plant/addCard', this.formData)
         .then(() => {
           this.$router.push({
@@ -88,6 +92,44 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.mask{
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  background-color: rgb(0, 0, 0, 0.45);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  transform: translateY(-100vh);
+  .wait{
+    font-family: 'coder';
+    width: 427px;
+    height: 194px;
+    background-color: #ffffff;
+    border-radius: 20px;
+    padding: 20px;
+    font-size: 50px;
+    line-height: 194px;
+    text-align: center;
+    color: #ff5d31;
+    &::after{
+      content: '';
+      animation: wait 1.5s linear infinite;
+    }
+  }
+  @keyframes wait {
+      0%{
+          content: ".";
+      }
+      33%{
+          content: "..";
+      }
+      66%{
+          content: "...";
+      }
+    }
+}
 #push-card {
   width: 100vw;
   height: 100vh;

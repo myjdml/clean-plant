@@ -286,9 +286,7 @@ export default {
     if (this.$route.query.state) {
       console.log(this.$route.query.state)
       this.$store.commit('showInfoPopup', true)
-      setInterval(() => {
-       this.update()
-      }, 500)
+      this.update()
     }
     const week = dayjs.unix(dayjs().unix()).$W
     console.log('这周是')
