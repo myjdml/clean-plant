@@ -7,7 +7,7 @@
     </div>
     <div class="mask" @click="hidden">
        <div class="info">
-         <p>还没有人打卡哦</p>
+         <p>功能完善中...</p>
        </div>
     </div>
   </div>
