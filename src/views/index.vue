@@ -60,7 +60,7 @@
     <div class="my-record">
       <div class="myrecord-title">
         <div>
-          <a @click="myrecard">我的记录</a>
+          <a @click="mycard">我的记录</a>
           <a @click="othercard" class="myrecord-title-other">打卡展示</a>
         </div>
         <div class="medals-list">
@@ -192,7 +192,7 @@ export default {
         this.clockinList[index].praiseNum -= 1
       }
     },
-    myrecard () {
+    mycard () {
       this.clockinList = this.myList
     },
     othercard () {
@@ -237,7 +237,7 @@ export default {
             }
           })
           this.myList.push(clockin)
-          this.clockinList = this.myList
+          console.table(this.myList)
         })
       })
       /**
@@ -263,6 +263,7 @@ export default {
             nickname: e.nickname
           }
           this.otherList.push(clockin)
+          console.table(this.otherList)
         })
       })
     }
@@ -292,6 +293,7 @@ export default {
      * @author: 林其星
      */
      this.update()
+     this.clockinList = this.myList
   }
 }
 </script>
