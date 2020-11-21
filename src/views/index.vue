@@ -263,7 +263,8 @@ export default {
             nickname: e.nickname
           }
           this.otherList.push(clockin)
-          console.table(this.otherList)
+          console.log('其他')
+          console.log(this.otherList)
         })
       })
     }
@@ -280,7 +281,9 @@ export default {
     if (this.$route.query.state) {
       console.log(this.$route.query.state)
       this.$store.commit('showInfoPopup', true)
-      this.update()
+      setInterval(() => {
+       this.update()
+      }, 1000)
     }
     const week = dayjs.unix(dayjs().unix()).$W
     this.daylist.forEach((e, index) => {
