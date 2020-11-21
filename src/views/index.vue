@@ -219,6 +219,7 @@ export default {
           this.index_height = ''
         }
         this.num = e.data.data.continue_days
+        const list = []
         console.log('这波列表长度为' + e.data.data.cards.length)
         e.data.data.cards.forEach((e, index) => {
           const clockin = {
@@ -236,9 +237,9 @@ export default {
               this.daylist[index].state = 'pass'
             }
           })
-          this.myList.push(clockin)
-          console.log(this.myList)
+          list.push(clockin)
         })
+        this.myList = list
       })
       /**
        * @description: 渲染他人打卡数据
@@ -249,6 +250,7 @@ export default {
         if (e.data.data.lenght > 1) {
           this.index_height = ''
         }
+        const list = []
         e.data.data.forEach((e, index) => {
           const clockin = {
             tip: e.content,
@@ -262,10 +264,11 @@ export default {
             countDay: e.continuous_day,
             nickname: e.nickname
           }
-          this.otherList.push(clockin)
+          list.push(clockin)
           console.log('其他')
           console.log(this.otherList)
         })
+        this.otherList = list
       })
     }
   },
@@ -282,8 +285,6 @@ export default {
       console.log(this.$route.query.state)
       this.$store.commit('showInfoPopup', true)
       setTimeout(() => {
-       this.myList = []
-       this.otherList = []
        this.update()
       }, 1000)
     }

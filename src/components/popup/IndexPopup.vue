@@ -1,7 +1,7 @@
 <!--eslint-disable no-tabs-->
 <template>
   <div :class="$store.state.showIndexPopup ? 'show default' : 'hidden default'">
-    <div class="popup">
+    <div class="popup" @click="hidden">
       <div class="title">
         <p>勤俭节约,光盘ing</p>
         <div class="line"></div>
