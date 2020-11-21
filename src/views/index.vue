@@ -285,9 +285,9 @@ export default {
     if (this.$route.query.state) {
       console.log(this.$route.query.state)
       this.$store.commit('showInfoPopup', true)
-      setTimeout(() => {
+      setInterval(() => {
        this.update()
-      }, 1000)
+      }, 500)
     }
     const week = dayjs.unix(dayjs().unix()).$W
     this.daylist.forEach((e, index) => {
