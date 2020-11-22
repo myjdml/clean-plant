@@ -66,12 +66,9 @@ export default {
             // 删除VueX中存储的图片信息
             this.$store.state.image = []
             this.$store.state.imageId = []
-
+            this.$store.commit('showInfoPopup', true)
             this.$router.push({
-              path: '/index',
-              query: {
-                state: 'pass'
-              }
+              path: '/index'
             })
           })
       } else {

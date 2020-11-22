@@ -295,9 +295,10 @@ export default {
       localStorage.setItem('firstLogin', 1)
       this.checkAll()
     }
-    if (this.$route.query.state) {
-      console.log(this.$route.query.state)
-      this.$store.commit('showInfoPopup', true)
+    if (this.$store.showInfoPopup) {
+      setTimeout(() => {
+       this.$store.commit('showInfoPopup', false)
+      }, 500)
       this.update()
     }
     const week = dayjs.unix(dayjs().unix()).$W
