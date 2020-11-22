@@ -147,7 +147,7 @@ export default {
   },
   created () {
     getActivityList().then((e) => {
-      console.log(e)
+      console.log(e.data.data)
     })
   }
 }
