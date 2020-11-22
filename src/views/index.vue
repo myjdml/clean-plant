@@ -127,7 +127,6 @@
   </div>
   <indexPopup></indexPopup>
   <rollPopup></rollPopup>
-  <activityPopup></activityPopup>
   <warm></warm>
   <info info="今日打卡成功" type="succesd"></info>
 </template>
@@ -135,7 +134,6 @@
 /* eslint-disable no-tabs */
 /* eslint-disable indent */
 // import Calendar from '../components/calendar/'
-import activityPopup from '../components/popup/activityPopup'
 import indexPopup from '../components/popup/IndexPopup'
 import rollPopup from '../components/popup/rollPopup'
 import info from '../components/popup/infoPopup'
@@ -152,7 +150,6 @@ export default {
     indexPopup,
     info,
     rollPopup,
-    activityPopup,
     warm
   },
   setup () {
@@ -219,7 +216,7 @@ export default {
     },
     showActivityPopup () {
       console.log(1)
-      this.$store.commit('showActivityPopup', true)
+      this.$router.push('/activity')
     },
     update () {
       console.log('看我刷新了')

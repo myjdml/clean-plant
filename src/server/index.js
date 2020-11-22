@@ -60,11 +60,12 @@ export function addCard (id) {
 }
 
 /**
- * @description: 获取获奖名单
+ * @description: 获取积极名单
  * @param {*}
  * @return {*}
  * @author: 林其星
  */
 
-export function getRollList () {
+export function getActivityList () {
+  return instance.get('/top?page=1')
 }

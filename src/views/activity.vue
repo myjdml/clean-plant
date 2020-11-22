@@ -1,7 +1,6 @@
 <!--eslint-disable no-tabs-->
 <template>
-  <div :class="$store.state.showActivityPopup ? 'show default' : 'hidden default'">
-    <div class="popup" @click="hidden">
+    <div class="popup">
         <div class="back" @click="gotohome"></div>
         <div class="title">
           积极榜单
@@ -9,23 +8,24 @@
         <div class="box">
           <div class="list-hidden">
             <div class="list">
-              <div class="item">
-                <div class="order">1.</div>
-                <div class="avatar">
-                  <img src="http://thirdwx.qlogo.cn/mmopen/EVGWGlX9SWWFzicQjwsfZNYPmbfq4lDwQ1QBL4Zz7TUpf9z8P3AvlGIUNJ3RZ4jf2gWl0EcRAUmdmoYbs4uy9LKibd0nv0KhuI/132" alt="">
-                </div>
-                <div class="detail">
-                  <li>派大星</li>
-                  <li>总共打卡14次</li>
+              <div class="item" v-for="item in lists" :key="item.id">
+                <div class="item-person">
+                  <div class="order">{{item.order}}</div>
+                  <div class="avatar">
+                    <img :src="item.avatar">
+                  </div>
+                  <div class="detail">
+                    <li>{{item.nickname}}</li>
+                    <li>总共打卡{{item.day_count}}次</li>
+                  </div>
                 </div>
                 <div class="count">
-                  已经连续打卡14天了
+                  已经连续打卡<a>{{item.card_count}}</a>天了
                 </div>
               </div>
             </div>
           </div>
           <div class="arrow"></div>
-        </div>
     </div>
     <!-- <div class="mask" @click="hidden">
        <div class="info">
@@ -44,7 +44,7 @@
  * @return {*}
  * @author: 林其星
  */
-
+import { getActivityList } from '../server/index'
 export default {
   data () {
     return {
@@ -54,6 +54,76 @@ export default {
           nickname: 'sarailQAQ',
           avatar: 'http://thirdwx.qlogo.cn/mmopen/EVGWGlX9SWWFzicQjwsfZNYPmbfq4lDwQ1QBL4Zz7TUpf9z8P3AvlGIUNJ3RZ4jf2gWl0EcRAUmdmoYbs4uy9LKibd0nv0KhuI/132',
           card_count: 2,
+          day_count: 2
+        },
+        {
+          order: '2.',
+          nickname: '派大星',
+          avatar: 'http://thirdwx.qlogo.cn/mmopen/EVGWGlX9SWWFzicQjwsfZNYPmbfq4lDwQ1QBL4Zz7TUpf9z8P3AvlGIUNJ3RZ4jf2gWl0EcRAUmdmoYbs4uy9LKibd0nv0KhuI/132',
+          card_count: 0,
+          day_count: 2
+        },
+        {
+          order: '2.',
+          nickname: '派大星',
+          avatar: 'http://thirdwx.qlogo.cn/mmopen/EVGWGlX9SWWFzicQjwsfZNYPmbfq4lDwQ1QBL4Zz7TUpf9z8P3AvlGIUNJ3RZ4jf2gWl0EcRAUmdmoYbs4uy9LKibd0nv0KhuI/132',
+          card_count: 0,
+          day_count: 2
+        },
+                {
+          order: '1.',
+          nickname: 'sarailQAQ',
+          avatar: 'http://thirdwx.qlogo.cn/mmopen/EVGWGlX9SWWFzicQjwsfZNYPmbfq4lDwQ1QBL4Zz7TUpf9z8P3AvlGIUNJ3RZ4jf2gWl0EcRAUmdmoYbs4uy9LKibd0nv0KhuI/132',
+          card_count: 2,
+          day_count: 2
+        },
+        {
+          order: '2.',
+          nickname: '派大星',
+          avatar: 'http://thirdwx.qlogo.cn/mmopen/EVGWGlX9SWWFzicQjwsfZNYPmbfq4lDwQ1QBL4Zz7TUpf9z8P3AvlGIUNJ3RZ4jf2gWl0EcRAUmdmoYbs4uy9LKibd0nv0KhuI/132',
+          card_count: 0,
+          day_count: 2
+        },
+        {
+          order: '2.',
+          nickname: '派大星',
+          avatar: 'http://thirdwx.qlogo.cn/mmopen/EVGWGlX9SWWFzicQjwsfZNYPmbfq4lDwQ1QBL4Zz7TUpf9z8P3AvlGIUNJ3RZ4jf2gWl0EcRAUmdmoYbs4uy9LKibd0nv0KhuI/132',
+          card_count: 0,
+          day_count: 2
+        },
+                {
+          order: '1.',
+          nickname: 'sarailQAQ',
+          avatar: 'http://thirdwx.qlogo.cn/mmopen/EVGWGlX9SWWFzicQjwsfZNYPmbfq4lDwQ1QBL4Zz7TUpf9z8P3AvlGIUNJ3RZ4jf2gWl0EcRAUmdmoYbs4uy9LKibd0nv0KhuI/132',
+          card_count: 2,
+          day_count: 2
+        },
+        {
+          order: '2.',
+          nickname: '派大星',
+          avatar: 'http://thirdwx.qlogo.cn/mmopen/EVGWGlX9SWWFzicQjwsfZNYPmbfq4lDwQ1QBL4Zz7TUpf9z8P3AvlGIUNJ3RZ4jf2gWl0EcRAUmdmoYbs4uy9LKibd0nv0KhuI/132',
+          card_count: 0,
+          day_count: 2
+        },
+        {
+          order: '2.',
+          nickname: '派大星',
+          avatar: 'http://thirdwx.qlogo.cn/mmopen/EVGWGlX9SWWFzicQjwsfZNYPmbfq4lDwQ1QBL4Zz7TUpf9z8P3AvlGIUNJ3RZ4jf2gWl0EcRAUmdmoYbs4uy9LKibd0nv0KhuI/132',
+          card_count: 0,
+          day_count: 2
+        },
+        {
+          order: '1.',
+          nickname: 'sarailQAQ',
+          avatar: 'http://thirdwx.qlogo.cn/mmopen/EVGWGlX9SWWFzicQjwsfZNYPmbfq4lDwQ1QBL4Zz7TUpf9z8P3AvlGIUNJ3RZ4jf2gWl0EcRAUmdmoYbs4uy9LKibd0nv0KhuI/132',
+          card_count: 2,
+          day_count: 2
+        },
+        {
+          order: '2.',
+          nickname: '派大星',
+          avatar: 'http://thirdwx.qlogo.cn/mmopen/EVGWGlX9SWWFzicQjwsfZNYPmbfq4lDwQ1QBL4Zz7TUpf9z8P3AvlGIUNJ3RZ4jf2gWl0EcRAUmdmoYbs4uy9LKibd0nv0KhuI/132',
+          card_count: 0,
           day_count: 2
         },
         {
@@ -74,6 +144,11 @@ export default {
     gotohome () {
       this.$router.push('/index')
     }
+  },
+  created () {
+    getActivityList().then((e) => {
+      console.log(e)
+    })
   }
 }
 </script>
@@ -112,7 +187,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-image: url('../../assets/image/home/background.png');
+  background-image: url('../assets/image/home/background.png');
   background-size: cover;
   font-family: 'Coder';
   .back {
@@ -121,7 +196,7 @@ export default {
     top: 33px;
     width: 27px;
     height: 49px;
-    background-image: url('../../assets/image/push-card/arrow-back.png');
+    background-image: url('../assets/image/push-card/arrow-back.png');
     background-size: 100%;
   }
   .title{
@@ -145,23 +220,32 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
+    .list-hidden::-webkit-scrollbar { width: 0 !important }
+    .list-hidden { -ms-overflow-style: none; }
+    .list-hidden { overflow: -moz-scrollbars-none; }
     .list-hidden{
       width: 682px;
       height: 840px;
-      overflow: hidden;
+      overflow-x:hidden;
+      overflow-y:auto;
       display: flex;
       flex-direction: column;
       .list{
           display: flex;
           flex-direction: column;
           align-items: center;
-          padding: 10px 0px 0px 0px;
+          padding: 11px 0px 0px 0px;
           .item{
             width: 623px;
             height: 66px;
-            margin: 10px;
-            background-color: #FFF9C3;
+            margin: 11px;
+            background-color: #FFFCEE;
             display: flex;
+            justify-content: space-between;
+            .item-person{
+              display: flex;
+              flex-direction: row;
+            }
             .order{
               width: 14px;
               height: 23px;
@@ -190,17 +274,24 @@ export default {
               flex-direction: column;
               list-style: none;
               align-items: flex-start;
-              li{
-                line-height: 38px;
-              }
               li:nth-child(1){
                 font-size: 19px;
+                color: #FF7800;
+                line-height: 38px;
               }
               li:nth-child(2){
                 font-size: 14px;
+                color: #5C59FF;
+                line-height: 28px;
               }
             }
             .count{
+              color: #FFAA68;
+              font-size: 20px;
+              line-height: 66px;
+              a{
+                color: #697EFF;
+              }
             }
           }
       }
@@ -209,7 +300,7 @@ export default {
       margin-top: 20px;
       width: 47px;
       height: 46px;
-      background-image: url("../../assets/image/index/arrow_down.png");
+      background-image: url("../assets/image/index/arrow_down.png");
       background-size: cover;
       animation: down 1.5s linear infinite;
     }

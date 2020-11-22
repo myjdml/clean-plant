@@ -25,6 +25,11 @@ const routes = [
     path: '/push-card',
     name: 'PushCard',
     component: () => import('../views/PushCard')
+  },
+  {
+    path: '/activity',
+    name: 'activity',
+    component: () => import('../views/activity')
   }
 ]
 
