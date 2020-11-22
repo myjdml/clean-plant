@@ -409,6 +409,9 @@ export default {
       margin-left: 40px;
       margin-top: 20px;
       line-height: 40px;
+      p{
+        line-height: 50px;
+      }
     }
   }
   .index-record {
