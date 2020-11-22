@@ -55,7 +55,7 @@ export default {
       // 提交ajax
       this.show = true
       // 判空
-      if (this.formValue.content === '' && this.$store.state.image === []) {
+      if (this.formValue.content !== '' && this.$store.state.image !== []) {
         postPushCard('plant/addCard', this.formData)
           .then(() => {
             // 删除VueX中存储的图片信息
