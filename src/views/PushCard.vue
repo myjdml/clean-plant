@@ -22,8 +22,11 @@
       <button class="confirm" @click="postInfo"></button>
     </div>
   </div>
-  <div v-if="show" class="mask">
+  <div v-if="postShow" class="mask">
     <div class="wait">上传中</div>
+  </div>
+  <div v-if="failShow" class="mask">
+    <div class="wait">请完善信息哦</div>
   </div>
 </template>
 <script>
@@ -42,7 +45,8 @@ export default {
         content: null
       },
       formData: null,
-      show: false
+      postShow: false,
+      failShow: false
     }
   },
   methods: {
@@ -52,10 +56,11 @@ export default {
       this.formData = this.handelImg(Img)
       this.formData.append('content', this.formValue.content)
       console.log(this.formData)
-      // 提交ajax
-      this.show = true
       // 判空
       if (this.formValue.content !== '' && this.$store.state.image !== []) {
+        // 提交ajax
+        this.postShow = true
+
         postPushCard('plant/addCard', this.formData)
           .then(() => {
             // 删除VueX中存储的图片信息
@@ -69,6 +74,8 @@ export default {
               }
             })
           })
+      } else {
+        this.failShow = true
       }
     },
     handelImg (Img) {
