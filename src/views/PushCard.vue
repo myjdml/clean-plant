@@ -12,8 +12,8 @@
 
     <div class="content">
       <textarea
-        maxlength="200"
-        placeholder="随着照片一起打卡.........(最多输入两百字）"
+        maxlength="100"
+        placeholder="随着照片一起打卡.........(最多输入一百字）"
         ref="content"
       ></textarea>
 

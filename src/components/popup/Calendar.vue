@@ -23,7 +23,7 @@
       <div class="calendar">
         <header>
           <div class="arrow-before-no" ref="arrowPev" @click="toPev"></div>
-          <p>2020年{{today.flag}}月</p>
+          <p>{{today.year}}年{{today.flag}}月</p>
           <div class="arrow-after-yes" ref="arrowNext" @click="toNext"></div>
         </header>
 
@@ -169,6 +169,7 @@ export default {
       today: {
         month: null,
         day: null,
+        year: 2020,
         flag: 11
       }
     }
@@ -290,11 +291,15 @@ export default {
           this.$refs.arrowPev.className = 'arrow-before-no'
           this.calendarControl.left = 0
           this.calendarControl.right = 1
+          // 改变年份标识
+          this.today.year = '2020'
         } if (this.today.flag === 1) {
           this.$refs.arrowNext.className = 'arrow-after-yes'
           this.$refs.arrowPev.className = 'arrow-before-yes'
           this.calendarControl.left = 1
           this.calendarControl.right = 1
+          // 改变年份标识
+          this.today.year = '2020'
         }
         this.$refs.calendarMain.innerHTML = `<p style="width: 12vw;height: 5.3vw;">周日</p>
           <p style="width: 12vw;height: 5.3vw;">周一</p>
@@ -335,11 +340,15 @@ export default {
           this.$refs.arrowNext.className = 'arrow-after-no'
           this.calendarControl.left = 1
           this.calendarControl.right = 0
+          // 改变年份标识
+          this.today.year = '2021'
         } else if (this.today.flag === 11) {
           this.$refs.arrowPev.className = 'arrow-before-yes'
           this.$refs.arrowNext.className = 'arrow-after-yes'
           this.calendarControl.left = 1
           this.calendarControl.right = 1
+          // 改变年份标识
+          this.today.year = '2020'
         }
         this.$refs.calendarMain.innerHTML = `<p style="width: 12vw;height: 5.3vw;">周日</p>
           <p style="width: 12vw;height: 5.3vw;">周一</p>
