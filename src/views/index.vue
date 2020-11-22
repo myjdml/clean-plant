@@ -312,16 +312,16 @@ export default {
      * @return {*}
      * @author: 林其星
      */
-    // this.update()
+    this.update()
     // setInterval(() => {
     //   window.scrollBy({
     //     left: 0,
     //     top: -1000
     //   })
     // }, 500)
-    window.onscroll = function (e) {
-      console.log(e.path[1].scrollY)
-    }
+    // window.onscroll = function (e) {
+    //   console.log(e.path[1].scrollY)
+    // }
   }
 }
 </script>
