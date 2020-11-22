@@ -175,10 +175,10 @@ export default {
         { num: 0, state: 'faild', week: '周日' }
       ],
       clockinList: [
-        { tip: '可莉是最棒的!', img: '../assets/image/mock/mock1.png', time: '10月24日', praiseNum: 100, ispraise: false, id: 'kying-star', type: 'self', countDay: 3, status: 'waiting' },
-        { tip: '可莉是最棒的!', img: '../assets/image/mock/mock1.png', time: '10月24日', praiseNum: 100, ispraise: false, id: 'kying-star', type: 'self', countDay: 3, status: 'passed' },
-        { tip: '可莉是最棒的!', img: '../assets/image/mock/mock1.png', time: '10月24日', praiseNum: 100, ispraise: false, id: 'kying-star', type: 'self', countDay: 3, status: 'failed' },
-        { tip: '可莉是最棒的!', img: '../assets/image/mock/mock1.png', time: '10月24日', praiseNum: 100, ispraise: false, id: 'kying-star', type: 'self', countDay: 3, status: 'waiting' }
+        // { tip: '可莉是最棒的!', img: '../assets/image/mock/mock1.png', time: '10月24日', praiseNum: 100, ispraise: false, id: 'kying-star', type: 'self', countDay: 3, status: 'waiting' },
+        // { tip: '可莉是最棒的!', img: '../assets/image/mock/mock1.png', time: '10月24日', praiseNum: 100, ispraise: false, id: 'kying-star', type: 'self', countDay: 3, status: 'passed' },
+        // { tip: '可莉是最棒的!', img: '../assets/image/mock/mock1.png', time: '10月24日', praiseNum: 100, ispraise: false, id: 'kying-star', type: 'self', countDay: 3, status: 'failed' },
+        // { tip: '可莉是最棒的!', img: '../assets/image/mock/mock1.png', time: '10月24日', praiseNum: 100, ispraise: false, id: 'kying-star', type: 'self', countDay: 3, status: 'waiting' }
       ],
       myList: [],
       otherList: [],
@@ -295,9 +295,10 @@ export default {
       localStorage.setItem('firstLogin', 1)
       this.checkAll()
     }
-    if (this.$route.query.state) {
-      console.log(this.$route.query.state)
-      this.$store.commit('showInfoPopup', true)
+    if (this.$store.showInfoPopup) {
+      setTimeout(() => {
+       this.$store.commit('showInfoPopup', false)
+      }, 500)
       this.update()
     }
     const week = dayjs.unix(dayjs().unix()).$W
