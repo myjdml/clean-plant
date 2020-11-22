@@ -1,7 +1,7 @@
 <!--
  * @Author: kying-star
  * @Date: 2020-11-22 14:39:16
- * @LastEditTime: 2020-11-22 15:34:50
+ * @LastEditTime: 2020-11-22 16:16:36
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /clean-plant/src/views/Review.vue
@@ -10,7 +10,7 @@
     <div class="review">
         <div class="item" v-for="item in list" :key="item.id">
             <img :src="item.photo_url">
-            <p>item.content</p>
+            <p>{{item.content}}</p>
             <div class="option">
                 <div class="pass" @click="pass(item.id)">通过</div>
                 <div class="faild" @click="faild(item.id)">不通过</div>

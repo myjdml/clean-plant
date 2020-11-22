@@ -175,10 +175,10 @@ export default {
         { num: 0, state: 'faild', week: '周日' }
       ],
       clockinList: [
-        // { tip: '可莉是最棒的!', img: '../assets/image/mock/mock1.png', time: '10月24日', praiseNum: 100, ispraise: false, id: 'kying-star', type: 'self', countDay: 3, status: 'waiting' },
-        // { tip: '可莉是最棒的!', img: '../assets/image/mock/mock1.png', time: '10月24日', praiseNum: 100, ispraise: false, id: 'kying-star', type: 'self', countDay: 3, status: 'passed' },
-        // { tip: '可莉是最棒的!', img: '../assets/image/mock/mock1.png', time: '10月24日', praiseNum: 100, ispraise: false, id: 'kying-star', type: 'self', countDay: 3, status: 'failed' },
-        // { tip: '可莉是最棒的!', img: '../assets/image/mock/mock1.png', time: '10月24日', praiseNum: 100, ispraise: false, id: 'kying-star', type: 'self', countDay: 3, status: 'waiting' }
+        { tip: '可莉是最棒的!', img: '../assets/image/mock/mock1.png', time: '10月24日', praiseNum: 100, ispraise: false, id: 'kying-star', type: 'self', countDay: 3, status: 'waiting' },
+        { tip: '可莉是最棒的!', img: '../assets/image/mock/mock1.png', time: '10月24日', praiseNum: 100, ispraise: false, id: 'kying-star', type: 'self', countDay: 3, status: 'passed' },
+        { tip: '可莉是最棒的!', img: '../assets/image/mock/mock1.png', time: '10月24日', praiseNum: 100, ispraise: false, id: 'kying-star', type: 'self', countDay: 3, status: 'failed' },
+        { tip: '可莉是最棒的!', img: '../assets/image/mock/mock1.png', time: '10月24日', praiseNum: 100, ispraise: false, id: 'kying-star', type: 'self', countDay: 3, status: 'waiting' }
       ],
       myList: [],
       otherList: [],
@@ -579,6 +579,10 @@ export default {
           color: #ff8f00;
           font-size: 23px;
           margin-top: 20px;
+          width: 637px;
+          overflow:hidden;
+          white-space:nowrap;
+          text-overflow:ellipsis;
           span{
             color: #1D64FF;
           }

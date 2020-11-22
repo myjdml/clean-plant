@@ -167,8 +167,7 @@ export default {
     .list-hidden{
       width: 682px;
       height: 840px;
-      overflow-x:hidden;
-      overflow-y:auto;
+      overflow-y: scroll;
       display: flex;
       flex-direction: column;
       .list{
