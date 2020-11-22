@@ -1,0 +1,108 @@
+<!--eslint-disable no-tabs-->
+<template>
+  <div :class="$store.state.showWarmPopup ? 'show default' : 'hidden default'">
+    <div class="popup" @click="hidden">
+      <div class="warm">
+          <p>您有照片
+              <a>不符合规范</a>
+              请在“打卡记录”中查看
+          </p>
+       </div>
+    </div>
+  </div>
+</template>
+
+<script>
+/* eslint-disable no-tabs */
+/* eslint-disable indent */
+/**
+ * @description: 弹出框组件
+ * @param {*}
+ * @return {*}
+ * @author: 林其星
+ */
+
+export default {
+  data () {
+    return {
+    }
+  },
+  methods: {
+    hidden () {
+      this.$store.commit('showWarmPopup', false)
+    }
+  }
+}
+</script>
+<style lang='scss' scoped>
+.popup {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  background-color: rgb(0, 0, 0, 0.45);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .warm {
+    font-family: 'Coder';
+    width: 427px;
+    height: 194px;
+    background-color: #ffffff;
+    color: #2768f8;
+    border-radius: 20px;
+    padding:0px 10px 0px 30px;
+    font-size: 44px;
+    display: flex;
+    margin-left: 5px;
+    justify-content: center;
+    align-items: center;
+    text-align: left;
+    p{
+        line-height: 55px;
+    }
+    a{
+        text-decoration: underline
+    }
+  }
+}
+.default {
+  top: 0%;
+  left: 0%;
+  transform: translateY(-50%) translateX(-50%);
+}
+.show,
+.hidden {
+  position: fixed;
+}
+.show {
+  touch-action: none;
+  opacity: 1;
+  animation: show 0.5s ease-in-out;
+}
+.hidden {
+  opacity: 0;
+  animation: hidden 0.3s linear;
+  visibility: hidden;
+}
+@keyframes show {
+  0% {
+    opacity: 0;
+    transform: translateY(-50%) translateX(-50%) scale(1);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(-50%) translateX(-50%) scale(1);
+  }
+}
+@keyframes hidden {
+  0% {
+    opacity: 1;
+    transform: translateY(-50%) translateX(-50%) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-60%) translateX(-50%) scale(0.99);
+    overflow: hidden;
+  }
+}
+</style>

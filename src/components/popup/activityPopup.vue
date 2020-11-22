@@ -2,14 +2,36 @@
 <template>
   <div :class="$store.state.showActivityPopup ? 'show default' : 'hidden default'">
     <div class="popup" @click="hidden">
-        <!-- 积极榜单
-        <button >退出</button> -->
+        <div class="back" @click="gotohome"></div>
+        <div class="title">
+          积极榜单
+        </div>
+        <div class="box">
+          <div class="list-hidden">
+            <div class="list">
+              <div class="item">
+                <div class="order">1.</div>
+                <div class="avatar">
+                  <img src="http://thirdwx.qlogo.cn/mmopen/EVGWGlX9SWWFzicQjwsfZNYPmbfq4lDwQ1QBL4Zz7TUpf9z8P3AvlGIUNJ3RZ4jf2gWl0EcRAUmdmoYbs4uy9LKibd0nv0KhuI/132" alt="">
+                </div>
+                <div class="detail">
+                  <li>派大星</li>
+                  <li>总共打卡14次</li>
+                </div>
+                <div class="count">
+                  已经连续打卡14天了
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="arrow"></div>
+        </div>
     </div>
-    <div class="mask" @click="hidden">
+    <!-- <div class="mask" @click="hidden">
        <div class="info">
          <p>功能完善中...</p>
        </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -26,12 +48,31 @@
 export default {
   data () {
     return {
+      lists: [
+        {
+          order: '1.',
+          nickname: 'sarailQAQ',
+          avatar: 'http://thirdwx.qlogo.cn/mmopen/EVGWGlX9SWWFzicQjwsfZNYPmbfq4lDwQ1QBL4Zz7TUpf9z8P3AvlGIUNJ3RZ4jf2gWl0EcRAUmdmoYbs4uy9LKibd0nv0KhuI/132',
+          card_count: 2,
+          day_count: 2
+        },
+        {
+          order: '2.',
+          nickname: '派大星',
+          avatar: 'http://thirdwx.qlogo.cn/mmopen/EVGWGlX9SWWFzicQjwsfZNYPmbfq4lDwQ1QBL4Zz7TUpf9z8P3AvlGIUNJ3RZ4jf2gWl0EcRAUmdmoYbs4uy9LKibd0nv0KhuI/132',
+          card_count: 0,
+          day_count: 2
+        }
+      ]
     }
   },
   methods: {
     hidden () {
       console.log(1)
       this.$store.commit('showActivityPopup', false)
+    },
+    gotohome () {
+      this.$router.push('/index')
     }
   }
 }
@@ -74,87 +115,112 @@ export default {
   background-image: url('../../assets/image/home/background.png');
   background-size: cover;
   font-family: 'Coder';
-  .indexpop-p {
-    color: #ff6c00;
+  .back {
+    position: absolute;
+    left: 42px;
+    top: 33px;
+    width: 27px;
+    height: 49px;
+    background-image: url('../../assets/image/push-card/arrow-back.png');
+    background-size: 100%;
   }
-  .title {
-    width: 90vw;
-    height: 150px;
+  .title{
+    margin-top: 82px;
+    width: 570px;
+    height: 130px;
+    font-size: 39px;
+    font-family: Coder;
+    font-weight: 400;
+    color: #FF5A00;
+    line-height: 40px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  .box{
+    width: 682px;
+    height: 946px;
+    background-color: white;
+    border-radius: 20px;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    position: relative;
-    transform: translateY(-5px);
-    p {
-      font-size: 46px;
-      margin: 0;
-      color: #ec4800;
-    }
-  }
-  .line {
-    position: relative;
-    width: 620px;
-    height: 17px;
-    transform: translateY(10px);
-    background-image: url('../../assets/image/index/ware.png');
-    background-size: cover;
-  }
-  $img-width: 680, 680, 680;
-  $img-height: 220, 242, 549;
-  .main {
-    width: 90vw;
-    height: 1206px;
-    display: flex;
-    flex-direction: column;
-    transform: translateY(-30px);
-  }
-  @for $i from 1 through 3 {
-    .index:nth-child(#{$i}) {
-      height: #{nth($img-height, $i)}px;
-      width: #{nth($img-width, $i)}px;
-      background-image: url('../../assets/image/components/popups/card#{$i}.png');
-      background-size: cover;
+    align-items: center;
+    .list-hidden{
+      width: 682px;
+      height: 840px;
+      overflow: hidden;
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 20px;
-      transform: translateX(-20px);
-      p {
-        font-size: 35px;
-        margin: 0;
-        margin-top: 40px;
-        margin-left: 30px;
-        margin-bottom: 20px;
-        text-align: left;
+      .list{
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          padding: 10px 0px 0px 0px;
+          .item{
+            width: 623px;
+            height: 66px;
+            margin: 10px;
+            background-color: #FFF9C3;
+            display: flex;
+            .order{
+              width: 14px;
+              height: 23px;
+              font-size: 28px;
+              font-weight: 400;
+              color: #FF5A00;
+              line-height: 66px;
+              margin-left: 40px;
+            }
+            .avatar{
+              height: 66px;
+              width: 66px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              margin-left: 20px;
+              img{
+                width: 51px;
+                height: 51px;
+                border-radius: 50%;
+                background-size: cover;
+              }
+            }
+            .detail{
+              display: flex;
+              flex-direction: column;
+              list-style: none;
+              align-items: flex-start;
+              li{
+                line-height: 38px;
+              }
+              li:nth-child(1){
+                font-size: 19px;
+              }
+              li:nth-child(2){
+                font-size: 14px;
+              }
+            }
+            .count{
+            }
+          }
       }
-      li {
-        text-align: left;
-        list-style: none;
-        color: #ff940b;
-        font-size: 22px;
-        margin-left: 30px;
-        line-height: 38px;
-        letter-spacing: 2px;
-        margin-bottom: 5px;
+    }
+    .arrow{
+      margin-top: 20px;
+      width: 47px;
+      height: 46px;
+      background-image: url("../../assets/image/index/arrow_down.png");
+      background-size: cover;
+      animation: down 1.5s linear infinite;
+    }
+    @keyframes down {
+      0%{
+        transform: translateY(0px) scale(1);
+        opacity: 1;
       }
-      a {
-        color: #3d78fa;
-      }
-      .inner {
-        height: #{nth($img-height, $i)-20}px;
-        width: #{nth($img-width, $i)-40}px;
-        position: relative;
-        .buttonHidden {
-          position: absolute;
-          left: 50%;
-          transform: translateX(-50%) translateY(30px);
-          width: 218px;
-          height: 74px;
-          background-image: url('../../assets/image/components/popups/popupIndexButton.png');
-          background-size: cover;
-        }
+      100%{
+        transform: translateY(10px) scale(0.9);
+        opacity: 0.5;
       }
     }
   }

@@ -100,7 +100,15 @@
           <!-- 自我打卡 -->
           <div v-if="item.type == 'self'" class="list-item-inner">
             <div class="list-item-title">{{ item.tip }}</div>
-            <img class="list-item-img" :src="item.img" />
+            <div class="list-item-imgbox">
+              <img class="list-item-img" :src="require('../assets/image/mock/mock1.png')" />
+              <div v-if="item.status == 'waiting'" class="waiting">
+                审核中...
+              </div>
+              <div v-if="item.status == 'failed'" class="failed">
+                未审核通过!
+              </div>
+            </div>
             <div class="list-item-ctx">
               <div class="time">{{ item.time }}</div>
               <div class="praise">
@@ -119,6 +127,7 @@
   <indexPopup></indexPopup>
   <rollPopup></rollPopup>
   <activityPopup></activityPopup>
+  <warm></warm>
   <info info="今日打卡成功" type="succesd"></info>
 </template>
 <script>
@@ -129,6 +138,7 @@ import activityPopup from '../components/popup/activityPopup'
 import indexPopup from '../components/popup/IndexPopup'
 import rollPopup from '../components/popup/rollPopup'
 import info from '../components/popup/infoPopup'
+import warm from '../components/popup/warmPopup'
 import { useRouter } from 'vue-router'
 import { getPushCard, addCard, getOtherPushCard } from '../server/index'
 // import calendar from '../components/calendar/calendar'
@@ -141,11 +151,11 @@ export default {
     indexPopup,
     info,
     rollPopup,
-    activityPopup
+    activityPopup,
+    warm
   },
   setup () {
     const router = useRouter()
-
     function gotoPushCard () {
       router.push('/push-card')
     }
@@ -166,10 +176,10 @@ export default {
         { num: 0, state: 'faild', week: '周日' }
       ],
       clockinList: [
-        // { tip: '可莉是最棒的!', img: '../assets/image/mock/mock1.png', time: '10月24日', praiseNum: 100, ispraise: false, id: 'kying-star', type: '', countDay: 3 },
-        // { tip: '可莉是最棒的!', img: '../assets/image/mock/mock1.png', time: '10月24日', praiseNum: 100, ispraise: false, id: 'kying-star', type: 'self', countDay: 3 },
-        // { tip: '可莉是最棒的!', img: '../assets/image/mock/mock1.png', time: '10月24日', praiseNum: 100, ispraise: false, id: 'kying-star', type: 'other', countDay: 3 },
-        // { tip: '可莉是最棒的!', img: '../assets/image/mock/mock1.png', time: '10月24日', praiseNum: 100, ispraise: false, id: 'kying-star', type: 'other', countDay: 3 }
+        { tip: '可莉是最棒的!', img: '../assets/image/mock/mock1.png', time: '10月24日', praiseNum: 100, ispraise: false, id: 'kying-star', type: 'self', countDay: 3, status: 'waiting' },
+        { tip: '可莉是最棒的!', img: '../assets/image/mock/mock1.png', time: '10月24日', praiseNum: 100, ispraise: false, id: 'kying-star', type: 'self', countDay: 3, status: 'passed' },
+        { tip: '可莉是最棒的!', img: '../assets/image/mock/mock1.png', time: '10月24日', praiseNum: 100, ispraise: false, id: 'kying-star', type: 'self', countDay: 3, status: 'failed' },
+        { tip: '可莉是最棒的!', img: '../assets/image/mock/mock1.png', time: '10月24日', praiseNum: 100, ispraise: false, id: 'kying-star', type: 'self', countDay: 3, status: 'waiting' }
       ],
       myList: [],
       otherList: [],
@@ -230,7 +240,8 @@ export default {
             praiseNum: e.like_count,
             ispraise: Boolean(e.is_like),
             id: e.id,
-            type: 'self'
+            type: 'self',
+            status: e.status
           }
           this.daylist.forEach((day, index) => {
             console.log(dayjs.unix(e.created_at).$D)
@@ -258,7 +269,6 @@ export default {
             tip: e.content,
             img: e.photo_url,
             time: `${dayjs.unix(e.created_at).$M + 1}月${dayjs.unix(e.created_at).$D}日`,
-            state: e.status,
             praiseNum: e.like_count,
             ispraise: Boolean(e.is_like),
             id: e.id,
@@ -269,6 +279,9 @@ export default {
           list.push(clockin)
           console.log('其他')
           console.log(this.otherList)
+          if (e.status === 'failed') {
+            this.$store.commit('showWarmPopup', true)
+          }
         })
         this.otherList = list
       })
@@ -300,7 +313,7 @@ export default {
      * @return {*}
      * @author: 林其星
      */
-     this.update()
+     // this.update()
   }
 }
 </script>
@@ -562,11 +575,38 @@ export default {
             color: #1D64FF;
           }
         }
-        .list-item-img {
+         .list-item-imgbox{
+          position: relative;
           width: 283px;
           height: 160px;
           margin-top: 20px;
           margin-left: 34px;
+          .waiting{
+            color: #FFF9F6;
+            width: 283px;
+            height: 160px;
+            position: absolute;
+            transform: translateY(-164px);
+            background-color:rgb(0, 0, 0, 0.45);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+          .failed{
+            color: #FFF9F6;
+            width: 283px;
+            height: 160px;
+            position: absolute;
+            transform: translateY(-164px);
+            background-color:rgb(0, 0, 0, 0.45);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+        }
+        .list-item-img {
+          width: 283px;
+          height: 160px;
           background-size: cover;
         }
         .list-item-img-other {
