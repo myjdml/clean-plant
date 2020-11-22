@@ -49,90 +49,20 @@ export default {
   data () {
     return {
       lists: [
-        {
-          order: '1.',
-          nickname: 'sarailQAQ',
-          avatar: 'http://thirdwx.qlogo.cn/mmopen/EVGWGlX9SWWFzicQjwsfZNYPmbfq4lDwQ1QBL4Zz7TUpf9z8P3AvlGIUNJ3RZ4jf2gWl0EcRAUmdmoYbs4uy9LKibd0nv0KhuI/132',
-          card_count: 2,
-          day_count: 2
-        },
-        {
-          order: '2.',
-          nickname: '派大星',
-          avatar: 'http://thirdwx.qlogo.cn/mmopen/EVGWGlX9SWWFzicQjwsfZNYPmbfq4lDwQ1QBL4Zz7TUpf9z8P3AvlGIUNJ3RZ4jf2gWl0EcRAUmdmoYbs4uy9LKibd0nv0KhuI/132',
-          card_count: 0,
-          day_count: 2
-        },
-        {
-          order: '2.',
-          nickname: '派大星',
-          avatar: 'http://thirdwx.qlogo.cn/mmopen/EVGWGlX9SWWFzicQjwsfZNYPmbfq4lDwQ1QBL4Zz7TUpf9z8P3AvlGIUNJ3RZ4jf2gWl0EcRAUmdmoYbs4uy9LKibd0nv0KhuI/132',
-          card_count: 0,
-          day_count: 2
-        },
-                {
-          order: '1.',
-          nickname: 'sarailQAQ',
-          avatar: 'http://thirdwx.qlogo.cn/mmopen/EVGWGlX9SWWFzicQjwsfZNYPmbfq4lDwQ1QBL4Zz7TUpf9z8P3AvlGIUNJ3RZ4jf2gWl0EcRAUmdmoYbs4uy9LKibd0nv0KhuI/132',
-          card_count: 2,
-          day_count: 2
-        },
-        {
-          order: '2.',
-          nickname: '派大星',
-          avatar: 'http://thirdwx.qlogo.cn/mmopen/EVGWGlX9SWWFzicQjwsfZNYPmbfq4lDwQ1QBL4Zz7TUpf9z8P3AvlGIUNJ3RZ4jf2gWl0EcRAUmdmoYbs4uy9LKibd0nv0KhuI/132',
-          card_count: 0,
-          day_count: 2
-        },
-        {
-          order: '2.',
-          nickname: '派大星',
-          avatar: 'http://thirdwx.qlogo.cn/mmopen/EVGWGlX9SWWFzicQjwsfZNYPmbfq4lDwQ1QBL4Zz7TUpf9z8P3AvlGIUNJ3RZ4jf2gWl0EcRAUmdmoYbs4uy9LKibd0nv0KhuI/132',
-          card_count: 0,
-          day_count: 2
-        },
-                {
-          order: '1.',
-          nickname: 'sarailQAQ',
-          avatar: 'http://thirdwx.qlogo.cn/mmopen/EVGWGlX9SWWFzicQjwsfZNYPmbfq4lDwQ1QBL4Zz7TUpf9z8P3AvlGIUNJ3RZ4jf2gWl0EcRAUmdmoYbs4uy9LKibd0nv0KhuI/132',
-          card_count: 2,
-          day_count: 2
-        },
-        {
-          order: '2.',
-          nickname: '派大星',
-          avatar: 'http://thirdwx.qlogo.cn/mmopen/EVGWGlX9SWWFzicQjwsfZNYPmbfq4lDwQ1QBL4Zz7TUpf9z8P3AvlGIUNJ3RZ4jf2gWl0EcRAUmdmoYbs4uy9LKibd0nv0KhuI/132',
-          card_count: 0,
-          day_count: 2
-        },
-        {
-          order: '2.',
-          nickname: '派大星',
-          avatar: 'http://thirdwx.qlogo.cn/mmopen/EVGWGlX9SWWFzicQjwsfZNYPmbfq4lDwQ1QBL4Zz7TUpf9z8P3AvlGIUNJ3RZ4jf2gWl0EcRAUmdmoYbs4uy9LKibd0nv0KhuI/132',
-          card_count: 0,
-          day_count: 2
-        },
-        {
-          order: '1.',
-          nickname: 'sarailQAQ',
-          avatar: 'http://thirdwx.qlogo.cn/mmopen/EVGWGlX9SWWFzicQjwsfZNYPmbfq4lDwQ1QBL4Zz7TUpf9z8P3AvlGIUNJ3RZ4jf2gWl0EcRAUmdmoYbs4uy9LKibd0nv0KhuI/132',
-          card_count: 2,
-          day_count: 2
-        },
-        {
-          order: '2.',
-          nickname: '派大星',
-          avatar: 'http://thirdwx.qlogo.cn/mmopen/EVGWGlX9SWWFzicQjwsfZNYPmbfq4lDwQ1QBL4Zz7TUpf9z8P3AvlGIUNJ3RZ4jf2gWl0EcRAUmdmoYbs4uy9LKibd0nv0KhuI/132',
-          card_count: 0,
-          day_count: 2
-        },
-        {
-          order: '2.',
-          nickname: '派大星',
-          avatar: 'http://thirdwx.qlogo.cn/mmopen/EVGWGlX9SWWFzicQjwsfZNYPmbfq4lDwQ1QBL4Zz7TUpf9z8P3AvlGIUNJ3RZ4jf2gWl0EcRAUmdmoYbs4uy9LKibd0nv0KhuI/132',
-          card_count: 0,
-          day_count: 2
-        }
+        // {
+        //   order: '1.',
+        //   nickname: 'sarailQAQ',
+        //   avatar: 'http://thirdwx.qlogo.cn/mmopen/EVGWGlX9SWWFzicQjwsfZNYPmbfq4lDwQ1QBL4Zz7TUpf9z8P3AvlGIUNJ3RZ4jf2gWl0EcRAUmdmoYbs4uy9LKibd0nv0KhuI/132',
+        //   card_count: 2,
+        //   day_count: 2
+        // },
+        // {
+        //   order: '2.',
+        //   nickname: '派大星',
+        //   avatar: 'http://thirdwx.qlogo.cn/mmopen/EVGWGlX9SWWFzicQjwsfZNYPmbfq4lDwQ1QBL4Zz7TUpf9z8P3AvlGIUNJ3RZ4jf2gWl0EcRAUmdmoYbs4uy9LKibd0nv0KhuI/132',
+        //   card_count: 0,
+        //   day_count: 2
+        // }
       ]
     }
   },
@@ -148,6 +78,17 @@ export default {
   created () {
     getActivityList().then((e) => {
       console.log(e.data.data)
+      const items = []
+      e.data.data.forEach((e, index) => {
+        const item = {}
+        item.order = `${index + 1}.`
+        item.nickname = e.nickname
+        item.avatar = e.avatar
+        item.card_count = e.card_count
+        item.day_count = e.day_count
+        items.push(item)
+      })
+      this.lists = items
     })
   }
 }
