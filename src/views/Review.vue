@@ -1,7 +1,7 @@
 <!--
  * @Author: kying-star
  * @Date: 2020-11-22 14:39:16
- * @LastEditTime: 2020-11-22 16:16:36
+ * @LastEditTime: 2020-11-22 17:29:14
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /clean-plant/src/views/Review.vue
@@ -33,6 +33,7 @@ export default {
     },
     faild: function (id) {
       reviewCardRecord(id, 'failed')
+      reviewCardRecord(id, 'illegal')
     }
   },
   created () {
