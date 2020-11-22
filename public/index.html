@@ -24,46 +24,46 @@
   </noscript>
   <div id="app"></div>
   <!-- built files will be auto injected -->
-<!--  <script>-->
-<!--    const token = document.location.href.split('token=')[1];-->
-<!--    let today = Date.parse(new Date())-->
-<!--    if (0) {-->
-<!--      localStorage.removeItem('id_token')-->
-<!--      localStorage.removeItem('time')-->
-<!--    }-->
-<!--    if (today - localStorage.getItem('time') > 8640000) {-->
-<!--      let date = Date.parse(new Date())-->
-<!--      console.log(date)-->
-<!--      localStorage.setItem('time', date)-->
-<!--      window.location.href =-->
-<!--        'https://wx.redrock.team/magicloop/rushb?b=' +-->
-<!--        encodeURI('https://cyxbsmobile.redrock.team/wxapi/clean-plant-server/enter') +-->
-<!--        '&scope=student';-->
-<!--    }-->
-<!--    console.log(token);-->
-<!--    if (token && token.length) {-->
-<!--      document.location.hash = '#/';-->
-<!--      localStorage.setItem('id_token', token.replace(/%20/g, '+').replace(/#[\w/]*/g, ''));-->
-<!--      const { exp, stuNum, role } = JSON.parse(atob(token.split('.')[1]));-->
-<!--      localStorage.setItem('exp', exp);-->
-<!--      localStorage.setItem('stuNum', stuNum);-->
-<!--      localStorage.setItem('role', role);-->
-<!--    }-->
-<!--    if (-->
-<!--      (!localStorage.getItem('id_token') ||-->
-<!--        parseInt(localStorage.getItem('exp')) <-->
-<!--        Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 2) &&-->
-<!--      !token-->
-<!--    ) {-->
-<!--      let date = Date.parse(new Date())-->
-<!--      console.log(date)-->
-<!--      localStorage.setItem('time', date)-->
-<!--      window.location.href =-->
-<!--        'https://wx.redrock.team/magicloop/rushb?b=' +-->
-<!--        encodeURI('https://cyxbsmobile.redrock.team/wxapi/clean-plant-server/enter') +-->
-<!--        '&scope=student';-->
-<!--    }-->
-<!--  </script>-->
+  <script>
+    const token = document.location.href.split('token=')[1];
+    let today = Date.parse(new Date())
+    if (0) {
+      localStorage.removeItem('id_token')
+      localStorage.removeItem('time')
+    }
+    if (today - localStorage.getItem('time') > 8640000) {
+      let date = Date.parse(new Date())
+      console.log(date)
+      localStorage.setItem('time', date)
+      window.location.href =
+        'https://wx.redrock.team/magicloop/rushb?b=' +
+        encodeURI('https://cyxbsmobile.redrock.team/wxapi/clean-plant-server/enter') +
+        '&scope=student';
+    }
+    console.log(token);
+    if (token && token.length) {
+      document.location.hash = '#/';
+      localStorage.setItem('id_token', token.replace(/%20/g, '+').replace(/#[\w/]*/g, ''));
+      const { exp, stuNum, role } = JSON.parse(atob(token.split('.')[1]));
+      localStorage.setItem('exp', exp);
+      localStorage.setItem('stuNum', stuNum);
+      localStorage.setItem('role', role);
+    }
+    if (
+      (!localStorage.getItem('id_token') ||
+        parseInt(localStorage.getItem('exp')) <
+        Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 2) &&
+      !token
+    ) {
+      let date = Date.parse(new Date())
+      console.log(date)
+      localStorage.setItem('time', date)
+      window.location.href =
+        'https://wx.redrock.team/magicloop/rushb?b=' +
+        encodeURI('https://cyxbsmobile.redrock.team/wxapi/clean-plant-server/enter') +
+        '&scope=student';
+    }
+  </script>
 </body>
 
 </html>
