@@ -8,7 +8,7 @@
     </div>
     <div class="home-title"></div>
     <div class="text">
-      <p></p>
+      <p>光盘ing</p>
       <div class="ware"></div>
     </div>
     <div class="xiangji">

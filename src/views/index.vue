@@ -125,6 +125,7 @@
       </div>
     </div>
   </div>
+  <!-- <div class="backTop">返回顶部</div> -->
   <indexPopup></indexPopup>
   <rollPopup></rollPopup>
   <warm></warm>
@@ -174,10 +175,10 @@ export default {
         { num: 0, state: 'faild', week: '周日' }
       ],
       clockinList: [
-        // { tip: '可莉是最棒的!', img: '../assets/image/mock/mock1.png', time: '10月24日', praiseNum: 100, ispraise: false, id: 'kying-star', type: 'self', countDay: 3, status: 'waiting' },
-        // { tip: '可莉是最棒的!', img: '../assets/image/mock/mock1.png', time: '10月24日', praiseNum: 100, ispraise: false, id: 'kying-star', type: 'self', countDay: 3, status: 'passed' },
-        // { tip: '可莉是最棒的!', img: '../assets/image/mock/mock1.png', time: '10月24日', praiseNum: 100, ispraise: false, id: 'kying-star', type: 'self', countDay: 3, status: 'failed' },
-        // { tip: '可莉是最棒的!', img: '../assets/image/mock/mock1.png', time: '10月24日', praiseNum: 100, ispraise: false, id: 'kying-star', type: 'self', countDay: 3, status: 'waiting' }
+        { tip: '可莉是最棒的!', img: '../assets/image/mock/mock1.png', time: '10月24日', praiseNum: 100, ispraise: false, id: 'kying-star', type: 'self', countDay: 3, status: 'waiting' },
+        { tip: '可莉是最棒的!', img: '../assets/image/mock/mock1.png', time: '10月24日', praiseNum: 100, ispraise: false, id: 'kying-star', type: 'self', countDay: 3, status: 'passed' },
+        { tip: '可莉是最棒的!', img: '../assets/image/mock/mock1.png', time: '10月24日', praiseNum: 100, ispraise: false, id: 'kying-star', type: 'self', countDay: 3, status: 'failed' },
+        { tip: '可莉是最棒的!', img: '../assets/image/mock/mock1.png', time: '10月24日', praiseNum: 100, ispraise: false, id: 'kying-star', type: 'self', countDay: 3, status: 'waiting' }
       ],
       myList: [],
       otherList: [],
@@ -311,7 +312,16 @@ export default {
      * @return {*}
      * @author: 林其星
      */
-    this.update()
+    // this.update()
+    // setInterval(() => {
+    //   window.scrollBy({
+    //     left: 0,
+    //     top: -1000
+    //   })
+    // }, 500)
+    window.onscroll = function (e) {
+      console.log(e.path[1].scrollY)
+    }
   }
 }
 </script>
