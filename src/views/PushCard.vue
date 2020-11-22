@@ -54,15 +54,22 @@ export default {
       console.log(this.formData)
       // 提交ajax
       this.show = true
-      postPushCard('plant/addCard', this.formData)
-        .then(() => {
-          this.$router.push({
-            path: '/index',
-            query: {
-              state: 'pass'
-            }
+      // 判空
+      if (this.formValue.content === '' && this.$store.state.image === []) {
+        postPushCard('plant/addCard', this.formData)
+          .then(() => {
+            // 删除VueX中存储的图片信息
+            this.$store.state.image = []
+            this.$store.state.imageId = []
+
+            this.$router.push({
+              path: '/index',
+              query: {
+                state: 'pass'
+              }
+            })
           })
-        })
+      }
     },
     handelImg (Img) {
       const formData = new FormData()
@@ -79,11 +86,6 @@ export default {
     },
     gotohome () {
       this.$router.push('/index')
-      // 删除VueX中存储的图片信息
-      setTimeout(() => {
-        this.$store.state.image = []
-        this.$store.state.imageId = []
-      }, 500)
     }
   },
   mounted () {
