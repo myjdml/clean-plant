@@ -1,7 +1,7 @@
 <!--
  * @Author: kying-star
  * @Date: 2020-11-22 14:39:16
- * @LastEditTime: 2020-11-22 15:23:08
+ * @LastEditTime: 2020-11-22 15:28:24
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /clean-plant/src/views/Review.vue
@@ -37,15 +37,16 @@ export default {
   },
   created () {
     getReviewedRecords().then((e) => {
-      const items = []
-      e.data.data.foreach((e) => {
-        const item = {}
-        item.id = e.id
-        item.content = e.content
-        item.photo_url = e.photo_url
-        items.push(item)
-      })
-      this.list = items
+    //   const items = []
+      console.log(e.data.data)
+    //   e.data.data.foreach((e) => {
+    //     const item = {}
+    //     item.id = e.id
+    //     item.content = e.content
+    //     item.photo_url = e.photo_url
+    //     items.push(item)
+    //   })
+    //   this.list = items
     })
   }
 }
