@@ -101,7 +101,8 @@
           <div v-if="item.type == 'self'" class="list-item-inner">
             <div class="list-item-title">{{ item.tip }}</div>
             <div class="list-item-imgbox">
-              <img class="list-item-img" :src="require('../assets/image/mock/mock1.png')" />
+              <!-- <img class="list-item-img" :src="require('../assets/image/mock/mock1.png')" /> -->
+              <img class="list-item-img" :src="item.img" />
               <div v-if="item.status == 'waiting'" class="waiting">
                 审核中...
               </div>
