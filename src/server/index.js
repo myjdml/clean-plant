@@ -1,8 +1,8 @@
 /*
  * @Author: Code_Master
  * @Date: 2020-11-18 21:01:12
- * @LastEditTime: 2020-11-20 17:45:33
- * @LastEditors: kyingstar
+ * @LastEditTime: 2020-11-22 14:41:33
+ * @LastEditors: Please set LastEditors
  * @FilePath: /clean-plant/src/server/index.js
  * @Description: The first 90% of the code accounts for the first 90% of the development time. The remaining 10% of the code accounts for the other 90% of the development time.
  */
@@ -48,7 +48,7 @@ export function getOtherPushCard () {
   return instance.get('plant/cardsPresent')
 }
 /**
- * @description: 点赞
+ * @description: 点赞 post
  * @param {*} id
  * @return {*}
  * @author: 林其星
@@ -68,4 +68,26 @@ export function addCard (id) {
 
 export function getActivityList () {
   return instance.get('/top?page=1')
+}
+
+/**
+ * @description: 打卡审核
+ * @param {*} record_id
+ * @return {*}
+ */
+
+export function reviewCardRecord (id) {
+  const data = new FormData()
+  data.append('record_id', id)
+  return instance.post('/plant/reviewCardRecord', data)
+}
+
+/**
+ * @description: 查看未核审的打卡记录
+ * @param {*}
+ * @return {*}
+ */
+
+export function getReviewedRecords () {
+  return instance.get('/plant/getReviewedRecords')
 }
