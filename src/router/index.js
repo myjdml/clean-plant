@@ -1,3 +1,11 @@
+/*
+ * @Author: your name
+ * @Date: 2020-11-21 15:32:46
+ * @LastEditTime: 2020-11-22 14:43:48
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /clean-plant/src/router/index.js
+ */
 import { createRouter, createWebHashHistory } from 'vue-router'
 import Home from '../views/Home.vue'
 import index from '../views/index.vue'
@@ -30,6 +38,11 @@ const routes = [
     path: '/activity',
     name: 'activity',
     component: () => import('../views/activity')
+  },
+  {
+    path: '/review',
+    name: 'review',
+    component: () => import('../views/Review')
   }
 ]
 
