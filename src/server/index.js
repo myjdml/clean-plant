@@ -1,7 +1,7 @@
 /*
  * @Author: Code_Master
  * @Date: 2020-11-18 21:01:12
- * @LastEditTime: 2020-11-22 14:41:33
+ * @LastEditTime: 2020-11-22 15:21:41
  * @LastEditors: Please set LastEditors
  * @FilePath: /clean-plant/src/server/index.js
  * @Description: The first 90% of the code accounts for the first 90% of the development time. The remaining 10% of the code accounts for the other 90% of the development time.
@@ -76,9 +76,10 @@ export function getActivityList () {
  * @return {*}
  */
 
-export function reviewCardRecord (id) {
+export function reviewCardRecord (id, operation) {
   const data = new FormData()
   data.append('record_id', id)
+  data.append('operation', operation)
   return instance.post('/plant/reviewCardRecord', data)
 }
 
