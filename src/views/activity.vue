@@ -20,7 +20,7 @@
                   </div>
                 </div>
                 <div class="count">
-                  已经连续打卡<a>{{item.day_count}}</a>天了
+                  已经连续打卡<a>{{item.continue_day}}</a>天了
                 </div>
               </div>
             </div>
@@ -72,6 +72,7 @@ export default {
         item.avatar = e.avatar
         item.card_count = e.card_count
         item.day_count = e.day_count
+        item.continue_day = e.continue_day
         items.push(item)
       })
       this.lists = items
