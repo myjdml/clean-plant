@@ -1,26 +1,36 @@
 <!--
  * @Author: kying-star
  * @Date: 2020-11-22 14:39:16
- * @LastEditTime: 2020-11-23 21:30:46
- * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2020-11-23 23:53:07
+ * @LastEditors: kyingstar
  * @Description: In User Settings Edit
  * @FilePath: /clean-plant/src/views/Review.vue
 -->
 <template>
   <div class="review">
-      <div class="item" v-for="(item,index) in list" :key="item.id">
-          <img :src="item.photo_url">
-          <p>{{item.content}}</p>
-          <div class="option">
-              <div :class="item.passClick?`pass click`:`pass`" @click="pass(item.id, index)">通过</div>
-              <div :class="item.faildClick?`faild click`:`faild`" @click="faild(item.id, index)">不通过</div>
-          </div>
+    <div class="item" v-for="(item, index) in list" :key="item.id">
+      <img :src="item.photo_url" />
+      <p>{{ item.content }}</p>
+      <div class="option">
+        <div
+          :class="item.passClick ? `pass click` : `pass`"
+          @click="pass(item.id, index)"
+        >
+          通过
+        </div>
+        <div
+          :class="item.faildClick ? `faild click` : `faild`"
+          @click="faild(item.id, index)"
+        >
+          不通过
+        </div>
       </div>
+    </div>
   </div>
 </template>
 
 <script>
-import { reviewCardRecord } from '../server/index'
+import { reviewCardRecord, getReviewedRecords } from '../server/index'
 export default {
   data () {
     return {
@@ -104,15 +114,15 @@ export default {
   background-size: 100%;
   justify-content: flex-start;
   overflow: scroll;
-  .item{
+  .item {
     position: relative;
     margin: 20px;
     width: 680px;
     height: 400px;
     border-radius: 10px;
     color: white;
-    background-color: rgba($color: #000000, $alpha: .5);
-    img{
+    background-color: rgba($color: #000000, $alpha: 0.5);
+    img {
       position: absolute;
       top: 20px;
       right: 20px;
@@ -128,14 +138,14 @@ export default {
       width: 350px;
       height: 360px;
     }
-    .option{
+    .option {
       position: absolute;
       bottom: 20px;
       right: 20px;
       // border: solid wheat 1px;
       width: 280px;
       height: 180px;
-      .pass{
+      .pass {
         margin: 20px 15px;
         width: 250px;
         height: 60px;
@@ -143,12 +153,12 @@ export default {
         background-color: #2c4ee4;
         line-height: 60px;
       }
-      .faild{
+      .faild {
         margin: 20px 15px;
         width: 250px;
         height: 60px;
         border-radius: 15px;
-        background-color: #FF5A00;
+        background-color: #ff5a00;
         line-height: 60px;
       }
     }
