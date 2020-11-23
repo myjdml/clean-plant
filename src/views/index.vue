@@ -244,7 +244,9 @@ export default {
           }
           this.daylist.forEach((day, index) => {
             console.log(dayjs.unix(e.created_at).$D)
-            if (dayjs.unix(e.created_at).$D === day.num) {
+            console.log(dayjs.unix(e.created_at).$M)
+            console.log(dayjs.unix(dayjs().unix()).$M)
+            if (dayjs.unix(e.created_at).$D === day.num && dayjs.unix(dayjs().unix()).$M === dayjs.unix(e.created_at).$M) {
               this.daylist[index].state = 'pass'
             }
           })
