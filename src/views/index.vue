@@ -129,13 +129,15 @@
   <indexPopup></indexPopup>
   <rollPopup></rollPopup>
   <warm></warm>
-  <info info="今日打卡成功" type="succesd"></info>
+  <info :info="info" type="succesd"></info>
+  <overPopup info="今日打卡次数已满" type="succesd"></overPopup>
 </template>
 <script>
 /* eslint-disable no-tabs */
 /* eslint-disable indent */
 // import Calendar from '../components/calendar/'
 import indexPopup from '../components/popup/IndexPopup'
+import overPopup from '../components/popup/OverPopup'
 import rollPopup from '../components/popup/rollPopup'
 import info from '../components/popup/infoPopup'
 import warm from '../components/popup/warmPopup'
@@ -151,7 +153,8 @@ export default {
     indexPopup,
     info,
     rollPopup,
-    warm
+    warm,
+    overPopup
   },
   setup () {
     const router = useRouter()
@@ -164,6 +167,7 @@ export default {
   },
   data () {
     return {
+      info: '今日打卡成功',
       num: 1,
       daylist: [
         { num: 0, state: 'faild', week: '周一' },
@@ -220,32 +224,36 @@ export default {
       this.$router.push('/activity')
     },
     update () {
-      console.log('看我刷新了')
+     // console.log('看我刷新了')
       getPushCard().then((e) => {
-        console.log(e)
-        console.log(e.data.data.cards)
+       // console.log(e)
+       // console.log(e.data.data.cards)
         if (e.data.data.card_count > 1) {
           this.index_height = ''
         }
         this.num = e.data.data.continue_days
         const list = []
-        console.log('这波列表长度为' + e.data.data.cards.length)
+       // console.log('这波列表长度为' + e.data.data.cards.length)
         e.data.data.cards.forEach((e, index) => {
+          console.log(e)
           const clockin = {
             tip: e.content,
             img: e.photo_url,
             time: `${dayjs.unix(e.created_at).$M + 1}月${dayjs.unix(e.created_at).$D}日`,
-            state: e.status,
             praiseNum: e.like_count,
             ispraise: Boolean(e.is_like),
             id: e.id,
             type: 'self',
             status: e.status
           }
+          console.log(`${e.status}-${dayjs.unix(e.created_at).$D}-${dayjs.unix(dayjs().unix()).$D}`)
+          if (e.status === 'failed') {
+            this.$store.commit('showWarmPopup', true)
+          }
           this.daylist.forEach((day, index) => {
-            console.log(dayjs.unix(e.created_at).$D)
-            console.log(dayjs.unix(e.created_at).$M)
-            console.log(dayjs.unix(dayjs().unix()).$M)
+           // console.log(dayjs.unix(e.created_at).$D)
+           // console.log(dayjs.unix(e.created_at).$M)
+           // console.log(dayjs.unix(dayjs().unix()).$M)
             if (dayjs.unix(e.created_at).$D === day.num && dayjs.unix(dayjs().unix()).$M === dayjs.unix(e.created_at).$M) {
               this.daylist[index].state = 'pass'
             }
@@ -301,7 +309,13 @@ export default {
     if (this.$store.state.showInfoPopup) {
       setTimeout(() => {
        this.$store.commit('showInfoPopup', false)
-      }, 1000)
+      }, 1500)
+      this.update()
+    }
+    if (this.$store.state.showOverPopup) {
+      setTimeout(() => {
+       this.$store.commit('showOverPopup', false)
+      }, 1500)
       this.update()
     }
     const week = dayjs.unix(dayjs().unix()).$W

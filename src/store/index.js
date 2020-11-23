@@ -1,3 +1,11 @@
+/*
+ * @Author: your name
+ * @Date: 2020-11-21 15:32:46
+ * @LastEditTime: 2020-11-23 21:51:12
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /clean-plant/src/store/index.js
+ */
 import { createStore } from 'vuex'
 import { DLELTE_IMAGE, UPLOAD_IMAGE } from './type/actions'
 import { DELETE_EDIT_IMAGES, END_IMAGE_UPLOADING, SET_EDIT_IMAGES, SET_IMAGE_UPLOADING } from './type/mutations'
@@ -9,6 +17,7 @@ export default createStore({
     showRollPopup: false,
     showActivityPopup: false,
     showWarmPopup: false,
+    showOverPopup: false,
     num: 0,
     image: [],
     imageId: []
@@ -31,6 +40,9 @@ export default createStore({
     },
     showWarmPopup (state, flag) {
       state.showWarmPopup = flag
+    },
+    showOverPopup (state, flag) {
+      state.showOverPopup = flag
     },
     [SET_IMAGE_UPLOADING] (state) {
       state.isUploading = true

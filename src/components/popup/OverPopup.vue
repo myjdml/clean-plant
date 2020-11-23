@@ -1,6 +1,6 @@
 <!--eslint-disable no-tabs-->
 <template>
-  <div :class="$store.state.showInfoPopup ? 'show default' : 'hidden default'">
+  <div :class="$store.state.showOverPopup ? 'show default' : 'hidden default'">
     <div class="popup" @click="hidden">
       <div :class="type == `succesd` ? `info` : `warm`">{{ info }}</div>
     </div>
@@ -28,7 +28,7 @@ export default {
   },
   methods: {
     hidden () {
-      this.$store.commit('showInfoPopup', false)
+      this.$store.commit('showOverPopup', false)
     }
   }
 }

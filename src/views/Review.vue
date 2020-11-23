@@ -1,21 +1,21 @@
 <!--
  * @Author: kying-star
  * @Date: 2020-11-22 14:39:16
- * @LastEditTime: 2020-11-22 17:29:14
+ * @LastEditTime: 2020-11-23 21:30:46
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /clean-plant/src/views/Review.vue
 -->
 <template>
   <div class="review">
-    <div class="item" v-for="item in list" :key="item.id">
-      <img :src="item.photo_url">
-      <p>{{item.content}}</p>
-      <div class="option">
-        <div class="pass" @click="pass(item.id)">通过</div>
-        <div class="faild" @click="faild(item.id)">不通过</div>
+      <div class="item" v-for="(item,index) in list" :key="item.id">
+          <img :src="item.photo_url">
+          <p>{{item.content}}</p>
+          <div class="option">
+              <div :class="item.passClick?`pass click`:`pass`" @click="pass(item.id, index)">通过</div>
+              <div :class="item.faildClick?`faild click`:`faild`" @click="faild(item.id, index)">不通过</div>
+          </div>
       </div>
-    </div>
   </div>
 </template>
 
@@ -65,26 +65,32 @@ export default {
     }
   },
   methods: {
-    pass (id) {
+    pass: function (id, index) {
       reviewCardRecord(id, 'passed')
+      this.list[index].passClick = true
+      this.list[index].faildClick = false
     },
-    faild (id) {
+    faild: function (id, index) {
       reviewCardRecord(id, 'failed')
+      this.list[index].passClick = false
+      this.list[index].faildClick = true
     }
   },
   created () {
-    // getReviewedRecords().then((e) => {
-    //   const items = []
-    //   console.log(e.data.data)
-    //   e.data.data.forEach((e) => {
-    //     const item = {}
-    //     item.id = e.id
-    //     item.content = e.content
-    //     item.photo_url = e.photo_url
-    //     items.push(item)
-    //   })
-    //   this.list = items
-    // })
+    getReviewedRecords().then((e) => {
+      const items = []
+      console.log(e.data.data)
+      e.data.data.forEach((e) => {
+        const item = {}
+        item.id = e.id
+        item.content = e.content
+        item.photo_url = e.photo_url
+        items.push(item)
+        items.passClick = false
+        items.faildClick = false
+      })
+      this.list = items
+    })
   }
 }
 </script>
