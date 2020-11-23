@@ -80,7 +80,7 @@ export default {
               this.$router.push({
                 path: '/index'
               })
-            }, 500)
+            }, 1000)
           })
       } else {
         this.failShow = true
