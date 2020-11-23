@@ -25,7 +25,12 @@
   <div v-if="postShow" class="mask">
     <div class="wait">上传中</div>
   </div>
-  <div v-if="failShow" class="mask">
+
+  <div v-if="failShow" class="mask2">
+    <div class="wait">请完善信息哦</div>
+  </div>
+
+  <div v-if="repeatPostShow" class="mask2">
     <div class="wait">请完善信息哦</div>
   </div>
 </template>
@@ -46,7 +51,8 @@ export default {
       },
       formData: null,
       postShow: false,
-      failShow: false
+      failShow: false,
+      repeatPostShow: false
     }
   },
   methods: {
@@ -58,11 +64,14 @@ export default {
       console.log(this.formData)
       // 判空
       if (this.$store.state.image.length !== 0) {
-        // 提交ajax
-        this.postShow = true
-
         postPushCard('plant/addCard', this.formData)
-          .then(() => {
+          .then((response) => {
+            console.log(response)
+            if (response.data.status === 10000) {
+              this.postShow = true
+            } else if (response.data.info === 'repeat cards') {
+              this.repeatPostShow = true
+            }
             // 删除VueX中存储的图片信息
             this.$store.state.image = []
             this.$store.state.imageId = []
@@ -127,6 +136,29 @@ export default {
       animation: wait 1.5s linear infinite;
     }
   }
+  .mask2{
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    background-color: rgb(0, 0, 0, 0.45);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    transform: translateY(-100vh);
+    .wait{
+      font-family: 'coder';
+      width: 427px;
+      height: 194px;
+      background-color: #ffffff;
+      border-radius: 20px;
+      padding: 20px;
+      font-size: 50px;
+      line-height: 194px;
+      text-align: center;
+      color: #ff5d31;
+    }
+  }
   @keyframes wait {
       0%{
           content: ".";
@@ -144,6 +176,7 @@ export default {
   height: 100vh;
   background-image: url('../assets/image/icon/background.png');
   background-size: 100%;
+  font-family: Coder,serif;
 }
 .flex-col {
   display: flex;
@@ -198,7 +231,8 @@ export default {
   }
 }
 .content {
-  position: relative;
+  position: absolute;
+  top: 300px;
   width: 700px;
   height: 70vh;
   background-color: white;
