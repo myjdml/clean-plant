@@ -80,11 +80,11 @@
           <div v-if="item.type == 'other'" class="list-item-inner">
             <div class="list-item-topic">
               <div class="list-item-title">
-                {{ item.nickname }}<span>{{item.time}}</span>已打卡<span>{{item.countDay}}</span>天
+                {{ item.nickname }}<span>{{ item.time }}</span
+                >已打卡<span>{{ item.countDay }}</span
+                >天
               </div>
-              <div class="todayTip">
-                今日文字: {{item.tip}}
-              </div>
+              <div class="todayTip">今日文字: {{ item.tip }}</div>
             </div>
             <div class="list-item-ctx">
               <img class="list-item-img-other" :src="item.img" />
@@ -224,16 +224,16 @@ export default {
       this.$router.push('/activity')
     },
     update () {
-     // console.log('看我刷新了')
+      // console.log('看我刷新了')
       getPushCard().then((e) => {
-       // console.log(e)
-       // console.log(e.data.data.cards)
+        // console.log(e)
+        // console.log(e.data.data.cards)
         if (e.data.data.card_count > 1) {
           this.index_height = ''
         }
         this.num = e.data.data.continue_days
         const list = []
-       // console.log('这波列表长度为' + e.data.data.cards.length)
+        // console.log('这波列表长度为' + e.data.data.cards.length)
         e.data.data.cards.forEach((e, index) => {
           console.log(e)
           const clockin = {
@@ -247,13 +247,13 @@ export default {
             status: e.status
           }
           console.log(`${e.status}-${dayjs.unix(e.created_at).$D}-${dayjs.unix(dayjs().unix()).$D}`)
-          if (e.status === 'failed') {
+          if (e.status === 'failed' && dayjs.unix(e.created_at).$D === dayjs.unix(dayjs().unix()).$D) {
             this.$store.commit('showWarmPopup', true)
           }
           this.daylist.forEach((day, index) => {
-           // console.log(dayjs.unix(e.created_at).$D)
-           // console.log(dayjs.unix(e.created_at).$M)
-           // console.log(dayjs.unix(dayjs().unix()).$M)
+            // console.log(dayjs.unix(e.created_at).$D)
+            // console.log(dayjs.unix(e.created_at).$M)
+            // console.log(dayjs.unix(dayjs().unix()).$M)
             if (dayjs.unix(e.created_at).$D === day.num && dayjs.unix(dayjs().unix()).$M === dayjs.unix(e.created_at).$M) {
               this.daylist[index].state = 'pass'
             }
@@ -308,13 +308,13 @@ export default {
     console.log(this.$store.state.showInfoPopup)
     if (this.$store.state.showInfoPopup) {
       setTimeout(() => {
-       this.$store.commit('showInfoPopup', false)
+        this.$store.commit('showInfoPopup', false)
       }, 1500)
       this.update()
     }
     if (this.$store.state.showOverPopup) {
       setTimeout(() => {
-       this.$store.commit('showOverPopup', false)
+        this.$store.commit('showOverPopup', false)
       }, 1500)
       this.update()
     }
@@ -426,7 +426,7 @@ export default {
       margin-left: 40px;
       margin-top: 20px;
       line-height: 40px;
-      p{
+      p {
         line-height: 50px;
       }
     }
@@ -566,12 +566,12 @@ export default {
         height: 299px;
         border-radius: 10px;
         margin-bottom: 30px;
-        .list-item-topic{
+        .list-item-topic {
           display: flex;
           align-items: center;
           flex-direction: column;
           align-items: flex-start;
-          .todayTip{
+          .todayTip {
             margin-left: 30px;
             margin-top: 20px;
             text-align: left;
@@ -580,7 +580,7 @@ export default {
             font-size: 18px;
             font-family: MF LingHei (Noncommercial);
             font-weight: 600;
-            color: #437EFF;
+            color: #437eff;
             opacity: 0.9;
           }
         }
@@ -601,37 +601,37 @@ export default {
           font-size: 23px;
           margin-top: 20px;
           width: 637px;
-          overflow:hidden;
-          white-space:nowrap;
-          text-overflow:ellipsis;
-          span{
-            color: #1D64FF;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          span {
+            color: #1d64ff;
           }
         }
-         .list-item-imgbox{
+        .list-item-imgbox {
           position: relative;
           width: 283px;
           height: 160px;
           margin-top: 20px;
           margin-left: 34px;
-          .waiting{
-            color: #FFF9F6;
+          .waiting {
+            color: #fff9f6;
             width: 283px;
             height: 160px;
             position: absolute;
             transform: translateY(-164px);
-            background-color:rgb(0, 0, 0, 0.45);
+            background-color: rgb(0, 0, 0, 0.45);
             display: flex;
             justify-content: center;
             align-items: center;
           }
-          .failed{
-            color: #FFF9F6;
+          .failed {
+            color: #fff9f6;
             width: 283px;
             height: 160px;
             position: absolute;
             transform: translateY(-164px);
-            background-color:rgb(0, 0, 0, 0.45);
+            background-color: rgb(0, 0, 0, 0.45);
             display: flex;
             justify-content: center;
             align-items: center;
