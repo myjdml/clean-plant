@@ -122,7 +122,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 999;
+  z-index: 99;
   transform: translateY(-100vh);
   .wait{
     font-family: 'coder';
