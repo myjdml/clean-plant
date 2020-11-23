@@ -7,88 +7,145 @@
  * @FilePath: /clean-plant/src/views/Review.vue
 -->
 <template>
-    <div class="review">
-        <div class="item" v-for="item in list" :key="item.id">
-            <img :src="item.photo_url">
-            <p>{{item.content}}</p>
-            <div class="option">
-                <div class="pass" @click="pass(item.id)">通过</div>
-                <div class="faild" @click="faild(item.id)">不通过</div>
-            </div>
-        </div>
+  <div class="review">
+    <div class="item" v-for="item in list" :key="item.id">
+      <img :src="item.photo_url">
+      <p>{{item.content}}</p>
+      <div class="option">
+        <div class="pass" @click="pass(item.id)">通过</div>
+        <div class="faild" @click="faild(item.id)">不通过</div>
+      </div>
     </div>
+  </div>
 </template>
 
 <script>
-import { getReviewedRecords, reviewCardRecord } from '../server/index'
+import { reviewCardRecord } from '../server/index'
 export default {
   data () {
     return {
-      list: []
+      list: [
+        {
+          content: 'abababab',
+          id: '111'
+        },
+        {
+          content: 'abababab',
+          id: '111'
+        },
+        {
+          content: 'abababab',
+          id: '111'
+        },
+        {
+          content: 'abababab',
+          id: '111'
+        },
+        {
+          content: 'abababab',
+          id: '111'
+        },
+        {
+          content: 'abababab',
+          id: '111'
+        },
+        {
+          content: 'abababab',
+          id: '111'
+        },
+        {
+          content: 'abababab',
+          id: '111'
+        },
+        {
+          content: 'abababab',
+          id: '111'
+        }
+      ]
     }
   },
   methods: {
-    pass: function (id) {
+    pass (id) {
       reviewCardRecord(id, 'passed')
     },
-    faild: function (id) {
+    faild (id) {
       reviewCardRecord(id, 'failed')
-      reviewCardRecord(id, 'illegal')
     }
   },
   created () {
-    getReviewedRecords().then((e) => {
-      const items = []
-      console.log(e.data.data)
-      e.data.data.forEach((e) => {
-        const item = {}
-        item.id = e.id
-        item.content = e.content
-        item.photo_url = e.photo_url
-        items.push(item)
-      })
-      this.list = items
-    })
+    // getReviewedRecords().then((e) => {
+    //   const items = []
+    //   console.log(e.data.data)
+    //   e.data.data.forEach((e) => {
+    //     const item = {}
+    //     item.id = e.id
+    //     item.content = e.content
+    //     item.photo_url = e.photo_url
+    //     items.push(item)
+    //   })
+    //   this.list = items
+    // })
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.review{
-    width: 100vw;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: black;
-    justify-content: flex-start;
-    .item{
-        margin: 30px;
-        width: 660px;
-        height: 200px;
-        background-color: white;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        img{
-          width: 283px;
-          height: 160px;
-          background-size: cover;
-        }
-        .option{
-            .pass{
-                width: 140px;
-                height: 60px;
-                background-color: #437EFF;
-                line-height: 60px;
-            }
-            .faild{
-                width: 140px;
-                height: 60px;
-                background-color: #FF5A00;
-                line-height: 60px;
-            }
-        }
+.review {
+  width: 100vw;
+  height: 100%;
+  background-attachment: fixed;
+  background-image: url('../assets/image/review/background.jpg');
+  background-size: 100%;
+  justify-content: flex-start;
+  overflow: scroll;
+  .item{
+    position: relative;
+    margin: 20px;
+    width: 680px;
+    height: 400px;
+    border-radius: 10px;
+    color: white;
+    background-color: rgba($color: #000000, $alpha: .5);
+    img{
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 283px;
+      height: 160px;
+      background-size: cover;
     }
+    p {
+      position: absolute;
+      left: 10px;
+      top: 20px;
+      // border: wheat solid 1px;
+      width: 350px;
+      height: 360px;
+    }
+    .option{
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      // border: solid wheat 1px;
+      width: 280px;
+      height: 180px;
+      .pass{
+        margin: 20px 15px;
+        width: 250px;
+        height: 60px;
+        border-radius: 15px;
+        background-color: #2c4ee4;
+        line-height: 60px;
+      }
+      .faild{
+        margin: 20px 15px;
+        width: 250px;
+        height: 60px;
+        border-radius: 15px;
+        background-color: #FF5A00;
+        line-height: 60px;
+      }
+    }
+  }
 }
 </style>
