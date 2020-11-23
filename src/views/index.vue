@@ -304,7 +304,7 @@ export default {
     const week = dayjs.unix(dayjs().unix()).$W
     console.log('这周是')
     this.daylist.forEach((e, index) => {
-      this.daylist[index].num = dayjs().add(index - week, 'day').$D + 1 - 7
+      this.daylist[index].num = dayjs().add(index - week, 'day').$D + 1
       console.log(this.daylist[index].num)
     })
     /**
