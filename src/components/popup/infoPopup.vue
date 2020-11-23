@@ -78,7 +78,7 @@ export default {
 .show {
   touch-action: none;
   opacity: 1;
-  animation: show 1s ease-in-out;
+  animation: show 1.5s ease-in-out;
 }
 .hidden {
   opacity: 0;

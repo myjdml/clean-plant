@@ -301,7 +301,7 @@ export default {
     if (this.$store.state.showInfoPopup) {
       setTimeout(() => {
        this.$store.commit('showInfoPopup', false)
-      }, 1000)
+      }, 1500)
       this.update()
     }
     const week = dayjs.unix(dayjs().unix()).$W
