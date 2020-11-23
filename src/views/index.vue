@@ -38,7 +38,7 @@
     <div class="clockin-calendar">
       <div class="clockin-title">
         <p>
-          已打卡 <a>{{ num }}/14</a> 天
+          已打卡 <a>{{ num >= 14 ? 14 : num }}/14</a> 天
         </p>
       </div>
       <div class="calendarlist">
