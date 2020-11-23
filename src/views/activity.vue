@@ -16,11 +16,11 @@
                   </div>
                   <div class="detail">
                     <li>{{item.nickname}}</li>
-                    <li>总共打卡{{item.day_count}}次</li>
+                    <li>总共打卡{{item.card_count}}次</li>
                   </div>
                 </div>
                 <div class="count">
-                  已经连续打卡<a>{{item.card_count}}</a>天了
+                  已经连续打卡<a>{{item.day_count}}</a>天了
                 </div>
               </div>
             </div>
@@ -45,25 +45,11 @@
  * @author: 林其星
  */
 import { getActivityList } from '../server/index'
+// import style (>= Swiper 6.x)
 export default {
   data () {
     return {
-      lists: [
-        // {
-        //   order: '1.',
-        //   nickname: 'sarailQAQ',
-        //   avatar: 'http://thirdwx.qlogo.cn/mmopen/EVGWGlX9SWWFzicQjwsfZNYPmbfq4lDwQ1QBL4Zz7TUpf9z8P3AvlGIUNJ3RZ4jf2gWl0EcRAUmdmoYbs4uy9LKibd0nv0KhuI/132',
-        //   card_count: 2,
-        //   day_count: 2
-        // },
-        // {
-        //   order: '2.',
-        //   nickname: '派大星',
-        //   avatar: 'http://thirdwx.qlogo.cn/mmopen/EVGWGlX9SWWFzicQjwsfZNYPmbfq4lDwQ1QBL4Zz7TUpf9z8P3AvlGIUNJ3RZ4jf2gWl0EcRAUmdmoYbs4uy9LKibd0nv0KhuI/132',
-        //   card_count: 0,
-        //   day_count: 2
-        // }
-      ]
+      lists: []
     }
   },
   methods: {
@@ -171,32 +157,32 @@ export default {
       display: flex;
       flex-direction: column;
       .list{
-          display: flex;
-          flex-direction: column;
-          align-items: center;
           padding: 11px 0px 0px 0px;
+          margin-left: 20px;
           .item{
             width: 623px;
-            height: 66px;
+            height: 99px;
             margin: 11px;
             background-color: #FFFCEE;
             display: flex;
             justify-content: space-between;
+            align-items: center;
             .item-person{
               display: flex;
               flex-direction: row;
             }
             .order{
-              width: 14px;
-              height: 23px;
+              display: flex;
+              width: 28px;
+              height: 99px;
               font-size: 28px;
               font-weight: 400;
               color: #FF5A00;
-              line-height: 66px;
+              line-height: 99px;
               margin-left: 40px;
             }
             .avatar{
-              height: 66px;
+              height: 99px;
               width: 66px;
               display: flex;
               justify-content: center;
@@ -217,18 +203,18 @@ export default {
               li:nth-child(1){
                 font-size: 19px;
                 color: #FF7800;
-                line-height: 38px;
+                line-height: 58px;
               }
               li:nth-child(2){
                 font-size: 14px;
                 color: #5C59FF;
-                line-height: 28px;
+                line-height: 18px;
               }
             }
             .count{
               color: #FFAA68;
               font-size: 20px;
-              line-height: 66px;
+              line-height: 99px;
               a{
                 color: #697EFF;
               }
