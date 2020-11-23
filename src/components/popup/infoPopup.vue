@@ -78,7 +78,7 @@ export default {
 .show {
   touch-action: none;
   opacity: 1;
-  animation: show 0.5s ease-in-out;
+  animation: show 1s ease-in-out;
 }
 .hidden {
   opacity: 0;
@@ -90,8 +90,12 @@ export default {
     opacity: 0;
     transform: translateY(-50%) translateX(-50%) scale(1);
   }
-  100% {
+  50% {
     opacity: 1;
+    transform: translateY(-50%) translateX(-50%) scale(1);
+  }
+  100% {
+    opacity: 0;
     transform: translateY(-50%) translateX(-50%) scale(1);
   }
 }

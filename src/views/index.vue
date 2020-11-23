@@ -297,17 +297,18 @@ export default {
       localStorage.setItem('firstLogin', 1)
       this.checkAll()
     }
-    if (this.$store.showInfoPopup) {
+    console.log(this.$store.state.showInfoPopup)
+    if (this.$store.state.showInfoPopup) {
       setTimeout(() => {
        this.$store.commit('showInfoPopup', false)
-      }, 500)
+      }, 1000)
       this.update()
     }
     const week = dayjs.unix(dayjs().unix()).$W
-    console.log('这周是')
+    // console.log('这周是')
     this.daylist.forEach((e, index) => {
       this.daylist[index].num = dayjs().add(index - week, 'day').$D + 1
-      console.log(this.daylist[index].num)
+      // console.log(this.daylist[index].num)
     })
     /**
      * @description: 请求打卡数据
