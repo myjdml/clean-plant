@@ -31,7 +31,7 @@
   </div>
 
   <div v-if="repeatPostShow" class="mask2">
-    <div class="wait">请完善信息哦</div>
+    <div class="wait">今日打卡次数已满</div>
   </div>
 </template>
 <script>
@@ -69,16 +69,18 @@ export default {
             console.log(response)
             if (response.data.status === 10000) {
               this.postShow = true
+              this.$store.commit('showInfoPopup', true)
             } else if (response.data.info === 'repeat cards') {
               this.repeatPostShow = true
             }
             // 删除VueX中存储的图片信息
             this.$store.state.image = []
             this.$store.state.imageId = []
-            this.$store.commit('showInfoPopup', true)
-            this.$router.push({
-              path: '/index'
-            })
+            setTimeout(() => {
+              this.$router.push({
+                path: '/index'
+              })
+            }, 500)
           })
       } else {
         this.failShow = true
