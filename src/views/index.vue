@@ -297,6 +297,7 @@ export default {
       localStorage.setItem('firstLogin', 1)
       this.checkAll()
     }
+    console.log(this.$store.showInfoPopup)
     if (this.$store.showInfoPopup) {
       setTimeout(() => {
        this.$store.commit('showInfoPopup', false)
