@@ -76,14 +76,10 @@ export default {
             // 删除VueX中存储的图片信息
             this.$store.state.image = []
             this.$store.state.imageId = []
+            this.$router.push({
+              path: '/index'
+            })
           })
-          .then(
-            setTimeout(() => {
-              this.$router.push({
-                path: '/index'
-              })
-            }, 1000)
-          )
       } else {
         this.failShow = true
         setTimeout(() => {
@@ -122,7 +118,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 99;
+  z-index: 999;
   transform: translateY(-100vh);
   .wait{
     font-family: 'coder';
