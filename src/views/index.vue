@@ -246,7 +246,8 @@ export default {
             type: 'self',
             status: e.status
           }
-          if (e.state === 'failed' && dayjs.unix(e.created_at).$D === dayjs.unix(dayjs().unix()).$D) {
+          console.log(`${e.state}-${dayjs.unix(e.created_at).$D}-${dayjs.unix(dayjs().unix()).$D}`)
+          if (e.state === 'failed') {
             this.$store.commit('showWarmPopup', true)
           }
           this.daylist.forEach((day, index) => {
