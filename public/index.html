@@ -1,8 +1,8 @@
 <!--
  * @Author: Code_Master
  * @Date: 2020-11-18 21:01:12
- * @LastEditTime: 2020-11-22 16:33:16
- * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2020-11-24 00:26:50
+ * @LastEditors: kyingstar
  * @FilePath: /clean-plant/public/index.html
  * @Description: The first 90% of the code accounts for the first 90% of the development time. The remaining 10% of the code accounts for the other 90% of the development time.
 -->
@@ -27,6 +27,7 @@
   <script>
     const token = document.location.href.split('token=')[1];
     let today = Date.parse(new Date())
+    console.log(today)
     if (0) {
       localStorage.removeItem('id_token')
       localStorage.removeItem('time')

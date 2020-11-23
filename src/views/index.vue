@@ -248,7 +248,14 @@ export default {
           }
           console.log(`${e.status}-${dayjs.unix(e.created_at).$D}-${dayjs.unix(dayjs().unix()).$D}`)
           if (e.status === 'failed' && dayjs.unix(e.created_at).$D === dayjs.unix(dayjs().unix()).$D) {
-            this.$store.commit('showWarmPopup', true)
+            const today = Date.parse(new Date())
+            if (!localStorage.getItem('failedTime')) {
+              localStorage.setItem('failedTime', today)
+              this.$store.commit('showWarmPopup', true)
+            }
+            if (today - localStorage.getItem('faidedTime') > 43200) {
+              localStorage.removeItem('failed')
+            }
           }
           this.daylist.forEach((day, index) => {
             // console.log(dayjs.unix(e.created_at).$D)
