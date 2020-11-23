@@ -129,7 +129,7 @@
   <indexPopup></indexPopup>
   <rollPopup></rollPopup>
   <warm></warm>
-  <info info="今日打卡成功" type="succesd"></info>
+  <info :info="info" type="succesd"></info>
 </template>
 <script>
 /* eslint-disable no-tabs */
@@ -164,6 +164,7 @@ export default {
   },
   data () {
     return {
+      info: '今日打卡成功',
       num: 1,
       daylist: [
         { num: 0, state: 'faild', week: '周一' },
