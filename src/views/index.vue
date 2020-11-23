@@ -130,12 +130,14 @@
   <rollPopup></rollPopup>
   <warm></warm>
   <info :info="info" type="succesd"></info>
+  <overPopup info="今日打卡次数已满" type="succesd"></overPopup>
 </template>
 <script>
 /* eslint-disable no-tabs */
 /* eslint-disable indent */
 // import Calendar from '../components/calendar/'
 import indexPopup from '../components/popup/IndexPopup'
+import overPopup from '../components/popup/OverPopup'
 import rollPopup from '../components/popup/rollPopup'
 import info from '../components/popup/infoPopup'
 import warm from '../components/popup/warmPopup'
@@ -151,7 +153,8 @@ export default {
     indexPopup,
     info,
     rollPopup,
-    warm
+    warm,
+    overPopup
   },
   setup () {
     const router = useRouter()
@@ -305,6 +308,12 @@ export default {
     if (this.$store.state.showInfoPopup) {
       setTimeout(() => {
        this.$store.commit('showInfoPopup', false)
+      }, 1500)
+      this.update()
+    }
+    if (this.$store.state.showOverPopup) {
+      setTimeout(() => {
+       this.$store.commit('showOverPopup', false)
       }, 1500)
       this.update()
     }

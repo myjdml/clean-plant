@@ -71,7 +71,7 @@ export default {
               this.postShow = true
               this.$store.commit('showInfoPopup', true)
             } else if (response.data.info === 'repeat cards') {
-              this.repeatPostShow = true
+              this.$store.commit('showOverPopup', true)
             }
             // 删除VueX中存储的图片信息
             this.$store.state.image = []

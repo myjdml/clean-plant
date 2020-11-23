@@ -1,21 +1,113 @@
-<!--
- * @Author: your name
- * @Date: 2020-11-23 18:04:15
- * @LastEditTime: 2020-11-23 18:04:16
- * @LastEditors: Please set LastEditors
- * @Description: In User Settings Edit
- * @FilePath: /clean-plant/src/components/popup/OverPopup.vue
--->
+<!--eslint-disable no-tabs-->
 <template>
-  
+  <div :class="$store.state.showOverPopup ? 'show default' : 'hidden default'">
+    <div class="popup" @click="hidden">
+      <div :class="type == `succesd` ? `info` : `warm`">{{ info }}</div>
+    </div>
+  </div>
 </template>
 
 <script>
-export default {
+/* eslint-disable no-tabs */
+/* eslint-disable indent */
+/**
+ * @description: 弹出框组件
+ * @param {*}
+ * @return {*}
+ * @author: 林其星
+ */
 
+export default {
+  props: {
+    info: String,
+    type: String
+  },
+  data () {
+    return {
+    }
+  },
+  methods: {
+    hidden () {
+      this.$store.commit('showOverPopup', false)
+    }
+  }
 }
 </script>
-
-<style>
-
+<style lang='scss' scoped>
+.popup {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  background-color: rgb(0, 0, 0, 0.45);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .warm {
+    font-family: 'Coder';
+    width: 427px;
+    height: 194px;
+    background-color: #ffffff;
+    color: #2768f8;
+    border-radius: 20px;
+    padding: 20px;
+    font-size: 50px;
+    text-align: left;
+  }
+  .info {
+    font-family: 'coder';
+    width: 427px;
+    height: 194px;
+    background-color: #ffffff;
+    border-radius: 20px;
+    padding: 20px;
+    font-size: 50px;
+    line-height: 194px;
+    text-align: center;
+    color: #ff5d31;
+  }
+}
+.default {
+  top: 0%;
+  left: 0%;
+  transform: translateY(-50%) translateX(-50%);
+}
+.show,
+.hidden {
+  position: fixed;
+}
+.show {
+  touch-action: none;
+  opacity: 1;
+  animation: show 1.5s ease-in-out;
+}
+.hidden {
+  opacity: 0;
+  animation: hidden 0.3s linear;
+  visibility: hidden;
+}
+@keyframes show {
+  0% {
+    opacity: 0;
+    transform: translateY(-50%) translateX(-50%) scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-50%) translateX(-50%) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-50%) translateX(-50%) scale(1);
+  }
+}
+@keyframes hidden {
+  0% {
+    opacity: 1;
+    transform: translateY(-50%) translateX(-50%) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-60%) translateX(-50%) scale(0.99);
+    overflow: hidden;
+  }
+}
 </style>
