@@ -235,6 +235,7 @@ export default {
         const list = []
        // console.log('这波列表长度为' + e.data.data.cards.length)
         e.data.data.cards.forEach((e, index) => {
+          console.log(e)
           const clockin = {
             tip: e.content,
             img: e.photo_url,
