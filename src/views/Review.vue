@@ -1,7 +1,7 @@
 <!--
  * @Author: kying-star
  * @Date: 2020-11-22 14:39:16
- * @LastEditTime: 2020-11-23 21:11:08
+ * @LastEditTime: 2020-11-23 21:30:46
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /clean-plant/src/views/Review.vue
@@ -35,7 +35,6 @@ export default {
     },
     faild: function (id, index) {
       reviewCardRecord(id, 'failed')
-      reviewCardRecord(id, 'illegal')
       this.list[index].passClick = false
       this.list[index].faildClick = true
     }
