@@ -57,7 +57,7 @@ export default {
       this.formData.append('content', this.formValue.content)
       console.log(this.formData)
       // 判空
-      if (this.formValue.content !== '' && this.$store.state.image !== []) {
+      if (this.$store.state.image.length !== 0) {
         // 提交ajax
         this.postShow = true
 
