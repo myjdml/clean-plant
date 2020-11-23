@@ -220,16 +220,16 @@ export default {
       this.$router.push('/activity')
     },
     update () {
-      console.log('看我刷新了')
+     // console.log('看我刷新了')
       getPushCard().then((e) => {
-        console.log(e)
-        console.log(e.data.data.cards)
+       // console.log(e)
+       // console.log(e.data.data.cards)
         if (e.data.data.card_count > 1) {
           this.index_height = ''
         }
         this.num = e.data.data.continue_days
         const list = []
-        console.log('这波列表长度为' + e.data.data.cards.length)
+       // console.log('这波列表长度为' + e.data.data.cards.length)
         e.data.data.cards.forEach((e, index) => {
           const clockin = {
             tip: e.content,
@@ -243,9 +243,9 @@ export default {
             status: e.status
           }
           this.daylist.forEach((day, index) => {
-            console.log(dayjs.unix(e.created_at).$D)
-            console.log(dayjs.unix(e.created_at).$M)
-            console.log(dayjs.unix(dayjs().unix()).$M)
+           // console.log(dayjs.unix(e.created_at).$D)
+           // console.log(dayjs.unix(e.created_at).$M)
+           // console.log(dayjs.unix(dayjs().unix()).$M)
             if (dayjs.unix(e.created_at).$D === day.num && dayjs.unix(dayjs().unix()).$M === dayjs.unix(e.created_at).$M) {
               this.daylist[index].state = 'pass'
             }
