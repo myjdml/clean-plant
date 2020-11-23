@@ -239,15 +239,14 @@ export default {
             tip: e.content,
             img: e.photo_url,
             time: `${dayjs.unix(e.created_at).$M + 1}月${dayjs.unix(e.created_at).$D}日`,
-            state: e.status,
             praiseNum: e.like_count,
             ispraise: Boolean(e.is_like),
             id: e.id,
             type: 'self',
             status: e.status
           }
-          console.log(`${e.state}-${dayjs.unix(e.created_at).$D}-${dayjs.unix(dayjs().unix()).$D}`)
-          if (e.state === 'failed') {
+          console.log(`${e.status}-${dayjs.unix(e.created_at).$D}-${dayjs.unix(dayjs().unix()).$D}`)
+          if (e.status === 'failed') {
             this.$store.commit('showWarmPopup', true)
           }
           this.daylist.forEach((day, index) => {
