@@ -165,4 +165,7 @@ export default {
     }
   }
 }
+.click {
+  color: #66ccff;
+};
 </style>
