@@ -63,8 +63,9 @@ export default {
       this.formData.append('content', this.formValue.content)
       console.log(this.formData)
       // 判空
-      this.postShow = true
+
       if (this.$store.state.image.length !== 0) {
+        this.postShow = true
         postPushCard('plant/addCard', this.formData)
           .then((response) => {
             console.log(response)
