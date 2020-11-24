@@ -63,22 +63,27 @@ export default {
       this.formData.append('content', this.formValue.content)
       console.log(this.formData)
       // 判空
+      this.postShow = true
       if (this.$store.state.image.length !== 0) {
         postPushCard('plant/addCard', this.formData)
           .then((response) => {
             console.log(response)
             if (response.data.status === 10000) {
-              this.postShow = true
+              this.postShow = false
               this.$store.commit('showInfoPopup', true)
+              this.$router.push({
+                path: '/index'
+              })
             } else if (response.data.info === 'repeat cards') {
               this.$store.commit('showOverPopup', true)
+              this.$router.push({
+                path: '/index'
+              })
             }
             // 删除VueX中存储的图片信息
             this.$store.state.image = []
             this.$store.state.imageId = []
-            this.$router.push({
-              path: '/index'
-            })
+
           })
       } else {
         this.failShow = true
@@ -110,7 +115,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.mask{
+.mask {
   width: 100vw;
   height: 100vh;
   position: absolute;
@@ -120,7 +125,7 @@ export default {
   align-items: center;
   z-index: 999;
   transform: translateY(-100vh);
-  .wait{
+  .wait {
     font-family: 'coder';
     width: 427px;
     height: 194px;
@@ -131,12 +136,12 @@ export default {
     line-height: 194px;
     text-align: center;
     color: #ff5d31;
-    &::after{
+    &::after {
       content: '';
       animation: wait 1.5s linear infinite;
     }
   }
-  .mask2{
+  .mask2 {
     width: 100vw;
     height: 100vh;
     position: absolute;
@@ -146,7 +151,7 @@ export default {
     align-items: center;
     z-index: 999;
     transform: translateY(-100vh);
-    .wait{
+    .wait {
       font-family: 'coder';
       width: 427px;
       height: 194px;
@@ -160,23 +165,23 @@ export default {
     }
   }
   @keyframes wait {
-      0%{
-          content: ".";
-      }
-      33%{
-          content: "..";
-      }
-      66%{
-          content: "...";
-      }
+    0% {
+      content: '.';
     }
+    33% {
+      content: '..';
+    }
+    66% {
+      content: '...';
+    }
+  }
 }
 #push-card {
   width: 100vw;
   height: 100vh;
   background-image: url('../assets/image/icon/background.png');
   background-size: 100%;
-  font-family: Coder,serif;
+  font-family: Coder, serif;
 }
 .flex-col {
   display: flex;
