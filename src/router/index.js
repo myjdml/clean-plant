@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-11-21 15:32:46
- * @LastEditTime: 2020-11-22 14:43:48
+ * @LastEditTime: 2020-11-24 16:10:23
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /clean-plant/src/router/index.js
@@ -14,11 +14,6 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home
-  },
-  {
-    path: '/about',
-    name: 'About',
-    component: () => import('../views/About.vue')
   },
   {
     path: '/index',
