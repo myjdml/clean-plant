@@ -237,7 +237,7 @@ export default {
   position: absolute;
   top: 300px;
   width: 700px;
-  height: 70vh;
+  height: 55vh;
   background-color: white;
   border-radius: 30px;
   z-index: 4;
@@ -257,7 +257,7 @@ export default {
     background-image: url('../assets/image/push-card/confirm.png');
     background-size: 100%;
     position: absolute;
-    top: 900px;
+    top: 700px;
     left: 50%;
     transform: translateX(-129.5px);
   }
