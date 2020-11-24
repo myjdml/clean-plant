@@ -84,9 +84,9 @@ export default {
       } else {
         console.log(this.failShow)
         this.failShow = true
-        // setTimeout(() => {
-        //   this.failShow = false
-        // }, 2000)
+        setTimeout(() => {
+          this.failShow = false
+        }, 2000)
       }
     },
     handelImg (Img) {
