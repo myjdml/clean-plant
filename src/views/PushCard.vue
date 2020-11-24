@@ -151,7 +151,7 @@ export default {
     justify-content: center;
     align-items: center;
     z-index: 999;
-    transform: translateY(-100vh);
+    transform: translateY(-200vh);
     .wait {
       font-family: 'coder';
       width: 427px;
