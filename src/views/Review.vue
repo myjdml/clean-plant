@@ -75,7 +75,7 @@ export default {
     }
   },
   methods: {
-    pass: function (id, index) {
+    pass: function (e, id, index) {
       reviewCardRecord(id, 'passed')
       this.list[index].passClick = true
       this.list[index].faildClick = false
@@ -134,7 +134,7 @@ export default {
       position: absolute;
       left: 10px;
       top: 20px;
-      // border: wheat solid 1px;
+      border: wheat solid 1px;
       width: 350px;
       height: 360px;
     }
@@ -142,9 +142,10 @@ export default {
       position: absolute;
       bottom: 20px;
       right: 20px;
-      // border: solid wheat 1px;
+      border: solid wheat 1px;
       width: 280px;
       height: 180px;
+      text-align: center;
       .pass {
         margin: 20px 15px;
         width: 250px;
