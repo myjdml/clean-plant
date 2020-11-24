@@ -83,7 +83,6 @@ export default {
             // 删除VueX中存储的图片信息
             this.$store.state.image = []
             this.$store.state.imageId = []
-
           })
       } else {
         this.failShow = true
