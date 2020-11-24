@@ -178,6 +178,7 @@ export default {
   height: 100vh;
   background-image: url('../assets/image/icon/background.png');
   background-size: 100%;
+  background-repeat: repeat;
   font-family: Coder, serif;
 }
 .flex-col {
