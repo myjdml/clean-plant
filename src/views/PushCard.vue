@@ -29,10 +29,6 @@
   <div v-if="failShow" class="mask2">
     <div class="wait">请完善信息哦</div>
   </div>
-
-  <div v-if="repeatPostShow" class="mask2">
-    <div class="wait">今日打卡次数已满</div>
-  </div>
 </template>
 <script>
 import QuestionEditPhoto from '../components/EditImage'
@@ -88,9 +84,9 @@ export default {
       } else {
         console.log(this.failShow)
         this.failShow = true
-        setTimeout(() => {
-          this.failShow = false
-        }, 2000)
+        // setTimeout(() => {
+        //   this.failShow = false
+        // }, 2000)
       }
     },
     handelImg (Img) {
@@ -142,28 +138,28 @@ export default {
       animation: wait 1.5s linear infinite;
     }
   }
-  .mask2 {
-    width: 100vw;
-    height: 100vh;
-    position: absolute;
-    background-color: rgb(0, 0, 0, 0.45);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 999;
-    transform: translateY(-200vh);
-    .wait {
-      font-family: 'coder';
-      width: 427px;
-      height: 194px;
-      background-color: #ffffff;
-      border-radius: 20px;
-      padding: 20px;
-      font-size: 50px;
-      line-height: 194px;
-      text-align: center;
-      color: #ff5d31;
-    }
+}
+.mask2 {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  background-color: rgb(0, 0, 0, 0.45);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  transform: translateY(-100vh);
+  .wait {
+    font-family: 'coder';
+    width: 427px;
+    height: 194px;
+    background-color: #ffffff;
+    border-radius: 20px;
+    padding: 20px;
+    font-size: 50px;
+    line-height: 194px;
+    text-align: center;
+    color: #ff5d31;
   }
   @keyframes wait {
     0% {
