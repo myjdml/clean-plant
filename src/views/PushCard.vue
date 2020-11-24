@@ -235,9 +235,9 @@ export default {
 }
 .content {
   position: absolute;
-  top: 300px;
+  top: 250px;
   width: 700px;
-  height: 55vh;
+  height: 90vw;
   background-color: white;
   border-radius: 30px;
   z-index: 4;
