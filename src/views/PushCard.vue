@@ -86,6 +86,7 @@ export default {
             this.$store.state.imageId = []
           })
       } else {
+        console.log(this.failShow)
         this.failShow = true
         setTimeout(() => {
           this.failShow = false
