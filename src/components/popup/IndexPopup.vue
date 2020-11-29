@@ -1,7 +1,10 @@
 <!--eslint-disable no-tabs-->
 <template>
   <div :class="$store.state.showIndexPopup ? 'show default' : 'hidden default'">
-    <div class="popup" @click="hidden">
+    <div
+      class="popup"
+      @click="hidden"
+    >
       <div class="title">
         <p>勤俭节约,光盘ing</p>
         <div class="line"></div>
@@ -19,7 +22,7 @@
           <div class="inner">
             <p class="indexpop-p">打卡奖励</p>
             <li>
-              每期将从打卡天数最多的同学中随机抽取10人获得价值百元的食堂大礼包
+              每期将从打卡天数最多的同学中选取打卡次数最多的10人获得价值百元的食堂大礼包
             </li>
             <li>
               若“打卡次数”完全相同，则在次数相同的同学中进抽奖
@@ -31,7 +34,7 @@
             <p class="indexpop-p">打卡规则</p>
             <li>
               <a>(1)</a>
-                同学们需要每天将饭后空碗筷拍照上传，仅可饭后立刻拍照，不可从图库中选择照片。
+              同学们需要每天将饭后空碗筷拍照上传，仅可饭后立刻拍照，不可从图库中选择照片。
             </li>
             <li><a>(2)</a>同学一日仅需上传一次照片</li>
             <li>
@@ -48,13 +51,16 @@
             </li>
             <li>
               <a>(6)</a>
-             每期获奖名单将在每期结束后的下周三公布
+              每期获奖名单将在每期结束后的下周三公布
             </li>
             <li>
               <a>(7)</a>
               获奖同学请在弹窗中的指定时间到红岩网校工作站b区领取奖品
             </li>
-            <div class="buttonHidden" @click="hidden"></div>
+            <div
+              class="buttonHidden"
+              @click="hidden"
+            ></div>
           </div>
         </div>
       </div>
@@ -73,16 +79,15 @@
  */
 
 export default {
-  data () {
-    return {
-    }
+  data() {
+    return {};
   },
   methods: {
-    hidden () {
-      this.$store.commit('showIndexPopup', false)
-    }
-  }
-}
+    hidden() {
+      this.$store.commit("showIndexPopup", false);
+    },
+  },
+};
 </script>
 <style lang='scss' scoped>
 .popup {
@@ -92,9 +97,9 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-image: url('../../assets/image/home/background.png');
+  background-image: url("../../assets/image/home/background.png");
   background-size: cover;
-  font-family: 'Coder';
+  font-family: "Coder";
   .indexpop-p {
     color: #ff6c00;
   }
@@ -118,7 +123,7 @@ export default {
     width: 620px;
     height: 17px;
     transform: translateY(10px);
-    background-image: url('../../assets/image/index/ware.png');
+    background-image: url("../../assets/image/index/ware.png");
     background-size: cover;
   }
   $img-width: 680, 680, 680;
@@ -134,7 +139,7 @@ export default {
     .index:nth-child(#{$i}) {
       height: #{nth($img-height, $i)}px;
       width: #{nth($img-width, $i)}px;
-      background-image: url('../../assets/image/components/popups/card#{$i}.png');
+      background-image: url("../../assets/image/components/popups/card#{$i}.png");
       background-size: cover;
       display: flex;
       flex-direction: column;
@@ -165,7 +170,7 @@ export default {
         margin-right: 10px;
         color: #3d78fa;
       }
-     i{
+      i {
         height: 1px;
         width: 6px;
       }
@@ -179,7 +184,7 @@ export default {
           transform: translateX(-50%) translateY(30px);
           width: 218px;
           height: 74px;
-          background-image: url('../../assets/image/components/popups/popupIndexButton.png');
+          background-image: url("../../assets/image/components/popups/popupIndexButton.png");
           background-size: cover;
         }
       }
