@@ -58,8 +58,8 @@
               获奖同学请在弹窗中的指定时间到红岩网校工作站b区领取奖品。
             </li>
             <div
-              class="buttonHidden"
-              @click="hidden"
+              class='buttonHidden'
+              @click='hidden'
             ></div>
           </div>
         </div>
@@ -79,15 +79,15 @@
  */
 
 export default {
-  data() {
-    return {};
+  data () {
+    return {}
   },
   methods: {
-    hidden() {
-      this.$store.commit("showIndexPopup", false);
-    },
-  },
-};
+    hidden () {
+      this.$store.commit('showIndexPopup', false)
+    }
+  }
+}
 </script>
 <style lang='scss' scoped>
 .popup {
