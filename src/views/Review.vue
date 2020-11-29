@@ -1,8 +1,8 @@
 <!--
  * @Author: kying-star
  * @Date: 2020-11-22 14:39:16
- * @LastEditTime: 2020-11-23 23:53:07
- * @LastEditors: kyingstar
+ * @LastEditTime: 2020-11-29 21:27:47
+ * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /clean-plant/src/views/Review.vue
 -->
@@ -34,6 +34,8 @@ import { reviewCardRecord, getReviewedRecords } from '../server/index'
 export default {
   data () {
     return {
+      passClick:false,
+      faildClick:false,
       list: [
         {
           content: 'abababab',
@@ -75,7 +77,7 @@ export default {
     }
   },
   methods: {
-    pass: function (e, id, index) {
+    pass: function ( id, index) {
       reviewCardRecord(id, 'passed')
       this.list[index].passClick = true
       this.list[index].faildClick = false
