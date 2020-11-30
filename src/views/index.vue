@@ -355,9 +355,6 @@ export default {
   width: 100vw;
   background-image: url('../assets/image/home/background.png');
   background-size: contain;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   font-family: 'coder';
   letter-spacing: 2px;
   p {
