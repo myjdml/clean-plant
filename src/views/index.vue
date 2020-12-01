@@ -330,10 +330,10 @@ export default {
       this.update()
     }
     const week = dayjs.unix(dayjs().unix()).$W
-    // console.log('这周是')
+    console.log('今天是星期' + week)
     this.daylist.forEach((e, index) => {
       this.daylist[index].num = dayjs().add(index - week, 'day').$D + 1
-      // console.log(this.daylist[index].num)
+      console.log('周' + index + '是' + this.daylist[index].num)
     })
     /**
      * @description: 请求打卡数据
