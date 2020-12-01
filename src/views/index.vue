@@ -334,6 +334,7 @@ export default {
     this.daylist.forEach((e, index) => {
       this.daylist[index].num = dayjs().add(index - week, 'day').$D + 1
       console.log('周' + index + '是' + this.daylist[index].num)
+      console.log(dayjs().add(index - week, 'day'))
     })
     /**
      * @description: 请求打卡数据
