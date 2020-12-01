@@ -170,13 +170,13 @@ export default {
       info: '今日打卡成功',
       num: 1,
       daylist: [
+        { num: 0, state: 'faild', week: '周日' },
         { num: 0, state: 'faild', week: '周一' },
         { num: 0, state: 'faild', week: '周二' },
         { num: 0, state: 'faild', week: '周三' },
         { num: 0, state: 'faild', week: '周四' },
         { num: 0, state: 'faild', week: '周五' },
-        { num: 0, state: 'faild', week: '周六' },
-        { num: 0, state: 'faild', week: '周日' }
+        { num: 0, state: 'faild', week: '周六' }
       ],
       clockinList: [
         // { tip: '可莉是最棒的!', img: '../assets/image/mock/mock1.png', time: '10月24日', praiseNum: 100, ispraise: false, id: 'kying-star', type: 'other', countDay: 3, status: 'waiting' },
