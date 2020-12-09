@@ -410,6 +410,7 @@ export default {
         })
         this.card_day = pushDay.size
         console.log(pushDay)
+        this.$store.state.card_day = this.card_day
       })
   }
 }

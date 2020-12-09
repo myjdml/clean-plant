@@ -5,7 +5,7 @@
     <header class="header">
       <div class="title">
         <p>今日打卡</p>
-        <p>今天是坚持的第一天哦，加油！</p>
+        <p><!--今天是坚持的第一天哦，加油！--></p>
         <div class="title__line"></div>
       </div>
     </header>
@@ -48,7 +48,13 @@ export default {
       formData: null,
       postShow: false,
       failShow: false,
-      repeatPostShow: false
+      repeatPostShow: false,
+      titleIdom: [
+        '万事开头难，养成粮食习惯，起步一定要加油鸭！',
+        '已经坚持一半了，继续加油~',
+        '加油！，终点就在眼前。',
+        '恭喜你以完成目标，你离大奖越来越近啦！'
+      ]
     }
   },
   methods: {
@@ -215,6 +221,7 @@ export default {
     background-image: url('../assets/image/push-card/wave-line.png');
     background-size: 100%;
     margin-left: 29px;
+    margin-top: 15px;
   }
   p {
     display: inline-block;

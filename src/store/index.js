@@ -20,7 +20,8 @@ export default createStore({
     showOverPopup: false,
     num: 0,
     image: [],
-    imageId: []
+    imageId: [],
+    card_day: 0
   },
   mutations: {
     addCount (state, num) {
