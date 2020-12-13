@@ -3,12 +3,13 @@
     <div class="popup">
         <div class="back" @click="gotohome"></div>
         <div class="title">
-          积极榜单
+          <div class="title__img"></div>
+          第一期获奖名单
         </div>
         <div class="box">
           <div class="list-hidden">
             <div class="list">
-              <div class="item" v-for="item in lists" :key="item.id">
+              <div class="item" v-for="item in lists" :key="item.order">
                 <div class="item-person">
                   <div class="order">{{item.order}}.</div>
                   <div class="avatar">
@@ -16,11 +17,11 @@
                   </div>
                   <div class="detail">
                     <li>{{item.nickname}}</li>
-                    <li>总共打卡{{item.card_count}}次</li>
+                    <li>已经连续打卡<span>{{item.continue_day}}</span>天了!</li>
                   </div>
                 </div>
                 <div class="count">
-                  已经连续打卡<a>{{item.continue_day}}</a>天了
+                  获得食堂大礼包x1
                 </div>
               </div>
             </div>
@@ -44,12 +45,31 @@
  * @return {*}
  * @author: 林其星
  */
-import { getActivityList } from '../server/index'
+import { getAwardList } from '../server/index'
 // import style (>= Swiper 6.x)
 export default {
   data () {
     return {
-      lists: []
+      lists: [
+        {
+          order: 1,
+          nickname: '派大星',
+          avatar: 'http://cdn.redrock.team/clean-plant-sever_iGmH4mqJc4F9MnvMRXBlLyjJdvFyfwvK.8dwXdnFN2UpPDtENU5yEaRwICqo8zisT',
+          continue_day: '4'
+        },
+        {
+          order: 2,
+          nickname: '派大星',
+          avatar: 'http://cdn.redrock.team/clean-plant-sever_iGmH4mqJc4F9MnvMRXBlLyjJdvFyfwvK.8dwXdnFN2UpPDtENU5yEaRwICqo8zisT',
+          continue_day: '10'
+        },
+        {
+          order: 3,
+          nickname: '派大星',
+          avatar: 'http://cdn.redrock.team/clean-plant-sever_iGmH4mqJc4F9MnvMRXBlLyjJdvFyfwvK.8dwXdnFN2UpPDtENU5yEaRwICqo8zisT',
+          continue_day: '12'
+        }
+      ]
     }
   },
   methods: {
@@ -62,7 +82,7 @@ export default {
     }
   },
   created () {
-    getActivityList().then((e) => {
+    getAwardList().then((e) => {
       console.log(e.data.data)
       const items = []
       e.data.data.forEach((e, index) => {
@@ -70,8 +90,6 @@ export default {
         item.order = `${index + 1}.`
         item.nickname = e.nickname
         item.avatar = e.avatar
-        item.card_count = e.card_count
-        item.day_count = e.day_count
         item.continue_day = e.continue_day
         items.push(item)
       })
@@ -139,6 +157,13 @@ export default {
     display: flex;
     justify-content: flex-start;
     align-items: center;
+    .title__img {
+      margin-right: 20px;
+      width: 43px;
+      height: 46px;
+      background-image: url('../assets/image/index/parise.png');
+      background-size: cover;
+    }
   }
   .box{
     width: 682px;
@@ -168,6 +193,7 @@ export default {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            border-radius: 10px;
             .item-person{
               display: flex;
               flex-direction: row;
@@ -202,23 +228,24 @@ export default {
               list-style: none;
               align-items: flex-start;
               li:nth-child(1){
-                font-size: 19px;
+                font-size: 23px;
                 color: #FF7800;
                 line-height: 58px;
               }
               li:nth-child(2){
-                font-size: 14px;
-                color: #5C59FF;
+                font-size: 17px;
+                color: #FFAA68;
                 line-height: 18px;
+                span {
+                  color: #5C59FF;
+                }
               }
             }
             .count{
-              color: #FFAA68;
-              font-size: 20px;
+              color: #5C59FF;
+              font-size: 22px;
               line-height: 99px;
-              a{
-                color: #697EFF;
-              }
+              margin-right: 20px;
             }
           }
       }

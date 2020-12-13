@@ -221,10 +221,10 @@ export default {
     },
     showRollPopup () {
       console.log(1)
-      this.$store.commit('showRollPopup', true)
+      // this.$store.commit('showRollPopup', true)
+      this.$router.push('/award')
     },
     showActivityPopup () {
-      console.log(1)
       this.$router.push('/activity')
     },
     update () {

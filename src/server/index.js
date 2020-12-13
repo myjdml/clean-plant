@@ -71,6 +71,17 @@ export function getActivityList () {
 }
 
 /**
+ * @description: 获取获奖名单
+ * @param {*}
+ * @return {*}
+ * @author: myjdml
+ */
+
+export function getAwardList () {
+  return instance.get('/prize?period=1')
+}
+
+/**
  * @description: 打卡审核
  * @param {*} record_id
  * @return {*}
