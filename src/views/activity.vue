@@ -10,7 +10,7 @@
             <div class="list">
               <div class="item" v-for="item in lists" :key="item.id">
                 <div class="item-person">
-                  <div class="order">{{item.order}}.</div>
+                  <div class="order">{{item.order}}</div>
                   <div class="avatar">
                     <img :src="item.avatar">
                   </div>
