@@ -2,7 +2,7 @@
 <template>
   <div :class="$store.state.showInfoPopup ? 'show default' : 'hidden default'">
     <div class="popup" @click="hidden">
-      <div :class="type == `succesd` ? `info` : `warm`">{{ info }}</div>
+      <div :class="type === `succesd` ? `info` : `warm`">{{ info }}</div>
     </div>
   </div>
 </template>
@@ -28,7 +28,7 @@ export default {
   },
   methods: {
     hidden () {
-      this.$store.commit('showInfoPopup', false)
+      this.$store.commit('showInfoPopup', false);
     }
   }
 }

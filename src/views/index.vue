@@ -128,6 +128,7 @@
   <!-- <div class="backTop">返回顶部</div> -->
   <indexPopup></indexPopup>
   <rollPopup></rollPopup>
+  <index-alert-popup v-if="isShowIndexAlertPopup"/>
   <warm></warm>
   <info :info="info" type="succesd"></info>
   <overPopup info="今日打卡次数已满" type="succesd"></overPopup>
@@ -139,6 +140,7 @@
 import indexPopup from '../components/popup/IndexPopup'
 import overPopup from '../components/popup/OverPopup'
 import rollPopup from '../components/popup/rollPopup'
+import IndexAlertPopup from '../components/popup/IndexAlertPopup'
 import info from '../components/popup/infoPopup'
 import warm from '../components/popup/warmPopup'
 import { useRouter } from 'vue-router'
@@ -154,7 +156,8 @@ export default {
     info,
     rollPopup,
     warm,
-    overPopup
+    overPopup,
+    IndexAlertPopup
   },
   setup () {
     const router = useRouter()
@@ -193,7 +196,8 @@ export default {
       index_height: '100vh',
       calendar: {
         state: false
-      }
+      },
+      isShowIndexAlertPopup: true
     }
   },
   methods: {
@@ -221,8 +225,8 @@ export default {
     },
     showRollPopup () {
       console.log(1)
-      // this.$store.commit('showRollPopup', true)
-      this.$router.push('/award')
+      this.$store.commit('showRollPopup', true)
+      // this.$router.push('/award')
     },
     showActivityPopup () {
       this.$router.push('/activity')
@@ -352,6 +356,16 @@ export default {
     // window.onscroll = function (e) {
     //   console.log(e.path[1].scrollY)
     // }
+  },
+  beforeCreate () {
+    // 第一次进入的时候有领奖提示的弹窗
+    const judgeIfAlert = localStorage.getItem('ifAlert')
+    if (judgeIfAlert !== 'true') {
+      localStorage.setItem('ifAlert', true)
+    } else {
+      console.log(this.$store.state.showIndexAlertPopup)
+      this.$store.state.showIndexAlertPopup = false
+    }
   }
 }
 </script>
