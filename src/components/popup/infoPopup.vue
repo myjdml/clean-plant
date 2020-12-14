@@ -28,7 +28,7 @@ export default {
   },
   methods: {
     hidden () {
-      this.$store.commit('showInfoPopup', false);
+      this.$store.commit('showInfoPopup', false)
     }
   }
 }

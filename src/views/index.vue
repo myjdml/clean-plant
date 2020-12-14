@@ -719,4 +719,3 @@ export default {
   }
 }
 </style>
-
