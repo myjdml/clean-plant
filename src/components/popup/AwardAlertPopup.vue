@@ -1,7 +1,7 @@
 <!--eslint-disable no-tabs-->
 <template>
-  <div id="index-alert-popup" :class="$store.state.showIndexAlertPopup ? 'show' : 'hidden'">
-    <div :class="$store.state.showIndexAlertPopup ? 'show default' : 'hidden default'" @click="hidden">
+  <div id="award-alert-popup" :class="$store.state.showAwardAlertPopup ? 'show' : 'hidden'">
+    <div :class="$store.state.showAwardAlertPopup ? 'show default' : 'hidden default'" @click="hidden">
       <div class="popup">
         <p class="info">{{info}}</p>
       </div>
@@ -29,13 +29,13 @@ export default {
   },
   methods: {
     hidden () {
-      this.$store.commit('showIndexAlertPopup', false)
+      this.$store.commit('showAwardAlertPopup', false)
     }
   }
 }
 </script>
 <style lang='scss' scoped>
-#index-alert-popup {
+#award-alert-popup {
   position: fixed;
   top: 0;
   width: 100vw;

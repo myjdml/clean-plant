@@ -1,32 +1,34 @@
 <!--eslint-disable no-tabs-->
 <template>
-    <div class="popup">
-        <div class="back" @click="gotohome"></div>
-        <div class="title">
-          <div class="title__img"></div>
-          第一期获奖名单
-        </div>
-        <div class="box">
-          <div class="list-hidden">
-            <div class="list">
-              <div class="item" v-for="item in lists" :key="item.order">
-                <div class="item-person">
-                  <div class="order">{{item.order}}</div>
-                  <div class="avatar">
-                    <img :src="item.avatar">
-                  </div>
-                  <div class="detail">
-                    <li>{{item.nickname}}</li>
-                    <li>已经连续打卡<span>{{item.continue_day}}</span>天了!</li>
-                  </div>
-                </div>
-                <div class="count">
-                  获得食堂大礼包x1
-                </div>
+  <div class="popup">
+    <div class="back" @click="gotohome"></div>
+    <div class="title">
+      <div class="title__img"></div>
+      第一期获奖名单
+      <span @click="popupShow">获奖方式</span>
+    </div>
+    <div class="box">
+      <div class="list-hidden">
+        <div class="list">
+          <div class="item" v-for="item in lists" :key="item.order">
+            <div class="item-person">
+              <div class="order">{{item.order}}</div>
+              <div class="avatar">
+                <img :src="item.avatar">
+              </div>
+              <div class="detail">
+                <li>{{item.nickname}}</li>
+                <li>已经连续打卡<span>{{item.continue_day}}</span>天了!</li>
               </div>
             </div>
+            <div class="count">
+              获得食堂大礼包x1
+            </div>
           </div>
-          <div class="arrow"></div>
+        </div>
+      </div>
+      <p class="remind-words">请以上同学于<span>12.18日中午12点在红岩网校工作站b区</span>领取奖品</p>
+      <div class="arrow"></div>
     </div>
     <!-- <div class="mask" @click="hidden">
        <div class="info">
@@ -34,9 +36,11 @@
        </div>
     </div> -->
   </div>
+  <award-alert-popup info="请获奖同学于12.18（本周五）中午12点在红岩网校工作站b区领取奖品。希望同学们继续保持光盘节俭的好习惯！"/>
 </template>
 
 <script>
+import AwardAlertPopup from '../components/popup/AwardAlertPopup.vue'
 /* eslint-disable no-tabs */
 /* eslint-disable indent */
 /**
@@ -48,6 +52,7 @@
 import { getAwardList } from '../server/index'
 // import style (>= Swiper 6.x)
 export default {
+  components: { AwardAlertPopup },
   data () {
     return {
       lists: [
@@ -68,6 +73,42 @@ export default {
           nickname: '派大星',
           avatar: 'http://cdn.redrock.team/clean-plant-sever_iGmH4mqJc4F9MnvMRXBlLyjJdvFyfwvK.8dwXdnFN2UpPDtENU5yEaRwICqo8zisT',
           continue_day: '12'
+        },
+        {
+          order: 4,
+          nickname: '派大星',
+          avatar: 'http://cdn.redrock.team/clean-plant-sever_iGmH4mqJc4F9MnvMRXBlLyjJdvFyfwvK.8dwXdnFN2UpPDtENU5yEaRwICqo8zisT',
+          continue_day: '12'
+        },
+        {
+          order: 5,
+          nickname: '派大星',
+          avatar: 'http://cdn.redrock.team/clean-plant-sever_iGmH4mqJc4F9MnvMRXBlLyjJdvFyfwvK.8dwXdnFN2UpPDtENU5yEaRwICqo8zisT',
+          continue_day: '12'
+        },
+        {
+          order: 6,
+          nickname: '派大星',
+          avatar: 'http://cdn.redrock.team/clean-plant-sever_iGmH4mqJc4F9MnvMRXBlLyjJdvFyfwvK.8dwXdnFN2UpPDtENU5yEaRwICqo8zisT',
+          continue_day: '12'
+        },
+        {
+          order: 7,
+          nickname: '派大星',
+          avatar: 'http://cdn.redrock.team/clean-plant-sever_iGmH4mqJc4F9MnvMRXBlLyjJdvFyfwvK.8dwXdnFN2UpPDtENU5yEaRwICqo8zisT',
+          continue_day: '12'
+        },
+        {
+          order: 8,
+          nickname: '派大星',
+          avatar: 'http://cdn.redrock.team/clean-plant-sever_iGmH4mqJc4F9MnvMRXBlLyjJdvFyfwvK.8dwXdnFN2UpPDtENU5yEaRwICqo8zisT',
+          continue_day: '12'
+        },
+        {
+          order: 9,
+          nickname: '派大星',
+          avatar: 'http://cdn.redrock.team/clean-plant-sever_iGmH4mqJc4F9MnvMRXBlLyjJdvFyfwvK.8dwXdnFN2UpPDtENU5yEaRwICqo8zisT',
+          continue_day: '12'
         }
       ]
     }
@@ -79,6 +120,9 @@ export default {
     },
     gotohome () {
       this.$router.push('/index')
+    },
+    popupShow () {
+      this.$store.commit('showAwardAlertPopup', true)
     }
   },
   created () {
@@ -95,6 +139,16 @@ export default {
       })
       this.lists = items
     })
+  },
+  beforeCreate () {
+    // 第一次进入的时候有领奖提示的弹窗
+    const judgeIfAlert = localStorage.getItem('ifOpenAward')
+    if (judgeIfAlert !== 'true') {
+      localStorage.setItem('ifOpenAward', true)
+    } else {
+      console.log(this.$store.state.showAwardAlertPopup)
+      this.$store.state.showAwardAlertPopup = false
+    }
   }
 }
 </script>
@@ -147,7 +201,7 @@ export default {
   }
   .title{
     margin-top: 82px;
-    width: 570px;
+    width: 670px;
     height: 130px;
     font-size: 39px;
     font-family: Coder;
@@ -164,6 +218,14 @@ export default {
       background-image: url('../assets/image/index/parise.png');
       background-size: cover;
     }
+    span {
+      width: 108px;
+      font-size: 25px;
+      margin-left: 220px;
+      font-weight: 400;
+      color: #3272FE;
+      line-height: 40px;
+    }
   }
   .box{
     width: 682px;
@@ -178,7 +240,7 @@ export default {
     .list-hidden { overflow: -moz-scrollbars-none; }
     .list-hidden{
       width: 682px;
-      height: 840px;
+      height: 780px;
       overflow-y: scroll;
       display: flex;
       flex-direction: column;
@@ -248,6 +310,15 @@ export default {
               margin-right: 20px;
             }
           }
+      }
+    }
+    .remind-words {
+      margin-top: 40px;
+      font-size: 22px;
+      font-weight: 400;
+      color: #3551FF;
+      span {
+        color: #FF5A00;
       }
     }
     .arrow{
