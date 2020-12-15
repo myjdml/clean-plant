@@ -128,7 +128,7 @@
   <!-- <div class="backTop">返回顶部</div> -->
   <indexPopup></indexPopup>
   <rollPopup></rollPopup>
-  <index-alert-popup v-if="isShowIndexAlertPopup" info="第一期活动已结束，将于12.16日12点公布本期获奖信息"/>
+  <index-alert-popup info="第一期活动已结束，将于12.16日12点公布本期获奖信息"/>
   <warm></warm>
   <info :info="info" type="succesd"></info>
   <overPopup info="今日打卡次数已满" type="succesd"></overPopup>
@@ -196,8 +196,7 @@ export default {
       index_height: '100vh',
       calendar: {
         state: false
-      },
-      isShowIndexAlertPopup: true
+      }
     }
   },
   methods: {

@@ -1,6 +1,6 @@
 <!--eslint-disable no-tabs-->
 <template>
-  <div id="index-alert-popup" :class="$store.state.showIndexAlertPopup ? 'show' : 'hidden'">
+  <div id="index-alert-popup" :class="$store.state.showIndexAlertPopup ? '': 'hidden-a'">
     <div :class="$store.state.showIndexAlertPopup ? 'show default' : 'hidden default'" @click="hidden">
       <div class="popup">
         <p class="info">{{info}}</p>
@@ -76,6 +76,9 @@ export default {
 // .hidden {
 //   position: fixed;
 // }
+.hidden-a {
+  visibility: hidden;
+}
 .show {
   // touch-action: none;
   opacity: 1;
