@@ -18,7 +18,7 @@
               </div>
               <div class="detail">
                 <li>{{item.nickname}}</li>
-                <li>总共打卡<span>{{item.day_count}}</span>次</li>
+                <!-- <li>总共打卡<span>{{item.day_count}}</span>次</li> -->
               </div>
             </div>
             <div class="count">
@@ -246,7 +246,7 @@ export default {
               li:nth-child(1){
                 font-size: 23px;
                 color: #FF7800;
-                line-height: 58px;
+                line-height: 99px;
               }
               li:nth-child(2){
                 font-size: 17px;
