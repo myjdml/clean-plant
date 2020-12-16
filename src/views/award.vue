@@ -82,7 +82,7 @@ export default {
         },
         {
           order: 5,
-          nickname: '派大星',
+          nickname: '派大星派大星派大星派大星派大星派大星派大星派大星派大星派大星派大星派大星派大星派大星派大星',
           avatar: 'http://cdn.redrock.team/clean-plant-sever_iGmH4mqJc4F9MnvMRXBlLyjJdvFyfwvK.8dwXdnFN2UpPDtENU5yEaRwICqo8zisT',
           continue_day: '12'
         },
@@ -132,7 +132,11 @@ export default {
       e.data.data.forEach((e, index) => {
         const item = {}
         item.order = `${index + 1}.`
-        item.nickname = e.nickname
+        if (e.nickname.length > 10) {
+          item.nickname = e.nickname.substring(0, 10) + '...'
+        } else {
+          item.nickname = e.nickname
+        }
         item.avatar = e.avatar
         item.continue_day = e.continue_day
         items.push(item)
