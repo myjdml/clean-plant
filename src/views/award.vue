@@ -55,62 +55,7 @@ export default {
   components: { AwardAlertPopup },
   data () {
     return {
-      lists: [
-        {
-          order: 1,
-          nickname: '派大星',
-          avatar: 'http://cdn.redrock.team/clean-plant-sever_iGmH4mqJc4F9MnvMRXBlLyjJdvFyfwvK.8dwXdnFN2UpPDtENU5yEaRwICqo8zisT',
-          continue_day: '4'
-        },
-        {
-          order: 2,
-          nickname: '派大星',
-          avatar: 'http://cdn.redrock.team/clean-plant-sever_iGmH4mqJc4F9MnvMRXBlLyjJdvFyfwvK.8dwXdnFN2UpPDtENU5yEaRwICqo8zisT',
-          continue_day: '10'
-        },
-        {
-          order: 3,
-          nickname: '派大星',
-          avatar: 'http://cdn.redrock.team/clean-plant-sever_iGmH4mqJc4F9MnvMRXBlLyjJdvFyfwvK.8dwXdnFN2UpPDtENU5yEaRwICqo8zisT',
-          continue_day: '12'
-        },
-        {
-          order: 4,
-          nickname: '派大星',
-          avatar: 'http://cdn.redrock.team/clean-plant-sever_iGmH4mqJc4F9MnvMRXBlLyjJdvFyfwvK.8dwXdnFN2UpPDtENU5yEaRwICqo8zisT',
-          continue_day: '12'
-        },
-        {
-          order: 5,
-          nickname: '派大星派大星派大星派大星派大星派大星派大星派大星派大星派大星派大星派大星派大星派大星派大星',
-          avatar: 'http://cdn.redrock.team/clean-plant-sever_iGmH4mqJc4F9MnvMRXBlLyjJdvFyfwvK.8dwXdnFN2UpPDtENU5yEaRwICqo8zisT',
-          continue_day: '12'
-        },
-        {
-          order: 6,
-          nickname: '派大星',
-          avatar: 'http://cdn.redrock.team/clean-plant-sever_iGmH4mqJc4F9MnvMRXBlLyjJdvFyfwvK.8dwXdnFN2UpPDtENU5yEaRwICqo8zisT',
-          continue_day: '12'
-        },
-        {
-          order: 7,
-          nickname: '派大星',
-          avatar: 'http://cdn.redrock.team/clean-plant-sever_iGmH4mqJc4F9MnvMRXBlLyjJdvFyfwvK.8dwXdnFN2UpPDtENU5yEaRwICqo8zisT',
-          continue_day: '12'
-        },
-        {
-          order: 8,
-          nickname: '派大星',
-          avatar: 'http://cdn.redrock.team/clean-plant-sever_iGmH4mqJc4F9MnvMRXBlLyjJdvFyfwvK.8dwXdnFN2UpPDtENU5yEaRwICqo8zisT',
-          continue_day: '12'
-        },
-        {
-          order: 9,
-          nickname: '派大星',
-          avatar: 'http://cdn.redrock.team/clean-plant-sever_iGmH4mqJc4F9MnvMRXBlLyjJdvFyfwvK.8dwXdnFN2UpPDtENU5yEaRwICqo8zisT',
-          continue_day: '12'
-        }
-      ]
+      lists: []
     }
   },
   methods: {
