@@ -18,7 +18,7 @@
               </div>
               <div class="detail">
                 <li>{{item.nickname}}</li>
-                <li>已经连续打卡<span>{{item.continue_day}}</span>天了!</li>
+                <li>总共<span>{{item.card_count}}</span>次</li>
               </div>
             </div>
             <div class="count">
@@ -84,6 +84,7 @@ export default {
         }
         item.avatar = e.avatar
         item.continue_day = e.continue_day
+        item.card_count = e.card_count
         items.push(item)
       })
       this.lists = items
