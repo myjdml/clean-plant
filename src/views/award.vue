@@ -18,7 +18,7 @@
               </div>
               <div class="detail">
                 <li>{{item.nickname}}</li>
-                <li>总共打卡<span>{{item.day_count}}</span>次</li>
+                <li>总共打卡<span>{{item.day_count}}</span>天</li>
               </div>
             </div>
             <div class="count">
