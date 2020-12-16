@@ -27,7 +27,7 @@
           </div>
         </div>
       </div>
-      <p class="remind-words">请以上同学于<span>12.18日中午12点在红岩网校工作站b区</span>领取奖品</p>
+      <!-- <p class="remind-words">请以上同学于<span>12.18日中午12点在红岩网校工作站b区</span>领取奖品</p> -->
       <div class="arrow"></div>
     </div>
     <!-- <div class="mask" @click="hidden">
@@ -233,7 +233,7 @@ export default {
   }
   .box{
     width: 682px;
-    height: 946px;
+    height: 876px;
     background-color: white;
     border-radius: 20px;
     display: flex;
