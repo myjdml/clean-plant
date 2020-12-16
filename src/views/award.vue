@@ -4,8 +4,8 @@
     <div class="back" @click="gotohome"></div>
     <div class="title">
       <div class="title__img"></div>
-      第一期获奖名单
-      <span @click="popupShow">获奖方式</span>
+      <p>第一期获奖名单</p>
+      <span @click="popupShow">领奖方式</span>
     </div>
     <div class="box">
       <div class="list-hidden">
@@ -171,10 +171,13 @@ export default {
     span {
       width: 108px;
       font-size: 25px;
-      margin-left: 220px;
+      margin-left: 140px;
       font-weight: 400;
       color: #3272FE;
       line-height: 40px;
+    }
+    p {
+      width: 370px;
     }
   }
   .box{
