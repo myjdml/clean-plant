@@ -224,8 +224,8 @@ export default {
     },
     showRollPopup () {
       console.log(1)
-      this.$store.commit('showRollPopup', true)
-      // this.$router.push('/award')
+      // this.$store.commit('showRollPopup', true)
+      this.$router.push('/award')
     },
     showActivityPopup () {
       this.$router.push('/activity')
