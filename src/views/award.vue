@@ -85,7 +85,7 @@ export default {
         item.avatar = e.avatar
         item.continue_day = e.continue_day
         item.card_count = e.card_count
-        item.day_count = r.day_count
+        item.day_count = e.day_count
         items.push(item)
       })
       this.lists = items
