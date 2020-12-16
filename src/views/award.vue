@@ -5,7 +5,7 @@
     <div class="title">
       <div class="title__img"></div>
       第一期获奖名单
-      <span @click="popupShow">获奖方式</span>
+      <span @click="popupShow">领奖方式</span>
     </div>
     <div class="box">
       <div class="list-hidden">
