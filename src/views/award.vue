@@ -170,10 +170,13 @@ export default {
     span {
       width: 108px;
       font-size: 25px;
-      margin-left: 220px;
+      margin-left: 140px;
       font-weight: 400;
       color: #3272FE;
       line-height: 40px;
+    }
+    p {
+      width: 370px;
     }
   }
   .box{
