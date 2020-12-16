@@ -4,7 +4,7 @@
     <div class="back" @click="gotohome"></div>
     <div class="title">
       <div class="title__img"></div>
-      第一期获奖名单
+      <p>第一期获奖名单</p>
       <span @click="popupShow">领奖方式</span>
     </div>
     <div class="box">

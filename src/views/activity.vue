@@ -68,7 +68,11 @@ export default {
       e.data.data.forEach((e, index) => {
         const item = {}
         item.order = `${index + 1}.`
-        item.nickname = e.nickname
+        if (e.nickname.length > 10) {
+          item.nickname = e.nickname.substring(0, 10) + '...'
+        } else {
+          item.nickname = e.nickname
+        }
         item.avatar = e.avatar
         item.card_count = e.card_count
         item.day_count = e.day_count
