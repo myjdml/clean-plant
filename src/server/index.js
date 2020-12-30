@@ -78,7 +78,7 @@ export function getActivityList () {
  */
 
 export function getAwardList () {
-  return instance.get('/prize?period=1')
+  return instance.get('/prize?period=2')
 }
 
 /**

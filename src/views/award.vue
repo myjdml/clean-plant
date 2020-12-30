@@ -36,8 +36,7 @@
        </div>
     </div> -->
   </div>
-  <award-alert-popup info="请获奖同学于12.18（本周五）中午12点在红岩网校工作站b区领取奖品。希望同学们继续保持光盘节俭的好习惯！"/>
-</template>
+  <award-alert-popup info="第二期领奖时间待定"/></template>
 
 <script>
 import AwardAlertPopup from '../components/popup/AwardAlertPopup.vue'
