@@ -128,7 +128,7 @@
   <!-- <div class="backTop">返回顶部</div> -->
   <indexPopup></indexPopup>
   <rollPopup></rollPopup>
-  <index-alert-popup info="第一期活动已结束，将于12.16日12点公布本期获奖信息"/>
+  <!-- <index-alert-popup info="第一期活动已结束，将于12.16日12点公布本期获奖信息"/> -->
   <warm></warm>
   <info :info="info" type="succesd"></info>
   <overPopup info="今日打卡次数已满" type="succesd"></overPopup>
@@ -140,7 +140,7 @@
 import indexPopup from '../components/popup/IndexPopup'
 import overPopup from '../components/popup/OverPopup'
 import rollPopup from '../components/popup/rollPopup'
-import IndexAlertPopup from '../components/popup/IndexAlertPopup'
+// import IndexAlertPopup from '../components/popup/IndexAlertPopup'
 import info from '../components/popup/infoPopup'
 import warm from '../components/popup/warmPopup'
 import { useRouter } from 'vue-router'
@@ -156,8 +156,7 @@ export default {
     info,
     rollPopup,
     warm,
-    overPopup,
-    IndexAlertPopup
+    overPopup
   },
   setup () {
     const router = useRouter()
