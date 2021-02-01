@@ -1,24 +1,77 @@
 # clean-plant
 
-## Project setup
-```
-yarn install
+> 勤俭节约健康打卡
+
+## 整体结构
+
+为了方便只展示 src 目录下的文件。图片文件夹只展示具体文件夹，不展示具体文件。
+
+```shell
+.
+├─public
+└─src
+    ├─assets
+    │  ├─font
+    │  ├─image
+    │  │  ├─calendar
+    │  │  ├─components
+    │  │  │  └─popups
+    │  │  ├─edit-img
+    │  │  ├─home
+    │  │  ├─icon
+    │  │  ├─index
+    │  │  ├─mock
+    │  │  ├─push-card
+    │  │  └─review
+    │  ├─style
+    │  └─svg
+    ├─components
+    │  ├─calendar
+    │  └─popup
+    ├─config
+    ├─router
+    ├─server
+    ├─service
+    ├─store
+    │  └─type
+    ├─utils
+    └─views
+
 ```
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
+## 技术栈
 
-### Compiles and minifies for production
-```
-yarn build
-```
++ Vue
++ vue-router
++ Axios
++ VueX
 
-### Lints and fixes files
-```
-yarn lint
-```
+## 项目运行
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
++ 使用 Vue Cli 创建，按照标准即可完成
+
+## 接口文档
+
+用户方面接口：https://documenter.getpostman.com/view/12209785/TVYKawTK
+
+管理员审核接口： https://documenter.getpostman.com/view/12209785/TVYKawTK#726fb170-b144-42c8-a973-c082c77ad51f
+
+## 参与项目成员
+
++ 毛尧俊
++ 林其星
+
+## 项目上线时间
+
++ 2020年11月30日
+
+## 项目的线上地址
+
+https://wx.redrock.team/game/clean-plant/ 
+https://redrock.team/game/clean-plant/
+
+## 代码的 GitHub/GitLab 地址
+
++ github: https://github.com/myjdml/clean-plant/
++ gitlab: https://gitlab.redrock.team/web/clean-plant/
+
