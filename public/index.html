@@ -1,7 +1,7 @@
 <!--
  * @Author: Code_Master
  * @Date: 2020-11-18 21:01:12
- * @LastEditTime: 2020-11-29 14:19:29
+ * @LastEditTime: 2021-04-21 19:23:02
  * @LastEditors: Please set LastEditors
  * @FilePath: /clean-plant/public/index.html
  * @Description: The first 90% of the code accounts for the first 90% of the development time. The remaining 10% of the code accounts for the other 90% of the development time.
@@ -20,7 +20,7 @@
 <body>
   <noscript>
     <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled.
-      Please enable it to continue.</strong>
+        Please enable it to continue.</strong>
   </noscript>
   <div id="app"></div>
   <!-- built files will be auto injected -->
@@ -37,8 +37,8 @@
       console.log(date)
       localStorage.setItem('time', date)
       window.location.href =
-        'https://wx.redrock.team/magicloop/rushb?b=' +
-        encodeURI('https://cyxbsmobile.redrock.team/wxapi/clean-plant-server/enter') +
+        'https://be-prod.redrock.team/magicloop/rushb?b=' +
+        encodeURI('https://be-prod.redrock.team/wxapi/clean-plant-server/enter') +
         '&scope=student';
     }
     console.log(token);
@@ -60,17 +60,17 @@
       console.log(date)
       localStorage.setItem('time', date)
       window.location.href =
-        'https://wx.redrock.team/magicloop/rushb?b=' +
-        encodeURI('https://cyxbsmobile.redrock.team/wxapi/clean-plant-server/enter') +
+        'https://be-prod.team/magicloop/rushb?b=' +
+        encodeURI('https://be-prod.redrock.team/wxapi/clean-plant-server/enter') +
         '&scope=student';
     }
   </script>
   <script>
     var _hmt = _hmt || [];
-    (function() {
+    (function () {
       var hm = document.createElement("script");
       hm.src = "https://hm.baidu.com/hm.js?c92cd0fa0888f33d5e9cd257f0a15ffb";
-      var s = document.getElementsByTagName("script")[0]; 
+      var s = document.getElementsByTagName("script")[0];
       s.parentNode.insertBefore(hm, s);
     })();
   </script>

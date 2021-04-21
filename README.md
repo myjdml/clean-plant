@@ -1,3 +1,11 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-02-24 23:03:29
+ * @LastEditTime: 2021-04-21 19:22:51
+ * @LastEditors: your name
+ * @Description: In User Settings Edit
+ * @FilePath: /clean-plant/README.md
+-->
 # clean-plant
 
 > 勤俭节约健康打卡
@@ -67,8 +75,8 @@
 
 ## 项目的线上地址
 
-https://wx.redrock.team/game/clean-plant/ 
-https://redrock.team/game/clean-plant/
+https:/be-prod.team/clean-plant/ 
+https://be-prod.team/clean-plant/
 
 ## 代码的 GitHub/GitLab 地址
 
