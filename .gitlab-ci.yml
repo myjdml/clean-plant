@@ -1,6 +1,5 @@
 variables:
   REPO_NAME: clean-plant
-
 stages:
   - setup
   - compile
@@ -67,7 +66,7 @@ image_dev:
     - redrock-fe
   script:
     - echo -e "FROM reg.redrock.team/base/redrock-fe-env-caddy:latest\nADD ./build /build" > Dockerfile
-    - docker build --tag reg.redrock.team/fe-dev-artifacts/${REPO_NAME}:${CI_COMMIT_SHA} .
+    - docker build . -t reg.redrock.team/fe-dev-artifacts/${REPO_NAME}:${CI_COMMIT_SHA}
     - docker push "reg.redrock.team/fe-dev-artifacts/${REPO_NAME}:${CI_COMMIT_SHA}"
   only:
     - dev
@@ -79,11 +78,10 @@ image_prod:
     - redrock-fe
   script:
     - echo -e "FROM reg.redrock.team/base/redrock-fe-env-caddy:latest\nADD ./build /build" > Dockerfile
-    - docker build --tag reg.redrock.team/fe-prod-artifacts/${REPO_NAME}:${CI_COMMIT_SHA} .
+    - docker build . -t reg.redrock.team/fe-prod-artifacts/${REPO_NAME}:${CI_COMMIT_SHA}
     - docker push "reg.redrock.team/fe-prod-artifacts/${REPO_NAME}:${CI_COMMIT_SHA}"
   only:
     - master
-
 
 deploy_dev:
   image: reg.redrock.team/base/redrock-kubectl:latest
@@ -97,14 +95,12 @@ deploy_dev:
     - sed -i "s/_NAMESPACE_/${NAMESPACE}/" /deploy.yaml
     - sed -i "s/_VERSION_/${VERSION}/" /deploy.yaml
     - sed -i "s/_REPO_NAME_/${REPO_NAME}/" /deploy.yaml
-    - sed -i "s/8080/80/" /deploy.yaml
     - kubectl apply -f /deploy.yaml
   environment:
     name: $REPO_NAME-dev
     url: https://$NAMESPACE.redrock.team/$REPO_NAME
   only:
     - dev
-
 
 deploy_prod:
   image: reg.redrock.team/base/redrock-kubectl:latest
@@ -118,7 +114,6 @@ deploy_prod:
     - sed -i "s/_NAMESPACE_/${NAMESPACE}/" /deploy.yaml
     - sed -i "s/_VERSION_/${VERSION}/" /deploy.yaml
     - sed -i "s/_REPO_NAME_/${REPO_NAME}/" /deploy.yaml
-    - sed -i "s/8080/80/" /deploy.yaml
     - kubectl apply -f /deploy.yaml
   environment:
     name: $REPO_NAME-prod
