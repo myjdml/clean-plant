@@ -68,14 +68,7 @@ export default {
         info: {
           state: [
             [
-              [1, 1, 1, 1, 1, 1, 1],
-              [1, 1, 1, 1, 1, 1, 1],
-              [1, 1, 1, 1, 1, 1, 1],
-              [1, 1, 1, 1, 1, 1, 1],
-              [1, 1, 0, 0, 0, 0, 0]
-            ],
-            [
-              [0, 0, 1, 1, 1, 1, 1],
+              [0, 0, 0, 1, 1, 1, 1],
               [1, 1, 1, 1, 1, 1, 1],
               [1, 1, 1, 1, 1, 1, 1],
               [1, 1, 1, 1, 1, 1, 1],
@@ -88,29 +81,36 @@ export default {
               [1, 1, 1, 1, 1, 1, 1],
               [1, 1, 1, 1, 1, 1, 1]
             ]
+            // [
+            //   [0, 0, 0, 0, 0, 1, 1],
+            //   [1, 1, 1, 1, 1, 1, 1],
+            //   [1, 1, 1, 1, 1, 1, 1],
+            //   [1, 1, 1, 1, 1, 1, 1],
+            //   [1, 1, 1, 1, 1, 1, 1]
+            // ]
           ],
           data: [
             [
-              1, 2, 3, 4, 5, 6, 7,
-              8, 9, 10, 11, 12, 13, 14,
-              15, 16, 17, 18, 19, 20, 21,
-              22, 23, 24, 25, 26, 27, 28,
-              29, 30, 1, 2, 3, 4, 5
-            ],
-            [
-              29, 30, 1, 2, 3, 4, 5,
-              6, 7, 8, 9, 10, 11, 12,
-              13, 14, 15, 16, 17, 18, 19,
-              20, 21, 22, 23, 24, 25, 26,
-              27, 28, 29, 30, 31, 1, 2
-            ],
-            [
-              27, 28, 29, 30, 31, 1, 2,
+              26, 27, 28, 29, 30, 1, 2,
               3, 4, 5, 6, 7, 8, 9,
               10, 11, 12, 13, 14, 15, 16,
               17, 18, 19, 20, 21, 22, 23,
               24, 25, 26, 27, 28, 29, 30
+            ],
+            [
+              29, 30, 31, 1, 2, 3, 4,
+              5, 6, 7, 8, 9, 10, 11,
+              12, 13, 14, 15, 16, 17, 18,
+              19, 20, 21, 22, 23, 24, 25,
+              26, 27, 28, 29, 30, 1, 2
             ]
+            // [
+            //   31, 1, 2, 3, 4, 5, 6,
+            //   7, 8, 9, 10, 11, 12, 13,
+            //   14, 15, 16, 17, 18, 19, 20,
+            //   21, 22, 23, 24, 25, 26, 27,
+            //   28, 29, 30, 1, 2, 3, 4
+            // ]
           ],
           calendarHeaderImg: {
             pevNo: null,
@@ -126,13 +126,13 @@ export default {
           [2, 2, 2, 2, 2, 2, 2],
           [2, 2, 0, 0, 0, 0, 0]
         ],
-        stateFlag: [1, 3, 5],
+        stateFlag: [4, 6, 5],
         data: [
-          1, 2, 3, 4, 5, 6, 7,
-          8, 9, 10, 11, 12, 13, 14,
-          15, 16, 17, 18, 19, 20, 21,
-          22, 23, 24, 25, 26, 27, 28,
-          29, 30, 1, 2, 3, 4, 5
+          26, 27, 28, 29, 30, 1, 2,
+          3, 4, 5, 6, 7, 8, 9,
+          10, 11, 12, 13, 14, 15, 16,
+          17, 18, 19, 20, 21, 22, 23,
+          24, 25, 26, 27, 28, 29, 30
         ]
       },
       calendarControl: {
@@ -169,8 +169,8 @@ export default {
       today: {
         month: null,
         day: null,
-        year: 2020,
-        flag: 11
+        year: 2021,
+        flag: 9
       }
     }
   },
@@ -252,55 +252,29 @@ export default {
         const day = timer(item.created_at).date
         const month = timer(item.created_at).month
         // console.log(day, month)
-        if (month === '11') {
+        if (month === '9') {
           dateHandel(this.calendar.stateFlag[0], day, 0)
-        } else if (month === '12') {
+        } else if (month === '10') {
           dateHandel(this.calendar.stateFlag[1], day, 1)
-        } else if (month === '01') {
-          dateHandel(this.calendar.stateFlag[2], day, 2)
         }
       })
     },
     dateAdd (data) {
-      if (data === 12) {
-        return 1
-      } else {
-        return ++data
-      }
+      return ++data
     },
     dateLess (data) {
-      if (data === 1) {
-        return 12
-      } else {
-        return --data
-      }
+      return --data
     },
     toPev () {
       if (this.calendarControl.left === 1) {
         // 改变箭头的样式
         this.$refs.arrowNext.className = 'arrow-after-yes'
-        if (this.today.flag === 1) {
-          this.calendar.state = this.calendar.info.state[1]
-        } else if (this.today.flag === 12) {
-          this.calendar.state = this.calendar.info.state[0]
-        }
-        // this.calendar.state = this.calendar.info.state[0]
-        if (this.today.flag === 12) {
-          // 改变箭头的样式
-          this.$refs.arrowNext.className = 'arrow-after-yes'
-          this.$refs.arrowPev.className = 'arrow-before-no'
-          this.calendarControl.left = 0
-          this.calendarControl.right = 1
-          // 改变年份标识
-          this.today.year = '2020'
-        } if (this.today.flag === 1) {
-          this.$refs.arrowNext.className = 'arrow-after-yes'
-          this.$refs.arrowPev.className = 'arrow-before-yes'
-          this.calendarControl.left = 1
-          this.calendarControl.right = 1
-          // 改变年份标识
-          this.today.year = '2020'
-        }
+        this.$refs.arrowPev.className = 'arrow-before-no'
+        this.calendarControl.left = 0
+        this.calendarControl.right = 1
+        // 刷新数据
+        this.calendar.state = this.calendar.info.state[0]
+        // 渲染
         this.$refs.calendarMain.innerHTML = `<p style="width: 12vw;height: 5.3vw;">周日</p>
           <p style="width: 12vw;height: 5.3vw;">周一</p>
           <p style="width: 12vw;height: 5.3vw;">周二</p>
@@ -328,28 +302,14 @@ export default {
       // 改变箭头的样式
       this.$refs.arrowPev.className = 'arrow-before-yes'
       if (this.calendarControl.right === 1) {
-        if (this.today.flag === 11) {
-          this.calendar.state = this.calendar.info.state[1]
-        } else if (this.today.flag === 12) {
-          this.calendar.state = this.calendar.info.state[2]
-        }
-        // this.calendar.state = this.calendar.info.state[1]
-        if (this.today.flag === 12) {
-          // 改变箭头的样式
-          this.$refs.arrowPev.className = 'arrow-before-yes'
-          this.$refs.arrowNext.className = 'arrow-after-no'
-          this.calendarControl.left = 1
-          this.calendarControl.right = 0
-          // 改变年份标识
-          this.today.year = '2021'
-        } else if (this.today.flag === 11) {
-          this.$refs.arrowPev.className = 'arrow-before-yes'
-          this.$refs.arrowNext.className = 'arrow-after-yes'
-          this.calendarControl.left = 1
-          this.calendarControl.right = 1
-          // 改变年份标识
-          this.today.year = '2020'
-        }
+        // 改变箭头的样式
+        this.$refs.arrowPev.className = 'arrow-before-yes'
+        this.$refs.arrowNext.className = 'arrow-after-no'
+        this.calendarControl.left = 1
+        this.calendarControl.right = 0
+        // 刷新数据
+        this.calendar.state = this.calendar.info.state[1]
+        // 渲染
         this.$refs.calendarMain.innerHTML = `<p style="width: 12vw;height: 5.3vw;">周日</p>
           <p style="width: 12vw;height: 5.3vw;">周一</p>
           <p style="width: 12vw;height: 5.3vw;">周二</p>

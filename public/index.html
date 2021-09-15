@@ -37,6 +37,7 @@
     //     '&scope=student';
     // }
     // console.log(token);
+
     if (token && token.length) {
       document.location.hash = '#/';
       localStorage.setItem('id_token', token.replace(/%20/g, '+').replace(/#[\w/]*/g, ''));
@@ -55,7 +56,7 @@
       console.log(date)
       localStorage.setItem('time', date)
       window.location.href =
-        'https://be-prod.redrock.cqupt.edu.cn/magicloop-wx/auth/enter/yorozuya?origin=' +
+        'https://be-dev.redrock.cqupt.edu.cn/magicloop-wx/auth/enter/yorozuya?origin=' +
         encodeURI('https://fe-prod.redrock.cqupt.edu.cn/clean-plant') +
         '&scope=student';
     }
