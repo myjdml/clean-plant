@@ -1,0 +1,43 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0;"><link rel="icon" href="/clean-plant/favicon.ico"><title>勤俭节约,光盘ing</title><link href="/clean-plant/css/chunk-26953101.e194e489.css" rel="prefetch"><link href="/clean-plant/css/chunk-628c2505.fd46b628.css" rel="prefetch"><link href="/clean-plant/css/chunk-be2268dc.b40e5258.css" rel="prefetch"><link href="/clean-plant/css/chunk-e18fe028.1f5aeb55.css" rel="prefetch"><link href="/clean-plant/js/chunk-26953101.ca685bae.js" rel="prefetch"><link href="/clean-plant/js/chunk-628c2505.3216c26b.js" rel="prefetch"><link href="/clean-plant/js/chunk-be2268dc.1ee35e65.js" rel="prefetch"><link href="/clean-plant/js/chunk-e18fe028.52803ce9.js" rel="prefetch"><link href="/clean-plant/css/app.078e0c03.css" rel="preload" as="style"><link href="/clean-plant/css/chunk-vendors.dbcadc4f.css" rel="preload" as="style"><link href="/clean-plant/js/app.e6b406f4.js" rel="preload" as="script"><link href="/clean-plant/js/chunk-vendors.1e268426.js" rel="preload" as="script"><link href="/clean-plant/css/chunk-vendors.dbcadc4f.css" rel="stylesheet"><link href="/clean-plant/css/app.078e0c03.css" rel="stylesheet"></head><body><noscript><strong>We're sorry but clean-plant doesn't work properly without JavaScript enabled. Please enable it to continue.</strong></noscript><div id="app"></div><script>console.log("114514");
+      const token = document.location.href.split('token=')[1];
+    // let today = Date.parse(new Date())
+    // if (today - localStorage.getItem('time') > 8640000) {
+    //   let date = Date.parse(new Date())
+    //   console.log(date)
+    //   localStorage.setItem('time', date)
+    //   window.location.href =
+    //     'https://be-prod.redrock.team/magicloop/rushb?b=' +
+    //     encodeURI('https://be-prod.redrock.team/wxapi/clean-plant-server/enter') +
+    //     '&scope=student';
+    // }
+    // console.log(token);
+
+
+    if (token && token.length) {
+      document.location.hash = '#/';
+      localStorage.setItem('id_token', token.replace(/%20/g, '+').replace(/#[\w/]*/g, ''));
+      const { exp, stuNum, role } = JSON.parse(atob(token.split('.')[1]));
+      localStorage.setItem('exp', exp);
+      localStorage.setItem('stuNum', stuNum);
+      localStorage.setItem('role', role);
+    }
+    if (
+      (!localStorage.getItem('id_token') ||
+        parseInt(localStorage.getItem('exp')) <
+        Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 2) &&
+      !token
+    ) {
+      let date = Date.parse(new Date())
+      console.log(date)
+      localStorage.setItem('time', date)
+      window.location.href =
+        'https://be-prod.redrock.cqupt.edu.cn/magicloop-wx/auth/enter/yorozuya?origin=' +
+        encodeURI('https://fe-prod.redrock.cqupt.edu.cn/clean-plant') +
+        '&scope=student';
+    }</script><script>var _hmt = _hmt || [];
+    (function () {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?c92cd0fa0888f33d5e9cd257f0a15ffb";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();</script><script src="/clean-plant/js/chunk-vendors.1e268426.js"></script><script src="/clean-plant/js/app.e6b406f4.js"></script></body></html>
