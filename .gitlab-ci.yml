@@ -16,7 +16,7 @@ prepare:
     paths:
       - node_modules/
   script:
-    - npm ci
+    - yarn install
   only:
     changes:
       - package-lock.json
