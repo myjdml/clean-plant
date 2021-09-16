@@ -25,7 +25,7 @@
     "postcss-px-to-viewport": "^1.1.1",
     "swiper": "^6.8.4",
     "vconsole": "^3.3.4",
-    "vue": "^3.0.0",
+    "vue": "^3.0.2",
     "vue-axios": "^3.3.6",
     "vue-router": "^4.0.0-0",
     "vuex": "^4.0.0-0"
