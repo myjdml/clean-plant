@@ -4,7 +4,7 @@
   <div class="index" :style="`height:${index_height}`">
     <!-- 打卡任务 -->
     <div class="index-title">
-<!--      <p>勤俭节约,光盘ing</p>-->
+      <p>勤俭节约,光盘ing</p>
       <div class="ware"></div>
     </div>
     <div class="index-block">
