@@ -16,7 +16,7 @@ prepare:
     paths:
       - node_modules/
   script:
-    - yarn install
+    - npm ci
   only:
     changes:
       - package-lock.json
@@ -51,6 +51,7 @@ compile_prod:
       - node_modules/
     policy: pull
   script:
+    - yarn install
     - yarn run build
   artifacts:
     expire_in: 1 week
