@@ -91,18 +91,18 @@ export default {
           ],
           data: [
             [
-              26, 27, 28, 29, 30, 1, 2,
-              3, 4, 5, 6, 7, 8, 9,
-              10, 11, 12, 13, 14, 15, 16,
-              17, 18, 19, 20, 21, 22, 23,
-              24, 25, 26, 27, 28, 29, 30
-            ],
-            [
               29, 30, 31, 1, 2, 3, 4,
               5, 6, 7, 8, 9, 10, 11,
               12, 13, 14, 15, 16, 17, 18,
               19, 20, 21, 22, 23, 24, 25,
               26, 27, 28, 29, 30, 1, 2
+            ],
+            [
+              26, 27, 28, 29, 30, 1, 2,
+              3, 4, 5, 6, 7, 8, 9,
+              10, 11, 12, 13, 14, 15, 16,
+              17, 18, 19, 20, 21, 22, 23,
+              24, 25, 26, 27, 28, 29, 30
             ]
             // [
             //   31, 1, 2, 3, 4, 5, 6,
@@ -128,11 +128,11 @@ export default {
         ],
         stateFlag: [4, 6, 5],
         data: [
-          26, 27, 28, 29, 30, 1, 2,
-          3, 4, 5, 6, 7, 8, 9,
-          10, 11, 12, 13, 14, 15, 16,
-          17, 18, 19, 20, 21, 22, 23,
-          24, 25, 26, 27, 28, 29, 30
+          29, 30, 31, 1, 2, 3, 4,
+          5, 6, 7, 8, 9, 10, 11,
+          12, 13, 14, 15, 16, 17, 18,
+          19, 20, 21, 22, 23, 24, 25,
+          26, 27, 28, 29, 30, 1, 2
         ]
       },
       calendarControl: {
@@ -145,7 +145,7 @@ export default {
         card_count: 2,
         cards: [
           {
-            created_at: 1607097600,
+            created_at: 1631708182,
             id: 11,
             content: '111',
             photo_url: 'http://cdn.redrock.team/clean-plant-sever_8BIabKERsUhPNmMmdf2eSJyYtqwcFiUI.LzXv2fcNIrWO7sToFgoilA0U1WxNeW1g',
@@ -251,12 +251,13 @@ export default {
         // console.log(item.created_at)
         const day = timer(item.created_at).date
         const month = timer(item.created_at).month
-        // console.log(day, month)
-        if (month === '9') {
+        console.log(day, month)
+        if (month === '09') {
           dateHandel(this.calendar.stateFlag[0], day, 0)
         } else if (month === '10') {
           dateHandel(this.calendar.stateFlag[1], day, 1)
         }
+        console.log('ceshi', this.calendar.info.state)
       })
     },
     dateAdd (data) {
@@ -284,11 +285,12 @@ export default {
           <p style="width: 12vw;height: 5.3vw;">周六</p>`
         this.renderCalendar()
         // 加载日期
-        if (this.today.flag === 1) {
-          this.calendar.data = this.calendar.info.data[1]
-        } else if (this.today.flag === 12) {
-          this.calendar.data = this.calendar.info.data[0]
-        }
+        this.calendar.data = this.calendar.info.data[0]
+        // if (this.today.flag === 1) {
+        //   this.calendar.data = this.calendar.info.data[1]
+        // } else if (this.today.flag === 12) {
+        //   this.calendar.data = this.calendar.info.data[0]
+        // }
         const dailyList = document.querySelectorAll('.calendar-main__item')
         this.calendar.data.forEach((item, index) => {
           // console.log(dailyList)
@@ -319,11 +321,12 @@ export default {
           <p style="width: 12vw;height: 5.3vw;">周六</p>`
         this.renderCalendar()
         // 加载日期
-        if (this.today.flag === 11) {
-          this.calendar.data = this.calendar.info.data[1]
-        } else if (this.today.flag === 12) {
-          this.calendar.data = this.calendar.info.data[2]
-        }
+        this.calendar.data = this.calendar.info.data[1]
+        // if (this.today.flag === 11) {
+        //   this.calendar.data = this.calendar.info.data[1]
+        // } else if (this.today.flag === 12) {
+        //   this.calendar.data = this.calendar.info.data[2]
+        // }
         const dailyList = document.querySelectorAll('.calendar-main__item')
         this.calendar.data.forEach((item, index) => {
           // console.log(dailyList)
@@ -335,6 +338,18 @@ export default {
     }
   },
   mounted () {
+    // 调用测试数据
+    // this.renderCalendar()
+    // this.renderDataState()
+    // const dailyList = document.querySelectorAll('.calendar-main__item')
+    // this.calendar.data.forEach((item, index) => {
+    //   // console.log(dailyList)
+    //   dailyList[index].querySelector('div').innerText = item
+    // })
+    // // console.log(dayjs('2021-01-5').unix())
+    // this.today.month = timer(dayjs().unix()).month
+    // this.today.day = timer(dayjs().unix()).date
+    // console.log(this.today)
     getPushCard()
       .then(response => {
         console.log(response)
@@ -359,6 +374,7 @@ export default {
           // console.log(dayjs('2021-01-5').unix())
           this.today.month = timer(dayjs().unix()).month
           this.today.day = timer(dayjs().unix()).date
+          console.log(this.today)
         }
 
         // 计算已打卡天数
@@ -372,6 +388,7 @@ export default {
         console.log(pushDay)
         this.$store.state.card_day = this.card_day
       })
+    console.log(this.calendar.state)
   }
 }
 </script>
