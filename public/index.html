@@ -39,6 +39,7 @@
     // }
     // console.log(token);
 
+
     if (token && token.length) {
       document.location.hash = '#/';
       localStorage.setItem('id_token', token.replace(/%20/g, '+').replace(/#[\w/]*/g, ''));
