@@ -11,7 +11,7 @@ import axios from 'axios'
 
 const TOKEN = 'Bearer ' +
   `${localStorage.getItem('id_token')}`
-const BACEURL = process.env.NODE_ENV === 'production' ? 'https://be-dev.redrock.cqupt.edu.cn/clean-plant-server' : '/api'
+const BACEURL = process.env.NODE_ENV === 'production' ? 'https://be-prod.redrock.cqupt.edu.cn/clean-plant-server' : '/api'
 axios.defaults.headers.common.Authorization = TOKEN
 
 export const instanceImg = axios.create({
