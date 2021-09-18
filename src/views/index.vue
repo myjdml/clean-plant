@@ -554,7 +554,7 @@ export default {
     .myrecord-title {
       margin-left: 40px;
       text-align: left;
-      color: #ff5a00;
+      color: #ff3200;
       font-size: 40px;
       margin-bottom: 20px;
       display: flex;
@@ -562,6 +562,7 @@ export default {
       justify-content: space-between;
       .myrecord-title-other {
         margin-left: 20px;
+        color: #ff8700;
       }
       .medals-list {
         display: flex;
