@@ -171,7 +171,7 @@ export default {
     return {
       info: '今日打卡成功',
       num: 1,
-      clickIndex : 1,
+      clickIndex: 1,
       daylist: [
         { num: 0, state: 'faild', week: '周日' },
         { num: 0, state: 'faild', week: '周一' },
