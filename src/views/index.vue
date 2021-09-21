@@ -571,7 +571,6 @@ export default {
       justify-content: space-between;
       .myrecord-title-other {
         margin-left: 20px;
-        color: #ff8700;
       }
       .medals-list {
         display: flex;
