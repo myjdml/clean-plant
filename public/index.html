@@ -27,16 +27,16 @@
   <script>
       console.log("114514");
       const token = document.location.href.split('token=')[1];
-    // let today = Date.parse(new Date())
-    // if (today - localStorage.getItem('time') > 8640000) {
-    //   let date = Date.parse(new Date())
-    //   console.log(date)
-    //   localStorage.setItem('time', date)
-    //   window.location.href =
-    //     'https://be-prod.redrock.team/magicloop/rushb?b=' +
-    //     encodeURI('https://be-prod.redrock.team/wxapi/clean-plant-server/enter') +
-    //     '&scope=student';
-    // }
+    let today = Date.parse(new Date())
+    if (today - localStorage.getItem('time') > 8640000) {
+      let date = Date.parse(new Date())
+      console.log(date)
+      localStorage.setItem('time', date)
+      window.location.href =
+        'https://be-prod.redrock.cqupt.edu.cn/magicloop-wx/auth/enter/yorozuya?origin=' +
+        encodeURI('https://fe-prod.redrock.cqupt.edu.cn/clean-plant') +
+        '&scope=student';
+    }
     // console.log(token);
 
     if (token && token.length) {
