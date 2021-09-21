@@ -61,7 +61,7 @@
       <div class="myrecord-title">
         <div>
           <a @click="mycard(1)" :class="clickIndex==1?`red`:`orange`">我的记录</a>
-          <a @click="othercard(2)" :class="clickIndex==1?`red myrecord-title-other`:`orange myrecord-title-other`">打卡展示</a>
+          <a @click="othercard(2)" :class="clickIndex==2?`red myrecord-title-other`:`orange myrecord-title-other`">打卡展示</a>
         </div>
         <div class="medals-list">
           <!-- 积极榜单 -->
