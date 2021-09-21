@@ -28,7 +28,7 @@
       console.log("114514");
       const token = document.location.href.split('token=')[1];
     let today = Date.parse(new Date())
-    if (today - localStorage.getItem('time') > 2*60*60) {
+    if (today - localStorage.getItem('time') > 2*60*60*1000) {
       let date = Date.parse(new Date())
       console.log(date)
       localStorage.setItem('time', date)
