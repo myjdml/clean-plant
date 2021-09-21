@@ -60,8 +60,8 @@
     <div class="my-record">
       <div class="myrecord-title">
         <div>
-          <a @click="mycard">我的记录</a>
-          <a @click="othercard" class="myrecord-title-other">打卡展示</a>
+          <a @click="mycard(1)" :class="clickIndex==1?`red`:`orange`">我的记录</a>
+          <a @click="othercard(2)" :class="clickIndex==1?`red myrecord-title-other`:`orange myrecord-title-other`">打卡展示</a>
         </div>
         <div class="medals-list">
           <!-- 积极榜单 -->
@@ -171,6 +171,7 @@ export default {
     return {
       info: '今日打卡成功',
       num: 1,
+      clickIndex : 1,
       daylist: [
         { num: 0, state: 'faild', week: '周日' },
         { num: 0, state: 'faild', week: '周一' },
@@ -212,9 +213,11 @@ export default {
       }
     },
     mycard () {
+      this.clickIndex = 1
       this.clockinList = this.myList
     },
     othercard () {
+      this.clickIndex = 2
       this.clockinList = this.otherList
     },
     changeCalendarState () {
@@ -403,6 +406,12 @@ export default {
       background-image: url('../assets/image/index/ware.png');
       background-size: cover;
     }
+  }
+  .orange {
+    color: #ff8700;
+  }
+  .red {
+    color: #ff3200;
   }
   .index-block {
     width: 680px;

@@ -13,7 +13,14 @@ const TOKEN = 'Bearer ' +
   `${localStorage.getItem('id_token')}`
 const BACEURL = process.env.NODE_ENV === 'production' ? 'https://be-prod.redrock.cqupt.edu.cn/clean-plant-server' : '/api'
 axios.defaults.headers.common.Authorization = TOKEN
-
+axios.interceptors.response.use((response) => {
+  return response.data;
+}, (error) => {
+  window.location.href =
+    'https://be-prod.redrock.cqupt.edu.cn/magicloop-wx/auth/enter/yorozuya?origin=' +
+    encodeURI('https://fe-prod.redrock.cqupt.edu.cn/clean-plant') +
+    '&scope=student';
+});
 export const instanceImg = axios.create({
   baseURL: BACEURL,
   timeout: 50000,
