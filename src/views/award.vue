@@ -36,7 +36,7 @@
        </div>
     </div> -->
   </div>
-  <award-alert-popup info="第二期领奖时间待定"/></template>
+  <award-alert-popup info="第三期领奖时间待定"/></template>
 
 <script>
 import AwardAlertPopup from '../components/popup/AwardAlertPopup.vue'
