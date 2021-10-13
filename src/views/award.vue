@@ -4,7 +4,7 @@
     <div class="back" @click="gotohome"></div>
     <div class="title">
       <div class="title__img"></div>
-      <p>第二期获奖名单</p>
+      <p>第三期获奖名单</p>
       <span @click="popupShow">领奖方式</span>
     </div>
     <div class="box">
@@ -36,7 +36,7 @@
        </div>
     </div> -->
   </div>
-  <award-alert-popup info="第三期领奖时间待定"/></template>
+  <award-alert-popup info="领奖时间：10月18日(下周一)10:00-20:00    领奖地点：红岩网校工作站B区(太极操场西六门顶楼左边)"/></template>
 
 <script>
 import AwardAlertPopup from '../components/popup/AwardAlertPopup.vue'
